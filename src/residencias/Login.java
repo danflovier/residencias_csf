@@ -6,7 +6,6 @@
 package residencias;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,19 +13,19 @@ import javax.swing.ImageIcon;
  * @author danflovier
  */
 public class Login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login
-     */
+    
+    final private MySQL db; 
+    
     public Login() {
         initComponents();
-        this.setTitle("Residencias Santa Fe | Login");
-        this.setLocationRelativeTo(null);
-        this.setIconImage (new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        this.getContentPane().setBackground(Color.white);
-        this.toFront();
-        this.setMinimumSize(new Dimension(550,450));
-        this.setLocationRelativeTo(null);
+        
+        // Set a background color to the JFrame
+        this.getContentPane().setBackground(new Color(33,150,243));
+        
+        // Initialize the object of the MySQL class
+        db = new MySQL();
+        //db.MySQLConnection("root","root","residencias");
+        
     }
 
     /**
@@ -38,21 +37,232 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        button_fpassword = new javax.swing.JButton();
+        button_login = new javax.swing.JButton();
+        button_register = new javax.swing.JButton();
+        field_password = new javax.swing.JPasswordField();
+        field_username = new javax.swing.JTextField();
+        label_image = new javax.swing.JLabel();
+        label_username = new javax.swing.JLabel();
+        label_login = new javax.swing.JLabel();
+        label_password = new javax.swing.JLabel();
+        label_residencias = new javax.swing.JLabel();
+        background_white1 = new javax.swing.JLabel();
+        background_blue = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Residencias Santa Fe | Login");
+        setBackground(new java.awt.Color(33, 150, 243));
+        setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
+        setMaximumSize(null);
+        setResizable(false);
+        setSize(new java.awt.Dimension(1000, 700));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        button_fpassword.setBackground(new java.awt.Color(26, 188, 156));
+        button_fpassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        button_fpassword.setForeground(new java.awt.Color(76, 76, 76));
+        button_fpassword.setText("FORGOT YOUR PASSWORD?");
+        button_fpassword.setBorder(null);
+        button_fpassword.setBorderPainted(false);
+        button_fpassword.setContentAreaFilled(false);
+        button_fpassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                fPasswordMouseIsEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fPasswordIsExited(evt);
+            }
+        });
+        button_fpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_fpasswordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_fpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 200, 20));
+
+        button_login.setBackground(new java.awt.Color(26, 188, 156));
+        button_login.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        button_login.setForeground(new java.awt.Color(255, 255, 255));
+        button_login.setText("LOGIN");
+        button_login.setBorder(null);
+        button_login.setBorderPainted(false);
+        button_login.setContentAreaFilled(false);
+        button_login.setOpaque(true);
+        button_login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LoginIsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LoginIsMouseExited(evt);
+            }
+        });
+        button_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_loginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 230, 50));
+
+        button_register.setBackground(new java.awt.Color(26, 188, 156));
+        button_register.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        button_register.setForeground(new java.awt.Color(76, 76, 76));
+        button_register.setText("ADD NEW USER");
+        button_register.setBorder(null);
+        button_register.setBorderPainted(false);
+        button_register.setContentAreaFilled(false);
+        button_register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                newUserMouseIsEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                newUserMouseIsExited(evt);
+            }
+        });
+        button_register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_registerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, 120, 20));
+
+        field_password.setBackground(new java.awt.Color(223, 223, 223));
+        field_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        field_password.setBorder(null);
+        field_password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                passMouseIsEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                passMouseIsExited(evt);
+            }
+        });
+        field_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_passwordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 230, 30));
+
+        field_username.setBackground(new java.awt.Color(223, 223, 223));
+        field_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        field_username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        field_username.setToolTipText("");
+        field_username.setBorder(null);
+        field_username.setDoubleBuffered(true);
+        field_username.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                userIsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                userIsMouseExited(evt);
+            }
+        });
+        field_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_usernameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(field_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 230, 30));
+
+        label_image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
+        getContentPane().add(label_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 160, 160));
+
+        label_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_username.setForeground(new java.awt.Color(76, 76, 76));
+        label_username.setText("USERNAME");
+        getContentPane().add(label_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+
+        label_login.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        label_login.setForeground(new java.awt.Color(76, 76, 76));
+        label_login.setText("USER LOGIN");
+        getContentPane().add(label_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+
+        label_password.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_password.setForeground(new java.awt.Color(76, 76, 76));
+        label_password.setText("PASSWORD");
+        getContentPane().add(label_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
+
+        label_residencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_residencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo3.png"))); // NOI18N
+        getContentPane().add(label_residencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 600, 180, 70));
+
+        background_white1.setBackground(new java.awt.Color(255, 255, 255));
+        background_white1.setForeground(new java.awt.Color(3, 169, 244));
+        background_white1.setOpaque(true);
+        getContentPane().add(background_white1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 620, 450));
+
+        background_blue.setBackground(new java.awt.Color(3, 169, 244));
+        background_blue.setForeground(new java.awt.Color(33, 150, 243));
+        background_blue.setOpaque(true);
+        getContentPane().add(background_blue, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void field_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_field_usernameActionPerformed
+
+    private void button_fpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_fpasswordActionPerformed
+
+       // TODO add your handling code here:
+    }//GEN-LAST:event_button_fpasswordActionPerformed
+
+    private void field_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_field_passwordActionPerformed
+
+    private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
+
+        db.MySQLConnection("root","root","residencias");
+    }//GEN-LAST:event_button_loginActionPerformed
+
+    private void button_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_registerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_registerActionPerformed
+
+    private void LoginIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginIsMouseEntered
+        button_login.setBackground(new Color(0,168,133));
+    }//GEN-LAST:event_LoginIsMouseEntered
+
+    private void LoginIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginIsMouseExited
+        button_login.setBackground(new Color(26,182,156));
+    }//GEN-LAST:event_LoginIsMouseExited
+
+    private void userIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIsMouseEntered
+        field_username.setBackground(new Color(203,201,201));
+    }//GEN-LAST:event_userIsMouseEntered
+
+    private void userIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIsMouseExited
+        field_username.setBackground(new Color(223,223,223));
+    }//GEN-LAST:event_userIsMouseExited
+
+    private void passMouseIsExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passMouseIsExited
+        field_password.setBackground(new Color(223,223,223));
+    }//GEN-LAST:event_passMouseIsExited
+
+    private void passMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passMouseIsEntered
+        field_password.setBackground(new Color(203,201,201));
+    }//GEN-LAST:event_passMouseIsEntered
+
+    private void newUserMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserMouseIsEntered
+        button_register.setForeground(new Color(33,150,243));
+    }//GEN-LAST:event_newUserMouseIsEntered
+
+    private void newUserMouseIsExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserMouseIsExited
+        button_register.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_newUserMouseIsExited
+
+    private void fPasswordMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fPasswordMouseIsEntered
+        button_fpassword.setForeground(new Color(33,150,243));
+    }//GEN-LAST:event_fPasswordMouseIsEntered
+
+    private void fPasswordIsExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fPasswordIsExited
+        button_fpassword.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_fPasswordIsExited
 
     /**
      * @param args the command line arguments
@@ -90,5 +300,17 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background_blue;
+    private javax.swing.JLabel background_white1;
+    private javax.swing.JButton button_fpassword;
+    private javax.swing.JButton button_login;
+    private javax.swing.JButton button_register;
+    private javax.swing.JPasswordField field_password;
+    private javax.swing.JTextField field_username;
+    private javax.swing.JLabel label_image;
+    private javax.swing.JLabel label_login;
+    private javax.swing.JLabel label_password;
+    private javax.swing.JLabel label_residencias;
+    private javax.swing.JLabel label_username;
     // End of variables declaration//GEN-END:variables
 }
