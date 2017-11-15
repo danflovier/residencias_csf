@@ -65,7 +65,7 @@ public final class SplashScreen {
             }
 	   splash.close();
 	}
-        //una vez terminada la animación se muestra la aplicación principal
+        // Show the Login form
          try {
              new Login().setVisible(true);
          }

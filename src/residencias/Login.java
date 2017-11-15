@@ -49,6 +49,11 @@ public class Login extends javax.swing.JFrame {
         label_residencias = new javax.swing.JLabel();
         background_white1 = new javax.swing.JLabel();
         background_blue = new javax.swing.JLabel();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        file_exit = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_rcsf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Login");
@@ -62,7 +67,7 @@ public class Login extends javax.swing.JFrame {
         button_fpassword.setBackground(new java.awt.Color(26, 188, 156));
         button_fpassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         button_fpassword.setForeground(new java.awt.Color(76, 76, 76));
-        button_fpassword.setText("FORGOT YOUR PASSWORD?");
+        button_fpassword.setText("OLVIDÓ SU CONTRASEÑA?");
         button_fpassword.setBorder(null);
         button_fpassword.setBorderPainted(false);
         button_fpassword.setContentAreaFilled(false);
@@ -79,12 +84,12 @@ public class Login extends javax.swing.JFrame {
                 button_fpasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(button_fpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 200, 20));
+        getContentPane().add(button_fpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 180, 20));
 
         button_login.setBackground(new java.awt.Color(26, 188, 156));
         button_login.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         button_login.setForeground(new java.awt.Color(255, 255, 255));
-        button_login.setText("LOGIN");
+        button_login.setText("INICIAR");
         button_login.setBorder(null);
         button_login.setBorderPainted(false);
         button_login.setContentAreaFilled(false);
@@ -107,7 +112,7 @@ public class Login extends javax.swing.JFrame {
         button_register.setBackground(new java.awt.Color(26, 188, 156));
         button_register.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         button_register.setForeground(new java.awt.Color(76, 76, 76));
-        button_register.setText("ADD NEW USER");
+        button_register.setText("NUEVO USUARIO");
         button_register.setBorder(null);
         button_register.setBorderPainted(false);
         button_register.setContentAreaFilled(false);
@@ -172,7 +177,7 @@ public class Login extends javax.swing.JFrame {
         label_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_username.setForeground(new java.awt.Color(76, 76, 76));
         label_username.setText("USERNAME");
-        getContentPane().add(label_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+        getContentPane().add(label_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         label_login.setForeground(new java.awt.Color(76, 76, 76));
@@ -181,8 +186,8 @@ public class Login extends javax.swing.JFrame {
 
         label_password.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_password.setForeground(new java.awt.Color(76, 76, 76));
-        label_password.setText("PASSWORD");
-        getContentPane().add(label_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
+        label_password.setText("CONTRASEÑA");
+        getContentPane().add(label_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, -1, -1));
 
         label_residencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_residencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo3.png"))); // NOI18N
@@ -197,6 +202,25 @@ public class Login extends javax.swing.JFrame {
         background_blue.setForeground(new java.awt.Color(33, 150, 243));
         background_blue.setOpaque(true);
         getContentPane().add(background_blue, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 700));
+
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        file.setText("File");
+
+        file_exit.setText("Salir");
+        file.add(file_exit);
+
+        Menu.add(file);
+
+        about.setText("About...");
+
+        about_rcsf.setText("Residencias CSF");
+        about.add(about_rcsf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
 
         pack();
         setLocationRelativeTo(null);
@@ -300,6 +324,9 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_rcsf;
     private javax.swing.JLabel background_blue;
     private javax.swing.JLabel background_white1;
     private javax.swing.JButton button_fpassword;
@@ -307,6 +334,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton button_register;
     private javax.swing.JPasswordField field_password;
     private javax.swing.JTextField field_username;
+    private javax.swing.JMenu file;
+    private javax.swing.JMenuItem file_exit;
     private javax.swing.JLabel label_image;
     private javax.swing.JLabel label_login;
     private javax.swing.JLabel label_password;

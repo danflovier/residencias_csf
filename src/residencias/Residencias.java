@@ -12,7 +12,6 @@ package residencias;
 public class Residencias {
 
     public static void main(String[] args) {
-        
         new SplashScreen().showSplashScreen();
     }
     
