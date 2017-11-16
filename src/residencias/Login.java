@@ -142,11 +142,6 @@ public class Login extends javax.swing.JFrame {
                 passMouseIsExited(evt);
             }
         });
-        field_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_passwordActionPerformed(evt);
-            }
-        });
         getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 230, 30));
 
         field_username.setBackground(new java.awt.Color(223, 223, 223));
@@ -161,11 +156,6 @@ public class Login extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 userIsMouseExited(evt);
-            }
-        });
-        field_username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_usernameActionPerformed(evt);
             }
         });
         getContentPane().add(field_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 230, 30));
@@ -226,18 +216,10 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void field_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_usernameActionPerformed
-
     private void button_fpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_fpasswordActionPerformed
 
        // TODO add your handling code here:
     }//GEN-LAST:event_button_fpasswordActionPerformed
-
-    private void field_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_passwordActionPerformed
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
 

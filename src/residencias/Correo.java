@@ -27,18 +27,24 @@ public class Correo extends javax.swing.JFrame {
     public Correo() {
         initComponents();
         
-        
-        
+        // Get the screen resolution of the device
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
         
+        // Set size of the JFrame
         this.setSize(screenWidth / 2 - 150, screenHeight - 200);
+        
+        // Set default close operation
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
+        
+        // Center the JFrame
         this.setLocationRelativeTo(null);
         
+        // Delete border from the textArea
         scrollPane_message.setBorder(null);
     }
 
@@ -147,19 +153,6 @@ public class Correo extends javax.swing.JFrame {
         field_from.setToolTipText("");
         field_from.setBorder(null);
         field_from.setDoubleBuffered(true);
-        field_from.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                field_fromuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                field_fromuserIsMouseExited(evt);
-            }
-        });
-        field_from.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_fromActionPerformed(evt);
-            }
-        });
         getContentPane().add(field_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 250, 30));
 
         field_to.setBackground(new java.awt.Color(223, 223, 223));
@@ -168,19 +161,6 @@ public class Correo extends javax.swing.JFrame {
         field_to.setToolTipText("");
         field_to.setBorder(null);
         field_to.setDoubleBuffered(true);
-        field_to.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                field_touserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                field_touserIsMouseExited(evt);
-            }
-        });
-        field_to.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_toActionPerformed(evt);
-            }
-        });
         getContentPane().add(field_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 250, 30));
 
         field_username.setBackground(new java.awt.Color(223, 223, 223));
@@ -189,19 +169,6 @@ public class Correo extends javax.swing.JFrame {
         field_username.setToolTipText("");
         field_username.setBorder(null);
         field_username.setDoubleBuffered(true);
-        field_username.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                field_usernameuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                field_usernameuserIsMouseExited(evt);
-            }
-        });
-        field_username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_usernameActionPerformed(evt);
-            }
-        });
         getContentPane().add(field_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 670, 190, 30));
 
         field_subject.setBackground(new java.awt.Color(223, 223, 223));
@@ -209,43 +176,17 @@ public class Correo extends javax.swing.JFrame {
         field_subject.setToolTipText("");
         field_subject.setBorder(null);
         field_subject.setDoubleBuffered(true);
-        field_subject.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                field_subjectuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                field_subjectuserIsMouseExited(evt);
-            }
-        });
-        field_subject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_subjectActionPerformed(evt);
-            }
-        });
         getContentPane().add(field_subject, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 560, 30));
 
         field_password.setBackground(new java.awt.Color(223, 223, 223));
         field_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         field_password.setBorder(null);
-        field_password.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                field_passwordpassMouseIsEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                field_passwordpassMouseIsExited(evt);
-            }
-        });
-        field_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_passwordActionPerformed(evt);
-            }
-        });
         getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 720, 190, 30));
 
         server.setBackground(new java.awt.Color(102, 102, 102));
         server.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         server.setForeground(new java.awt.Color(76, 76, 76));
-        server.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "smtp.gmail.com", "smtp.live.com" }));
+        server.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "smtp.gmail.com" }));
         server.setBorder(null);
         server.setFocusable(false);
         server.setLightWeightPopupEnabled(false);
@@ -287,44 +228,8 @@ public class Correo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void field_touserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_touserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_touserIsMouseEntered
-
-    private void field_touserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_touserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_touserIsMouseExited
-
-    private void field_toActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_toActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_toActionPerformed
-
-    private void field_fromuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_fromuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_fromuserIsMouseEntered
-
-    private void field_fromuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_fromuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_fromuserIsMouseExited
-
-    private void field_fromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_fromActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_fromActionPerformed
-
-    private void field_usernameuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_usernameuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_usernameuserIsMouseEntered
-
-    private void field_usernameuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_usernameuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_usernameuserIsMouseExited
-
-    private void field_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_usernameActionPerformed
-
     private void button_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sendActionPerformed
-        Properties props = new Properties();
+            Properties props = new Properties();
             // Hostname
             props.put("mail.smtp.host", server.getSelectedItem());
             
@@ -343,62 +248,54 @@ public class Correo extends javax.swing.JFrame {
             // SSL Port
             props.put("mail.smtp.socketFactory.port", "465");
             props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
+            
+            // Start session from the properties
             Session session = Session.getDefaultInstance(props);
-            try {
-                InternetAddress fromAddress = new InternetAddress(field_from.getText());
-                InternetAddress toAddress = new InternetAddress(field_to.getText());
+            
+            // Try to send email if allthe fields of data are filled
+            if (server.getSelectedItem() != "Seleccionar" && field_from.getText() != null && field_to.getText() != null && field_subject.getText() != null && text_message != null && field_username.getText() != null && field_password != null){
+                try {
+                    InternetAddress fromAddress = new InternetAddress(field_from.getText());
+                    InternetAddress toAddress = new InternetAddress(field_to.getText());
 
-                Message message = new MimeMessage(session);
-                message.setFrom(fromAddress);
-                message.setRecipient(Message.RecipientType.TO, toAddress);
-                message.setSubject(field_subject.getText());
-                message.setText(text_message.getText());
-                
-                Transport.send(message, field_username.getText(), new String(field_password.getPassword()));
-                JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito!","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
-                
-            } catch (MessagingException ex) {
-                ex.printStackTrace();
+                    Message message = new MimeMessage(session);
+                    message.setFrom(fromAddress);
+                    message.setRecipient(Message.RecipientType.TO, toAddress);
+                    message.setSubject(field_subject.getText());
+                    message.setText(text_message.getText());
+                    
+                    String email = field_from.getText();
+                    String username = email.replace("@gmail.com","");
+                    
+                    // Check if the email_user and username are equal
+                    if (username.trim().equals(field_username.getText().trim())){
+                        
+                        // Send the message
+                        Transport.send(message, field_username.getText(), new String(field_password.getPassword()));
+                        JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Lo sentimos, los usuarios no coinciden. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } 
+                catch (MessagingException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this,"Lo sentimos, el mensaje no ha sido enviado. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Llena los campos correctamente.","ERROR",JOptionPane.INFORMATION_MESSAGE);
             }
     }//GEN-LAST:event_button_sendActionPerformed
 
-    private void field_subjectuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_subjectuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_subjectuserIsMouseEntered
-
-    private void field_subjectuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_subjectuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_subjectuserIsMouseExited
-
-    private void field_subjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_subjectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_subjectActionPerformed
-
-    private void field_passwordpassMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_passwordpassMouseIsEntered
-        field_password.setBackground(new Color(203,201,201));
-    }//GEN-LAST:event_field_passwordpassMouseIsEntered
-
-    private void field_passwordpassMouseIsExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_passwordpassMouseIsExited
-        field_password.setBackground(new Color(223,223,223));
-    }//GEN-LAST:event_field_passwordpassMouseIsExited
-
-    private void field_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_passwordActionPerformed
-
     private void serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serverActionPerformed
-    Object object = server.getSelectedItem();
-    String response = object.toString();
+        Object object = server.getSelectedItem();
+        String response = object.toString();
     
-    if (response == "smtp.gmail.com"){
-        field_to.setText("@gmail.com");
-        field_from.setText("@gmail.com");
-    }
-    if (response == "smtp.live.com"){
-        field_to.setText("@hotmail.com");
-        field_from.setText("@hotmail.com");
-    }
+        if (response == "smtp.gmail.com"){
+            field_to.setText("@gmail.com");
+            field_from.setText("@gmail.com");
+        }
     }//GEN-LAST:event_serverActionPerformed
 
     /**

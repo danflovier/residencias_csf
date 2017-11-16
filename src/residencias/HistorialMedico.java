@@ -18,7 +18,10 @@ public class HistorialMedico extends javax.swing.JFrame {
         initComponents();
         
         // Set a background color to the JFrame
-        this.getContentPane().setBackground(new Color(255,255,255));   
+        this.getContentPane().setBackground(new Color(255,255,255));  
+        
+        // Delete border from the textArea
+        jScrollPane2.setBorder(null);
     }
 
     /**
@@ -165,19 +168,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         id.setToolTipText("");
         id.setBorder(null);
         id.setDoubleBuffered(true);
-        id.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                iduserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                iduserIsMouseExited(evt);
-            }
-        });
-        id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
-            }
-        });
         getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
 
         id_expediente.setBackground(new java.awt.Color(223, 223, 223));
@@ -186,19 +176,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         id_expediente.setToolTipText("");
         id_expediente.setBorder(null);
         id_expediente.setDoubleBuffered(true);
-        id_expediente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                id_expedienteuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                id_expedienteuserIsMouseExited(evt);
-            }
-        });
-        id_expediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_expedienteActionPerformed(evt);
-            }
-        });
         getContentPane().add(id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 30));
 
         altura.setBackground(new java.awt.Color(223, 223, 223));
@@ -207,19 +184,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         altura.setToolTipText("");
         altura.setBorder(null);
         altura.setDoubleBuffered(true);
-        altura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                alturauserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                alturauserIsMouseExited(evt);
-            }
-        });
-        altura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alturaActionPerformed(evt);
-            }
-        });
         getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 130, 30));
 
         peso.setBackground(new java.awt.Color(223, 223, 223));
@@ -228,19 +192,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         peso.setToolTipText("");
         peso.setBorder(null);
         peso.setDoubleBuffered(true);
-        peso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pesouserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pesouserIsMouseExited(evt);
-            }
-        });
-        peso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesoActionPerformed(evt);
-            }
-        });
         getContentPane().add(peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 130, 30));
 
         padecimientos.setBackground(new java.awt.Color(223, 223, 223));
@@ -249,14 +200,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         padecimientos.setToolTipText("");
         padecimientos.setBorder(null);
         padecimientos.setDoubleBuffered(true);
-        padecimientos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                padecimientosuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                padecimientosuserIsMouseExited(evt);
-            }
-        });
         padecimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 padecimientosActionPerformed(evt);
@@ -270,14 +213,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         cirugias.setToolTipText("");
         cirugias.setBorder(null);
         cirugias.setDoubleBuffered(true);
-        cirugias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cirugiasuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cirugiasuserIsMouseExited(evt);
-            }
-        });
         cirugias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cirugiasActionPerformed(evt);
@@ -291,19 +226,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         historia.setToolTipText("");
         historia.setBorder(null);
         historia.setDoubleBuffered(true);
-        historia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                historiauserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                historiauserIsMouseExited(evt);
-            }
-        });
-        historia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historiaActionPerformed(evt);
-            }
-        });
         getContentPane().add(historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, 530, 30));
 
         buscar_historial.setBackground(new java.awt.Color(223, 223, 223));
@@ -312,19 +234,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         buscar_historial.setToolTipText("");
         buscar_historial.setBorder(null);
         buscar_historial.setDoubleBuffered(true);
-        buscar_historial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                buscar_historialuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                buscar_historialuserIsMouseExited(evt);
-            }
-        });
-        buscar_historial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_historialActionPerformed(evt);
-            }
-        });
         getContentPane().add(buscar_historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 200, 30));
 
         antidoping.setBackground(new java.awt.Color(102, 102, 102));
@@ -461,38 +370,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscar_historialuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_historialuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_historialuserIsMouseEntered
-
-    private void buscar_historialuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_historialuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_historialuserIsMouseExited
-
-    private void buscar_historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_historialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_historialActionPerformed
-
-    private void alturauserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alturauserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alturauserIsMouseEntered
-
-    private void alturauserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alturauserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alturauserIsMouseExited
-
-    private void alturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alturaActionPerformed
-
-    private void padecimientosuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientosuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientosuserIsMouseEntered
-
-    private void padecimientosuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientosuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientosuserIsMouseExited
-
     private void padecimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padecimientosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_padecimientosActionPerformed
@@ -526,65 +403,9 @@ public class HistorialMedico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
 
-    private void pesouserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesouserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesouserIsMouseEntered
-
-    private void pesouserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesouserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesouserIsMouseExited
-
-    private void pesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesoActionPerformed
-
-    private void cirugiasuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cirugiasuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cirugiasuserIsMouseEntered
-
-    private void cirugiasuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cirugiasuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cirugiasuserIsMouseExited
-
     private void cirugiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cirugiasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cirugiasActionPerformed
-
-    private void historiauserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historiauserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_historiauserIsMouseEntered
-
-    private void historiauserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historiauserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_historiauserIsMouseExited
-
-    private void historiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_historiaActionPerformed
-
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
-
-    private void iduserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iduserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iduserIsMouseExited
-
-    private void iduserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iduserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iduserIsMouseEntered
-
-    private void id_expedienteuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_expedienteuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_expedienteuserIsMouseEntered
-
-    private void id_expedienteuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_expedienteuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_expedienteuserIsMouseExited
-
-    private void id_expedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_expedienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_expedienteActionPerformed
 
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
         // TODO add your handling code here:

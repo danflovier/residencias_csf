@@ -115,19 +115,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         id.setToolTipText("");
         id.setBorder(null);
         id.setDoubleBuffered(true);
-        id.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                iduserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                iduserIsMouseExited(evt);
-            }
-        });
-        id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
-            }
-        });
         getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
 
         id_expediente.setBackground(new java.awt.Color(223, 223, 223));
@@ -136,19 +123,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         id_expediente.setToolTipText("");
         id_expediente.setBorder(null);
         id_expediente.setDoubleBuffered(true);
-        id_expediente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                id_expedienteuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                id_expedienteuserIsMouseExited(evt);
-            }
-        });
-        id_expediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_expedienteActionPerformed(evt);
-            }
-        });
         getContentPane().add(id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 30));
 
         padecimientos.setBackground(new java.awt.Color(223, 223, 223));
@@ -158,16 +132,8 @@ public class HistorialAcademico extends javax.swing.JFrame {
         padecimientos.setBorder(null);
         padecimientos.setDoubleBuffered(true);
         padecimientos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                padecimientosuserIsMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 padecimientosuserIsMouseExited(evt);
-            }
-        });
-        padecimientos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                padecimientosActionPerformed(evt);
             }
         });
         getContentPane().add(padecimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 220, 30));
@@ -178,19 +144,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         buscar_historial.setToolTipText("");
         buscar_historial.setBorder(null);
         buscar_historial.setDoubleBuffered(true);
-        buscar_historial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                buscar_historialuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                buscar_historialuserIsMouseExited(evt);
-            }
-        });
-        buscar_historial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_historialActionPerformed(evt);
-            }
-        });
         getContentPane().add(buscar_historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 200, 30));
 
         padecimientos1.setBackground(new java.awt.Color(223, 223, 223));
@@ -199,19 +152,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         padecimientos1.setToolTipText("");
         padecimientos1.setBorder(null);
         padecimientos1.setDoubleBuffered(true);
-        padecimientos1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                padecimientos1userIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                padecimientos1userIsMouseExited(evt);
-            }
-        });
-        padecimientos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                padecimientos1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(padecimientos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 220, 30));
 
         sangre.setBackground(new java.awt.Color(102, 102, 102));
@@ -329,29 +269,9 @@ public class HistorialAcademico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscar_historialuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_historialuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_historialuserIsMouseEntered
-
-    private void buscar_historialuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_historialuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_historialuserIsMouseExited
-
-    private void buscar_historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_historialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_historialActionPerformed
-
-    private void padecimientosuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientosuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientosuserIsMouseEntered
-
     private void padecimientosuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientosuserIsMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_padecimientosuserIsMouseExited
-
-    private void padecimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padecimientosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientosActionPerformed
 
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
 
@@ -382,45 +302,9 @@ public class HistorialAcademico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
-
-    private void iduserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iduserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iduserIsMouseExited
-
-    private void iduserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iduserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iduserIsMouseEntered
-
-    private void id_expedienteuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_expedienteuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_expedienteuserIsMouseEntered
-
-    private void id_expedienteuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_expedienteuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_expedienteuserIsMouseExited
-
-    private void id_expedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_expedienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_expedienteActionPerformed
-
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificar1ActionPerformed
-
-    private void padecimientos1userIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientos1userIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientos1userIsMouseEntered
-
-    private void padecimientos1userIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientos1userIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientos1userIsMouseExited
-
-    private void padecimientos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padecimientos1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientos1ActionPerformed
 
     /**
      * @param args the command line arguments

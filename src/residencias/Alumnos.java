@@ -19,6 +19,7 @@ public class Alumnos extends javax.swing.JFrame {
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
+        
     }
 
     /**
@@ -175,19 +176,6 @@ public class Alumnos extends javax.swing.JFrame {
         matricula.setToolTipText("");
         matricula.setBorder(null);
         matricula.setDoubleBuffered(true);
-        matricula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                matriculauserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                matriculauserIsMouseExited(evt);
-            }
-        });
-        matricula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                matriculaActionPerformed(evt);
-            }
-        });
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
@@ -195,19 +183,6 @@ public class Alumnos extends javax.swing.JFrame {
         nombre.setToolTipText("");
         nombre.setBorder(null);
         nombre.setDoubleBuffered(true);
-        nombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nombreuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                nombreuserIsMouseExited(evt);
-            }
-        });
-        nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
-            }
-        });
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 580, 30));
 
         dia.setBackground(new java.awt.Color(223, 223, 223));
@@ -216,19 +191,6 @@ public class Alumnos extends javax.swing.JFrame {
         dia.setToolTipText("");
         dia.setBorder(null);
         dia.setDoubleBuffered(true);
-        dia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                diauserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                diauserIsMouseExited(evt);
-            }
-        });
-        dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                diaActionPerformed(evt);
-            }
-        });
         getContentPane().add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 80, 30));
 
         mes.setBackground(new java.awt.Color(223, 223, 223));
@@ -237,19 +199,6 @@ public class Alumnos extends javax.swing.JFrame {
         mes.setToolTipText("");
         mes.setBorder(null);
         mes.setDoubleBuffered(true);
-        mes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                mesuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                mesuserIsMouseExited(evt);
-            }
-        });
-        mes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mesActionPerformed(evt);
-            }
-        });
         getContentPane().add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 80, 30));
 
         anio.setBackground(new java.awt.Color(223, 223, 223));
@@ -258,19 +207,6 @@ public class Alumnos extends javax.swing.JFrame {
         anio.setToolTipText("");
         anio.setBorder(null);
         anio.setDoubleBuffered(true);
-        anio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                aniouserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                aniouserIsMouseExited(evt);
-            }
-        });
-        anio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anioActionPerformed(evt);
-            }
-        });
         getContentPane().add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 80, 30));
 
         edad.setBackground(new java.awt.Color(223, 223, 223));
@@ -279,19 +215,6 @@ public class Alumnos extends javax.swing.JFrame {
         edad.setToolTipText("");
         edad.setBorder(null);
         edad.setDoubleBuffered(true);
-        edad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                userIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                userIsMouseExited(evt);
-            }
-        });
-        edad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edadActionPerformed(evt);
-            }
-        });
         getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 80, 30));
 
         direccion.setBackground(new java.awt.Color(223, 223, 223));
@@ -300,19 +223,6 @@ public class Alumnos extends javax.swing.JFrame {
         direccion.setToolTipText("");
         direccion.setBorder(null);
         direccion.setDoubleBuffered(true);
-        direccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                direccionuserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                direccionuserIsMouseExited(evt);
-            }
-        });
-        direccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionActionPerformed(evt);
-            }
-        });
         getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 380, 30));
 
         telefono.setBackground(new java.awt.Color(223, 223, 223));
@@ -321,19 +231,6 @@ public class Alumnos extends javax.swing.JFrame {
         telefono.setToolTipText("");
         telefono.setBorder(null);
         telefono.setDoubleBuffered(true);
-        telefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                telefonouserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                telefonouserIsMouseExited(evt);
-            }
-        });
-        telefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefonoActionPerformed(evt);
-            }
-        });
         getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, 240, 30));
 
         correo_institucional.setBackground(new java.awt.Color(223, 223, 223));
@@ -342,19 +239,6 @@ public class Alumnos extends javax.swing.JFrame {
         correo_institucional.setToolTipText("");
         correo_institucional.setBorder(null);
         correo_institucional.setDoubleBuffered(true);
-        correo_institucional.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                correo_institucionaluserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                correo_institucionaluserIsMouseExited(evt);
-            }
-        });
-        correo_institucional.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                correo_institucionalActionPerformed(evt);
-            }
-        });
         getContentPane().add(correo_institucional, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 600, 310, 30));
 
         buscar_alumno.setBackground(new java.awt.Color(223, 223, 223));
@@ -363,19 +247,6 @@ public class Alumnos extends javax.swing.JFrame {
         buscar_alumno.setToolTipText("");
         buscar_alumno.setBorder(null);
         buscar_alumno.setDoubleBuffered(true);
-        buscar_alumno.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                buscar_alumnouserIsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                buscar_alumnouserIsMouseExited(evt);
-            }
-        });
-        buscar_alumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_alumnoActionPerformed(evt);
-            }
-        });
         getContentPane().add(buscar_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 200, 30));
 
         sexo.setBackground(new java.awt.Color(102, 102, 102));
@@ -519,126 +390,6 @@ public class Alumnos extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edadActionPerformed
-
-    private void userIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIsMouseEntered
-        edad.setBackground(new Color(203,201,201));
-    }//GEN-LAST:event_userIsMouseEntered
-
-    private void userIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIsMouseExited
-        edad.setBackground(new Color(223,223,223));
-    }//GEN-LAST:event_userIsMouseExited
-
-    private void buscar_alumnouserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_alumnouserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_alumnouserIsMouseEntered
-
-    private void buscar_alumnouserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_alumnouserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_alumnouserIsMouseExited
-
-    private void buscar_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_alumnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar_alumnoActionPerformed
-
-    private void nombreuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreuserIsMouseEntered
-
-    private void nombreuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreuserIsMouseExited
-
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
-
-    private void diauserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diauserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_diauserIsMouseEntered
-
-    private void diauserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diauserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_diauserIsMouseExited
-
-    private void diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_diaActionPerformed
-
-    private void mesuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mesuserIsMouseEntered
-
-    private void mesuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mesuserIsMouseExited
-
-    private void mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mesActionPerformed
-
-    private void aniouserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aniouserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_aniouserIsMouseEntered
-
-    private void aniouserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aniouserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_aniouserIsMouseExited
-
-    private void anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anioActionPerformed
-
-    private void direccionuserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_direccionuserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionuserIsMouseEntered
-
-    private void direccionuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_direccionuserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionuserIsMouseExited
-
-    private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionActionPerformed
-
-    private void telefonouserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telefonouserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonouserIsMouseEntered
-
-    private void telefonouserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telefonouserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonouserIsMouseExited
-
-    private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonoActionPerformed
-
-    private void correo_institucionaluserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correo_institucionaluserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correo_institucionaluserIsMouseEntered
-
-    private void correo_institucionaluserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correo_institucionaluserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correo_institucionaluserIsMouseExited
-
-    private void correo_institucionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correo_institucionalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correo_institucionalActionPerformed
-
-    private void matriculauserIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_matriculauserIsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_matriculauserIsMouseEntered
-
-    private void matriculauserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_matriculauserIsMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_matriculauserIsMouseExited
-
-    private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_matriculaActionPerformed
 
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
 
