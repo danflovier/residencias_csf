@@ -22,9 +22,9 @@ import javax.swing.JOptionPane;
  *
  * @author danflovier
  */
-public class Correo extends javax.swing.JFrame {
+public class CorreoBackup extends javax.swing.JFrame {
     
-    public Correo() {
+    public CorreoBackup() {
         initComponents();
         
         // Get the screen resolution of the device
@@ -46,6 +46,10 @@ public class Correo extends javax.swing.JFrame {
         
         // Delete border from the textArea
         scrollPane_message.setBorder(null);
+        
+        field_subject.setText("Residencias Campus Santa Fe | Caso de Indisciplina del alumno");
+        
+        
     }
 
     /**
@@ -64,14 +68,12 @@ public class Correo extends javax.swing.JFrame {
         label_message = new javax.swing.JLabel();
         label_logo = new javax.swing.JLabel();
         label_subject1 = new javax.swing.JLabel();
-        label_user = new javax.swing.JLabel();
         label_smtp = new javax.swing.JLabel();
         label_confirmation = new javax.swing.JLabel();
         label_line1 = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
         field_from = new javax.swing.JTextField();
         field_to = new javax.swing.JTextField();
-        field_username = new javax.swing.JTextField();
         field_subject = new javax.swing.JTextField();
         field_password = new javax.swing.JPasswordField();
         server = new javax.swing.JComboBox<>();
@@ -83,7 +85,6 @@ public class Correo extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Correo");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setMaximumSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,11 +123,6 @@ public class Correo extends javax.swing.JFrame {
         label_subject1.setText("ASUNTO");
         getContentPane().add(label_subject1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
-        label_user.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_user.setForeground(new java.awt.Color(76, 76, 76));
-        label_user.setText("USUARIO");
-        getContentPane().add(label_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 670, -1, -1));
-
         label_smtp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_smtp.setForeground(new java.awt.Color(76, 76, 76));
         label_smtp.setText("SMTP SERVER");
@@ -153,7 +149,7 @@ public class Correo extends javax.swing.JFrame {
         field_from.setToolTipText("");
         field_from.setBorder(null);
         field_from.setDoubleBuffered(true);
-        getContentPane().add(field_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 250, 30));
+        getContentPane().add(field_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 330, 30));
 
         field_to.setBackground(new java.awt.Color(223, 223, 223));
         field_to.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -161,15 +157,7 @@ public class Correo extends javax.swing.JFrame {
         field_to.setToolTipText("");
         field_to.setBorder(null);
         field_to.setDoubleBuffered(true);
-        getContentPane().add(field_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 250, 30));
-
-        field_username.setBackground(new java.awt.Color(223, 223, 223));
-        field_username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        field_username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        field_username.setToolTipText("");
-        field_username.setBorder(null);
-        field_username.setDoubleBuffered(true);
-        getContentPane().add(field_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 670, 190, 30));
+        getContentPane().add(field_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 330, 30));
 
         field_subject.setBackground(new java.awt.Color(223, 223, 223));
         field_subject.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -217,6 +205,14 @@ public class Correo extends javax.swing.JFrame {
         button_send.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_send.setMaximumSize(new java.awt.Dimension(129, 65));
         button_send.setMinimumSize(new java.awt.Dimension(129, 65));
+        button_send.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                isEmailCursorEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                isEmailCursorExited(evt);
+            }
+        });
         button_send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sendActionPerformed(evt);
@@ -232,6 +228,7 @@ public class Correo extends javax.swing.JFrame {
             Properties props = new Properties();
             // Hostname
             props.put("mail.smtp.host", server.getSelectedItem());
+            //props.put("mail.smtp.host", "smtp.gmail.com");
             
             // Protocol
             props.put("mail.transport.protocol", "smtp");
@@ -253,7 +250,9 @@ public class Correo extends javax.swing.JFrame {
             Session session = Session.getDefaultInstance(props);
             
             // Try to send email if allthe fields of data are filled
-            if (server.getSelectedItem() != "Seleccionar" && field_from.getText() != null && field_to.getText() != null && field_subject.getText() != null && text_message != null && field_username.getText() != null && field_password != null){
+            //if (server.getSelectedItem() != "Seleccionar" && field_from.getText() != null && field_to.getText() != null && field_subject.getText() != null && text_message != null && field_password != null){
+            if (server.getSelectedItem() != "Seleccionar" && field_from.getText() != null && field_to.getText() != null && field_subject.getText() != null && text_message != null && field_password != null){
+                
                 try {
                     InternetAddress fromAddress = new InternetAddress(field_from.getText());
                     InternetAddress toAddress = new InternetAddress(field_to.getText());
@@ -267,16 +266,10 @@ public class Correo extends javax.swing.JFrame {
                     String email = field_from.getText();
                     String username = email.replace("@gmail.com","");
                     
-                    // Check if the email_user and username are equal
-                    if (username.trim().equals(field_username.getText().trim())){
-                        
-                        // Send the message
-                        Transport.send(message, field_username.getText(), new String(field_password.getPassword()));
-                        JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this,"Lo sentimos, los usuarios no coinciden. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    // Send the message
+                    Transport.send(message, username, new String(field_password.getPassword()));
+                    JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
+
                 } 
                 catch (MessagingException ex) {
                     ex.printStackTrace();
@@ -293,10 +286,18 @@ public class Correo extends javax.swing.JFrame {
         String response = object.toString();
     
         if (response == "smtp.gmail.com"){
+            field_from.setText("residencias.csf2017@gmail.com");
             field_to.setText("@gmail.com");
-            field_from.setText("@gmail.com");
         }
     }//GEN-LAST:event_serverActionPerformed
+
+    private void isEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isEmailCursorEntered
+       button_send.setForeground(new Color(220,220,220));
+    }//GEN-LAST:event_isEmailCursorEntered
+
+    private void isEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isEmailCursorExited
+      button_send.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_isEmailCursorExited
 
     /**
      * @param args the command line arguments
@@ -315,14 +316,30 @@ public class Correo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CorreoBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CorreoBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CorreoBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CorreoBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -343,7 +360,7 @@ public class Correo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Correo().setVisible(true);
+                new CorreoBackup().setVisible(true);
             }
         });
     }
@@ -354,7 +371,6 @@ public class Correo extends javax.swing.JFrame {
     private javax.swing.JPasswordField field_password;
     private javax.swing.JTextField field_subject;
     private javax.swing.JTextField field_to;
-    private javax.swing.JTextField field_username;
     private javax.swing.JLabel label_confirmation;
     private javax.swing.JLabel label_correo;
     private javax.swing.JLabel label_from;
@@ -366,7 +382,6 @@ public class Correo extends javax.swing.JFrame {
     private javax.swing.JLabel label_smtp;
     private javax.swing.JLabel label_subject1;
     private javax.swing.JLabel label_to;
-    private javax.swing.JLabel label_user;
     private javax.swing.JScrollPane scrollPane_message;
     private javax.swing.JComboBox<String> server;
     private javax.swing.JTextArea text_message;
