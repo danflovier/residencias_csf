@@ -404,10 +404,29 @@ public class Indisciplinas extends javax.swing.JFrame {
                     String email = field_from.getText();
                     String username = email.replace("@gmail.com","");
                     
-                    
                     // Send the message
                     Transport.send(message, username, new String(field_password.getPassword()));
                     JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
+                    
+                    field_matricula.setText("");
+                    field_name.setText("");
+                    field_day.setText("");
+                    field_month.setText("");
+                    field_year.setText("");
+                    text_motivo.setText("");
+                    field_from.setText("");
+                    field_to.setText("");
+                    field_subject.setText("");
+                    text_message.setText("");
+                    field_password.setText("");
+                    button_send.setText("");
+                    
+                    field_from.setEnabled(false);
+                    field_to.setEnabled(false);
+                    field_subject.setEnabled(false);
+                    text_message.setEnabled(false);
+                    field_password.setEnabled(false);
+                    button_send.setEnabled(false);
                     
                 } 
                 catch (MessagingException ex) {
@@ -433,10 +452,10 @@ public class Indisciplinas extends javax.swing.JFrame {
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         
         if (!field_matricula.getText().equals("")&& !field_name.getText().equals("") && !field_day.getText().equals("") && !field_month.getText().equals("") && !field_year.getText().equals("") && !text_motivo.getText().equals("")){
-            field_from.setEnabled(true);
-            field_to.setEnabled(true);
-            field_subject.setEnabled(true);
-            text_message.setEnabled(true);
+            field_from.setEditable(false);
+            field_to.setEditable(false);
+            field_subject.setEditable(false);
+            text_message.setEditable(false);
             field_password.setEnabled(true);
             button_send.setEnabled(true);
         
@@ -452,13 +471,6 @@ public class Indisciplinas extends javax.swing.JFrame {
                                 + " el alumno " + field_name.getText() 
                                 + " ha sido sancionado por el siguiente motivo:\n" + text_motivo.getText()
                                 + "\n\nSi tiene alguna duda o aclaración, favor de comunicarse con el Departamento Administrativo de Residencias CSF.\n\nSaludos cordiales.");
-            
-            field_matricula.setText("");
-            field_name.setText("");
-            field_day.setText("");
-            field_month.setText("");
-            field_year.setText("");
-            text_motivo.setText("");
         }
         else{
             JOptionPane.showMessageDialog(this,"Llena los campos correctamente.","ERROR",JOptionPane.INFORMATION_MESSAGE);
@@ -472,6 +484,13 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_month.setText("");
         field_year.setText("");
         text_motivo.setText("");
+        
+        field_from.setEnabled(false);
+        field_to.setEnabled(false);
+        field_subject.setEnabled(false);
+        text_message.setEnabled(false);
+        field_password.setEnabled(false);
+        button_send.setEnabled(false);
     }//GEN-LAST:event_cancelarActionPerformed
 
     /**

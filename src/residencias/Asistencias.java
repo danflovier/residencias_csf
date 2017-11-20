@@ -36,6 +36,7 @@ public class Asistencias extends javax.swing.JFrame {
         //this.add( new Asistencias() );
         
         DefaultTableModel model;
+                
         model = (DefaultTableModel)tabla_alumnos.getModel();
         model.addTableModelListener(new CheckBoxModelListener());
         
@@ -97,49 +98,17 @@ public class Asistencias extends javax.swing.JFrame {
             row = e.getFirstRow();
             column = e.getColumn();
           
-            
-            //if (column == BOOLEAN_COLUMN) {
-                model = (DefaultTableModel) e.getSource();
-                columnName = model.getColumnName(column);
+            model = (DefaultTableModel) e.getSource();
+            columnName = model.getColumnName(column);
                 Boolean checked = (Boolean) model.getValueAt(row, column);
+
                 if (checked) {
                     System.out.println(model.getValueAt(row, 1) + ": " + true);
-                    
-                    /*
-                    tabla_alumnos.setDefaultRenderer(Object.class, new TableCellRenderer(){
-                    private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
 
-                    @Override
-                    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                            Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                            String s = table.getColumnName(2);
-                            //System.out.print(s);
-                            c.setForeground(Color.BLACK);
-                            c.setBackground(Color.GREEN);
-                            //Add below code here
-                            return c;
-                        }
-                    });*/
                     
                 } else {
                     System.out.println(model.getValueAt(row, 1) + ": " + false);
-                    
-                    /*
-                    tabla_alumnos.setDefaultRenderer(Object.class, new TableCellRenderer(){
-                    private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
-                    @Override
-                    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                            Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                            String s = table.getColumnName(2);
-                            //System.out.print(s);
-                            c.setForeground(Color.BLACK);
-                            c.setBackground(Color.RED);
-                            //Add below code here
-                            return c;
-                        }
-                    });*/
                 }
-            //}
         }
 
                
@@ -208,9 +177,16 @@ public class Asistencias extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tabla_alumnos);
