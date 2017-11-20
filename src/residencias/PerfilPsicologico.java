@@ -67,6 +67,11 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         modificar1 = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Perfil Psicológico");
@@ -80,7 +85,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_id.setForeground(new java.awt.Color(76, 76, 76));
         label_id.setText("ID");
-        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_login.setForeground(new java.awt.Color(76, 76, 76));
@@ -90,16 +95,16 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         label_rasgos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_rasgos.setForeground(new java.awt.Color(76, 76, 76));
         label_rasgos.setText("RASGOS DE PERSONALIDAD");
-        getContentPane().add(label_rasgos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 310, -1));
+        getContentPane().add(label_rasgos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 310, -1));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
         label_buscar.setText("BUSCAR PERFIL:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, -1));
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, -1));
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 670, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 180, 70));
 
         label_line.setBackground(new java.awt.Color(84, 172, 210));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -109,37 +114,37 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         label_sangre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_sangre.setForeground(new java.awt.Color(76, 76, 76));
         label_sangre.setText("DEPRESIVOS");
-        getContentPane().add(label_sangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 160, -1));
+        getContentPane().add(label_sangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, 200, -1));
 
         label_rendimiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_rendimiento.setForeground(new java.awt.Color(76, 76, 76));
         label_rendimiento.setText("RENDIMIENTO");
-        getContentPane().add(label_rendimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 160, -1));
+        getContentPane().add(label_rendimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 160, -1));
 
         label_enfermedades.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_enfermedades.setForeground(new java.awt.Color(76, 76, 76));
         label_enfermedades.setText("ENFERMEDADES MENTALES");
-        getContentPane().add(label_enfermedades, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 530, -1));
+        getContentPane().add(label_enfermedades, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, 530, -1));
 
         label_id_expediente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_id_expediente.setForeground(new java.awt.Color(76, 76, 76));
         label_id_expediente.setText("ID EXPEDIENTE");
-        getContentPane().add(label_id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        getContentPane().add(label_id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
 
         label_estres.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_estres.setForeground(new java.awt.Color(76, 76, 76));
         label_estres.setText("CONTROL ESTRÉS");
-        getContentPane().add(label_estres, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 160, -1));
+        getContentPane().add(label_estres, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 160, -1));
 
         label_motivacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_motivacion.setForeground(new java.awt.Color(76, 76, 76));
         label_motivacion.setText("MOTIVACIÓN");
-        getContentPane().add(label_motivacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 160, -1));
+        getContentPane().add(label_motivacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 160, -1));
 
         label_hiabilidad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_hiabilidad.setForeground(new java.awt.Color(76, 76, 76));
         label_hiabilidad.setText("HABILIDAD MENTAL");
-        getContentPane().add(label_hiabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 340, -1));
+        getContentPane().add(label_hiabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 340, -1));
 
         id.setBackground(new java.awt.Color(223, 223, 223));
         id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -147,7 +152,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         id.setToolTipText("");
         id.setBorder(null);
         id.setDoubleBuffered(true);
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, 30));
 
         id_expediente.setBackground(new java.awt.Color(223, 223, 223));
         id_expediente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -155,7 +160,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         id_expediente.setToolTipText("");
         id_expediente.setBorder(null);
         id_expediente.setDoubleBuffered(true);
-        getContentPane().add(id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 30));
+        getContentPane().add(id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 320, 30));
 
         enfermedades_mentales.setBackground(new java.awt.Color(223, 223, 223));
         enfermedades_mentales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -163,7 +168,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         enfermedades_mentales.setToolTipText("");
         enfermedades_mentales.setBorder(null);
         enfermedades_mentales.setDoubleBuffered(true);
-        getContentPane().add(enfermedades_mentales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 620, 530, 30));
+        getContentPane().add(enfermedades_mentales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 610, 570, 30));
 
         buscar_perfil.setBackground(new java.awt.Color(223, 223, 223));
         buscar_perfil.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -171,7 +176,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         buscar_perfil.setToolTipText("");
         buscar_perfil.setBorder(null);
         buscar_perfil.setDoubleBuffered(true);
-        getContentPane().add(buscar_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 200, 30));
+        getContentPane().add(buscar_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 200, 30));
 
         habilidad_mental.setBackground(new java.awt.Color(223, 223, 223));
         habilidad_mental.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -179,7 +184,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         habilidad_mental.setToolTipText("");
         habilidad_mental.setBorder(null);
         habilidad_mental.setDoubleBuffered(true);
-        getContentPane().add(habilidad_mental, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 340, 30));
+        getContentPane().add(habilidad_mental, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, 340, 30));
 
         rendimiento.setBackground(new java.awt.Color(102, 102, 102));
         rendimiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -188,7 +193,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         rendimiento.setBorder(null);
         rendimiento.setFocusable(false);
         rendimiento.setLightWeightPopupEnabled(false);
-        getContentPane().add(rendimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 160, 30));
+        getContentPane().add(rendimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 160, 30));
 
         depresivos.setBackground(new java.awt.Color(102, 102, 102));
         depresivos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -197,7 +202,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         depresivos.setBorder(null);
         depresivos.setFocusable(false);
         depresivos.setLightWeightPopupEnabled(false);
-        getContentPane().add(depresivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, 160, 30));
+        getContentPane().add(depresivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, 200, 30));
 
         estres.setBackground(new java.awt.Color(102, 102, 102));
         estres.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -206,7 +211,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         estres.setBorder(null);
         estres.setFocusable(false);
         estres.setLightWeightPopupEnabled(false);
-        getContentPane().add(estres, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 160, 30));
+        getContentPane().add(estres, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 160, 30));
 
         motivacion.setBackground(new java.awt.Color(102, 102, 102));
         motivacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -215,7 +220,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         motivacion.setBorder(null);
         motivacion.setFocusable(false);
         motivacion.setLightWeightPopupEnabled(false);
-        getContentPane().add(motivacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, 160, 30));
+        getContentPane().add(motivacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 160, 30));
 
         tabla_perfil.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_perfil.setModel(new javax.swing.table.DefaultTableModel(
@@ -228,7 +233,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_perfil);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 690, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 690, 310));
 
         rasgos_personalidad.setBackground(new java.awt.Color(223, 223, 223));
         rasgos_personalidad.setColumns(20);
@@ -238,7 +243,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         rasgos_personalidad.setCaretColor(new java.awt.Color(223, 223, 223));
         jScrollPane2.setViewportView(rasgos_personalidad);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 310, 190));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 350, 190));
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -250,7 +255,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 imprimirActionPerformed(evt);
             }
         });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 160, 60));
+        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 580, 160, 60));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -261,7 +266,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, 130, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 660, 130, 40));
 
         buscar1.setBackground(new java.awt.Color(255, 255, 255));
         buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -272,7 +277,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 buscar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 670, 120, 40));
+        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 660, 120, 40));
 
         buscar2.setBackground(new java.awt.Color(255, 255, 255));
         buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -283,7 +288,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 buscar2ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 210, 140, 30));
+        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 200, 140, 30));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -294,7 +299,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 670, 120, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 660, 120, 40));
 
         mostrar_todos.setBackground(new java.awt.Color(255, 255, 255));
         mostrar_todos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -305,7 +310,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 mostrar_todosActionPerformed(evt);
             }
         });
-        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 590, 180, 60));
+        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 580, 180, 60));
 
         eliminar.setBackground(new java.awt.Color(255, 255, 255));
         eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -316,7 +321,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 590, 180, 60));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 580, 180, 60));
 
         modificar1.setBackground(new java.awt.Color(255, 255, 255));
         modificar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -327,7 +332,45 @@ public class PerfilPsicologico extends javax.swing.JFrame {
                 modificar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 670, 130, 40));
+        getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 660, 130, 40));
+
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
 
         pack();
         setLocationRelativeTo(null);
@@ -365,6 +408,15 @@ public class PerfilPsicologico extends javax.swing.JFrame {
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificar1ActionPerformed
+
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,6 +469,9 @@ public class PerfilPsicologico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_perfil;
@@ -425,6 +480,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
     private javax.swing.JButton eliminar;
     private javax.swing.JTextField enfermedades_mentales;
     private javax.swing.JComboBox<String> estres;
+    private javax.swing.JMenu file;
     private javax.swing.JTextField habilidad_mental;
     private javax.swing.JTextField id;
     private javax.swing.JTextField id_expediente;
@@ -444,6 +500,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
     private javax.swing.JLabel label_rasgos;
     private javax.swing.JLabel label_rendimiento;
     private javax.swing.JLabel label_sangre;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JButton modificar1;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JComboBox<String> motivacion;

@@ -72,6 +72,11 @@ public class Alumnos extends javax.swing.JFrame {
         buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         modificar1 = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Alumnos");
@@ -164,7 +169,7 @@ public class Alumnos extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 670, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 180, 70));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -387,6 +392,44 @@ public class Alumnos extends javax.swing.JFrame {
         });
         getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, 130, 40));
 
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -423,6 +466,15 @@ public class Alumnos extends javax.swing.JFrame {
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificar1ActionPerformed
+
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+    new Login().setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,6 +519,9 @@ public class Alumnos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JTextField anio;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
@@ -480,6 +535,7 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JTextField edad;
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estado;
+    private javax.swing.JMenu file;
     private javax.swing.JButton imprimir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_anio;
@@ -499,6 +555,7 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JLabel label_nombre;
     private javax.swing.JLabel label_sexo;
     private javax.swing.JLabel label_telefono;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JTextField matricula;
     private javax.swing.JTextField mes;
     private javax.swing.JButton modificar1;

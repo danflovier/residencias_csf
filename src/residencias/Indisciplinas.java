@@ -103,6 +103,11 @@ public class Indisciplinas extends javax.swing.JFrame {
         registrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         button_send = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Correo");
@@ -116,17 +121,17 @@ public class Indisciplinas extends javax.swing.JFrame {
         label_to.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_to.setForeground(new java.awt.Color(76, 76, 76));
         label_to.setText("PARA");
-        getContentPane().add(label_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 310, -1, -1));
+        getContentPane().add(label_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 280, -1, -1));
 
         label_date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_date.setForeground(new java.awt.Color(76, 76, 76));
         label_date.setText("FECHA");
-        getContentPane().add(label_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, -1, -1));
+        getContentPane().add(label_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
         label_password.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_password.setForeground(new java.awt.Color(76, 76, 76));
         label_password.setText("CONTRASEÑA");
-        getContentPane().add(label_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 720, 130, -1));
+        getContentPane().add(label_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 690, 130, -1));
 
         label_indscipline.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_indscipline.setForeground(new java.awt.Color(76, 76, 76));
@@ -136,81 +141,81 @@ public class Indisciplinas extends javax.swing.JFrame {
         label_message.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_message.setForeground(new java.awt.Color(76, 76, 76));
         label_message.setText("MENSAJE");
-        getContentPane().add(label_message, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 410, -1, -1));
+        getContentPane().add(label_message, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 380, -1, -1));
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 760, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 730, 180, 70));
 
         label_subject.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_subject.setForeground(new java.awt.Color(76, 76, 76));
         label_subject.setText("ASUNTO");
-        getContentPane().add(label_subject, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, -1, -1));
+        getContentPane().add(label_subject, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
 
         label_mensaje.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_mensaje.setForeground(new java.awt.Color(76, 76, 76));
         label_mensaje.setText("MENSAJE");
-        getContentPane().add(label_mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 200, -1));
+        getContentPane().add(label_mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 200, -1));
 
         label_confirmation.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_confirmation.setForeground(new java.awt.Color(76, 76, 76));
         label_confirmation.setText("CONFIRMACIÓN");
-        getContentPane().add(label_confirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 640, 200, -1));
+        getContentPane().add(label_confirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 610, 200, -1));
 
         label_indisciplina.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_indisciplina.setForeground(new java.awt.Color(76, 76, 76));
         label_indisciplina.setText("INDISCIPLINA");
-        getContentPane().add(label_indisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 200, -1));
+        getContentPane().add(label_indisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 200, -1));
 
         label_from.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_from.setForeground(new java.awt.Color(76, 76, 76));
         label_from.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_from.setText("DE");
-        getContentPane().add(label_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, 40, -1));
+        getContentPane().add(label_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, 40, -1));
 
         label_day.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_day.setForeground(new java.awt.Color(76, 76, 76));
         label_day.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_day.setText("DD");
-        getContentPane().add(label_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 100, -1));
+        getContentPane().add(label_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 100, -1));
 
         label_name1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_name1.setForeground(new java.awt.Color(76, 76, 76));
         label_name1.setText("NOMBRE");
-        getContentPane().add(label_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
+        getContentPane().add(label_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
         label_motivo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_motivo.setForeground(new java.awt.Color(76, 76, 76));
         label_motivo.setText("MOTIVO");
-        getContentPane().add(label_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, -1, -1));
+        getContentPane().add(label_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, -1, -1));
 
         label_matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_matricula.setForeground(new java.awt.Color(76, 76, 76));
         label_matricula.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_matricula.setText("MATRÍCULA");
-        getContentPane().add(label_matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 120, -1));
+        getContentPane().add(label_matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 120, -1));
 
         label_mes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_mes.setForeground(new java.awt.Color(76, 76, 76));
         label_mes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_mes.setText("MM");
-        getContentPane().add(label_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 110, -1));
+        getContentPane().add(label_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 110, -1));
 
         label_anio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_anio.setForeground(new java.awt.Color(76, 76, 76));
         label_anio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_anio.setText("AAAA");
-        getContentPane().add(label_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 100, -1));
+        getContentPane().add(label_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 100, -1));
 
         label_line3.setBackground(new java.awt.Color(250, 197, 28));
         label_line3.setForeground(new java.awt.Color(3, 169, 244));
         label_line3.setOpaque(true);
-        getContentPane().add(label_line3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 200, 10));
+        getContentPane().add(label_line3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 200, 10));
 
         label_line2.setBackground(new java.awt.Color(250, 197, 28));
         label_line2.setForeground(new java.awt.Color(3, 169, 244));
         label_line2.setOpaque(true);
-        getContentPane().add(label_line2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 200, 10));
+        getContentPane().add(label_line2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 200, 200, 10));
 
         label_line1.setBackground(new java.awt.Color(250, 197, 28));
         label_line1.setForeground(new java.awt.Color(3, 169, 244));
@@ -220,7 +225,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
         label_line.setOpaque(true);
-        getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 680, 200, 10));
+        getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 650, 200, 10));
 
         field_matricula.setBackground(new java.awt.Color(223, 223, 223));
         field_matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -228,7 +233,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_matricula.setToolTipText("");
         field_matricula.setBorder(null);
         field_matricula.setDoubleBuffered(true);
-        getContentPane().add(field_matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 200, 30));
+        getContentPane().add(field_matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 200, 30));
 
         field_name.setBackground(new java.awt.Color(223, 223, 223));
         field_name.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -236,7 +241,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_name.setToolTipText("");
         field_name.setBorder(null);
         field_name.setDoubleBuffered(true);
-        getContentPane().add(field_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 330, 30));
+        getContentPane().add(field_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 330, 30));
 
         field_day.setBackground(new java.awt.Color(223, 223, 223));
         field_day.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -244,7 +249,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_day.setToolTipText("");
         field_day.setBorder(null);
         field_day.setDoubleBuffered(true);
-        getContentPane().add(field_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 100, 30));
+        getContentPane().add(field_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 100, 30));
 
         field_month.setBackground(new java.awt.Color(223, 223, 223));
         field_month.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -252,7 +257,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_month.setToolTipText("");
         field_month.setBorder(null);
         field_month.setDoubleBuffered(true);
-        getContentPane().add(field_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 110, 30));
+        getContentPane().add(field_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 110, 30));
 
         field_year.setBackground(new java.awt.Color(223, 223, 223));
         field_year.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -260,7 +265,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_year.setToolTipText("");
         field_year.setBorder(null);
         field_year.setDoubleBuffered(true);
-        getContentPane().add(field_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 100, 30));
+        getContentPane().add(field_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 100, 30));
 
         field_from.setBackground(new java.awt.Color(223, 223, 223));
         field_from.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -268,7 +273,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_from.setToolTipText("");
         field_from.setBorder(null);
         field_from.setDoubleBuffered(true);
-        getContentPane().add(field_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 330, 30));
+        getContentPane().add(field_from, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 330, 30));
 
         field_to.setBackground(new java.awt.Color(223, 223, 223));
         field_to.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -276,7 +281,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_to.setToolTipText("");
         field_to.setBorder(null);
         field_to.setDoubleBuffered(true);
-        getContentPane().add(field_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 330, 30));
+        getContentPane().add(field_to, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, 330, 30));
 
         field_subject.setBackground(new java.awt.Color(223, 223, 223));
         field_subject.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -284,12 +289,12 @@ public class Indisciplinas extends javax.swing.JFrame {
         field_subject.setToolTipText("");
         field_subject.setBorder(null);
         field_subject.setDoubleBuffered(true);
-        getContentPane().add(field_subject, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 560, 30));
+        getContentPane().add(field_subject, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 330, 560, 30));
 
         field_password.setBackground(new java.awt.Color(223, 223, 223));
         field_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         field_password.setBorder(null);
-        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 720, 190, 30));
+        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 690, 190, 30));
 
         text_motivo.setBackground(new java.awt.Color(223, 223, 223));
         text_motivo.setColumns(20);
@@ -299,7 +304,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         text_motivo.setCaretColor(new java.awt.Color(223, 223, 223));
         scrollPane_motivo.setViewportView(text_motivo);
 
-        getContentPane().add(scrollPane_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 490, 330, 140));
+        getContentPane().add(scrollPane_motivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 330, 140));
 
         text_message.setBackground(new java.awt.Color(223, 223, 223));
         text_message.setColumns(20);
@@ -309,7 +314,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         text_message.setCaretColor(new java.awt.Color(223, 223, 223));
         scrollPane_message.setViewportView(text_message);
 
-        getContentPane().add(scrollPane_message, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, 560, 220));
+        getContentPane().add(scrollPane_message, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 560, 220));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -319,7 +324,7 @@ public class Indisciplinas extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 660, 40, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 630, 40, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -329,7 +334,7 @@ public class Indisciplinas extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 660, 40, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 630, 40, 40));
 
         button_send.setBackground(java.awt.Color.white);
         button_send.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -356,7 +361,45 @@ public class Indisciplinas extends javax.swing.JFrame {
                 button_sendActionPerformed(evt);
             }
         });
-        getContentPane().add(button_send, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 770, 190, 60));
+        getContentPane().add(button_send, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 740, 190, 60));
+
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
 
         pack();
         setLocationRelativeTo(null);
@@ -493,6 +536,15 @@ public class Indisciplinas extends javax.swing.JFrame {
         button_send.setEnabled(false);
     }//GEN-LAST:event_cancelarActionPerformed
 
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -560,6 +612,9 @@ public class Indisciplinas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton button_send;
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField field_day;
@@ -571,6 +626,7 @@ public class Indisciplinas extends javax.swing.JFrame {
     private javax.swing.JTextField field_subject;
     private javax.swing.JTextField field_to;
     private javax.swing.JTextField field_year;
+    private javax.swing.JMenu file;
     private javax.swing.JLabel label_anio;
     private javax.swing.JLabel label_confirmation;
     private javax.swing.JLabel label_date;
@@ -592,6 +648,7 @@ public class Indisciplinas extends javax.swing.JFrame {
     private javax.swing.JLabel label_password;
     private javax.swing.JLabel label_subject;
     private javax.swing.JLabel label_to;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JButton registrar;
     private javax.swing.JScrollPane scrollPane_message;
     private javax.swing.JScrollPane scrollPane_motivo;

@@ -55,6 +55,11 @@ public class HistorialAcademico extends javax.swing.JFrame {
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         modificar1 = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Historial Médico");
@@ -82,7 +87,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 550, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 540, 180, 70));
 
         label_line.setBackground(new java.awt.Color(233, 30, 99));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -174,7 +179,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_historial);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 360, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 360, 260));
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -186,7 +191,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
                 imprimirActionPerformed(evt);
             }
         });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 460, 180, 60));
+        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, 180, 60));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -241,7 +246,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
                 mostrar_todosActionPerformed(evt);
             }
         });
-        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 300, 180, 60));
+        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 260, 180, 60));
 
         eliminar.setBackground(new java.awt.Color(255, 255, 255));
         eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -252,7 +257,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 380, 180, 60));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 340, 180, 60));
 
         modificar1.setBackground(new java.awt.Color(255, 255, 255));
         modificar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -264,6 +269,44 @@ public class HistorialAcademico extends javax.swing.JFrame {
             }
         });
         getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 130, 40));
+
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
 
         pack();
         setLocationRelativeTo(null);
@@ -305,6 +348,15 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificar1ActionPerformed
+
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,11 +409,15 @@ public class HistorialAcademico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_historial;
     private javax.swing.JButton cancelar;
     private javax.swing.JButton eliminar;
+    private javax.swing.JMenu file;
     private javax.swing.JTextField id;
     private javax.swing.JTextField id_expediente;
     private javax.swing.JButton imprimir;
@@ -375,6 +431,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private javax.swing.JLabel label_promedio_actual;
     private javax.swing.JLabel label_promedio_acumulado;
     private javax.swing.JLabel label_semestre;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JButton modificar1;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JTextField padecimientos;

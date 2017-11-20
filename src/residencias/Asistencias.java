@@ -134,6 +134,11 @@ public class Asistencias extends javax.swing.JFrame {
         tabla_alumnos = new javax.swing.JTable();
         registrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Alumnos");
@@ -156,7 +161,7 @@ public class Asistencias extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 670, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 650, 180, 70));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -215,6 +220,44 @@ public class Asistencias extends javax.swing.JFrame {
         });
         getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 120, 40));
 
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -226,6 +269,15 @@ public class Asistencias extends javax.swing.JFrame {
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,12 +331,17 @@ public class Asistencias extends javax.swing.JFrame {
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton cancelar;
+    private javax.swing.JMenu file;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_line;
     private javax.swing.JLabel label_login;
     private javax.swing.JLabel label_logo;
     private javax.swing.JLabel label_residencias;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JButton registrar;
     private javax.swing.JTable tabla_alumnos;
     // End of variables declaration//GEN-END:variables

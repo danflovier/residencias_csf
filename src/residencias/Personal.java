@@ -72,6 +72,11 @@ public class Personal extends javax.swing.JFrame {
         buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         modificar1 = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Personal");
@@ -88,12 +93,12 @@ public class Personal extends javax.swing.JFrame {
         edad.setToolTipText("");
         edad.setBorder(null);
         edad.setDoubleBuffered(true);
-        getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 80, 30));
+        getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 80, 30));
 
         label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_id.setForeground(new java.awt.Color(76, 76, 76));
         label_id.setText("ID");
-        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_login.setForeground(new java.awt.Color(76, 76, 76));
@@ -104,7 +109,7 @@ public class Personal extends javax.swing.JFrame {
         label_sexo.setForeground(new java.awt.Color(76, 76, 76));
         label_sexo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_sexo.setText("SEXO");
-        getContentPane().add(label_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 140, -1));
+        getContentPane().add(label_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 140, -1));
 
         label_residencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_residencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
@@ -113,70 +118,70 @@ public class Personal extends javax.swing.JFrame {
         label_nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_nombre.setForeground(new java.awt.Color(76, 76, 76));
         label_nombre.setText("NOMBRE COMPLETO");
-        getContentPane().add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+        getContentPane().add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         label_dia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_dia.setForeground(new java.awt.Color(76, 76, 76));
         label_dia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_dia.setText("DD");
-        getContentPane().add(label_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, -1));
+        getContentPane().add(label_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 80, -1));
 
         label_mes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_mes.setForeground(new java.awt.Color(76, 76, 76));
         label_mes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_mes.setText("MM");
-        getContentPane().add(label_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 80, -1));
+        getContentPane().add(label_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 80, -1));
 
         label_anio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_anio.setForeground(new java.awt.Color(76, 76, 76));
         label_anio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_anio.setText("AAAA");
-        getContentPane().add(label_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 320, 70, -1));
+        getContentPane().add(label_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 70, -1));
 
         label_edad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_edad.setForeground(new java.awt.Color(76, 76, 76));
         label_edad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_edad.setText("EDAD");
-        getContentPane().add(label_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 150, -1));
+        getContentPane().add(label_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 150, -1));
 
         label_estado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_estado.setForeground(new java.awt.Color(76, 76, 76));
         label_estado.setText("ESTADO");
-        getContentPane().add(label_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 170, -1));
+        getContentPane().add(label_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 170, -1));
 
         label_contrasena.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_contrasena.setForeground(new java.awt.Color(76, 76, 76));
         label_contrasena.setText("CONTRASEÑA");
-        getContentPane().add(label_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 310, -1));
+        getContentPane().add(label_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 310, -1));
 
         label_direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_direccion.setForeground(new java.awt.Color(76, 76, 76));
         label_direccion.setText("DIRECCIÓN");
-        getContentPane().add(label_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 380, -1));
+        getContentPane().add(label_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 380, -1));
 
         label_telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_telefono.setForeground(new java.awt.Color(76, 76, 76));
         label_telefono.setText("TELÉFONO");
-        getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 240, -1));
+        getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 240, -1));
 
         label_correo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_correo.setForeground(new java.awt.Color(76, 76, 76));
         label_correo.setText("CORREO INSTITUCIONAL");
-        getContentPane().add(label_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, 310, -1));
+        getContentPane().add(label_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 310, -1));
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 670, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 180, 70));
 
         label_puesto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_puesto.setForeground(new java.awt.Color(76, 76, 76));
         label_puesto.setText("PUESTO");
-        getContentPane().add(label_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 240, -1));
+        getContentPane().add(label_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 240, -1));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
         label_buscar.setText("BUSCAR PERSONAL:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, -1));
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, -1));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -189,7 +194,7 @@ public class Personal extends javax.swing.JFrame {
         id.setToolTipText("");
         id.setBorder(null);
         id.setDoubleBuffered(true);
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, 30));
 
         buscar_personal.setBackground(new java.awt.Color(223, 223, 223));
         buscar_personal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -197,7 +202,7 @@ public class Personal extends javax.swing.JFrame {
         buscar_personal.setToolTipText("");
         buscar_personal.setBorder(null);
         buscar_personal.setDoubleBuffered(true);
-        getContentPane().add(buscar_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 200, 30));
+        getContentPane().add(buscar_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -205,7 +210,7 @@ public class Personal extends javax.swing.JFrame {
         nombre.setToolTipText("");
         nombre.setBorder(null);
         nombre.setDoubleBuffered(true);
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 580, 30));
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 580, 30));
 
         dia.setBackground(new java.awt.Color(223, 223, 223));
         dia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -213,7 +218,7 @@ public class Personal extends javax.swing.JFrame {
         dia.setToolTipText("");
         dia.setBorder(null);
         dia.setDoubleBuffered(true);
-        getContentPane().add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 80, 30));
+        getContentPane().add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 80, 30));
 
         mes.setBackground(new java.awt.Color(223, 223, 223));
         mes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -221,7 +226,7 @@ public class Personal extends javax.swing.JFrame {
         mes.setToolTipText("");
         mes.setBorder(null);
         mes.setDoubleBuffered(true);
-        getContentPane().add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 80, 30));
+        getContentPane().add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 80, 30));
 
         anio.setBackground(new java.awt.Color(223, 223, 223));
         anio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -229,7 +234,7 @@ public class Personal extends javax.swing.JFrame {
         anio.setToolTipText("");
         anio.setBorder(null);
         anio.setDoubleBuffered(true);
-        getContentPane().add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 80, 30));
+        getContentPane().add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 80, 30));
 
         telefono.setBackground(new java.awt.Color(223, 223, 223));
         telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -237,7 +242,7 @@ public class Personal extends javax.swing.JFrame {
         telefono.setToolTipText("");
         telefono.setBorder(null);
         telefono.setDoubleBuffered(true);
-        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 240, 30));
+        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 240, 30));
 
         correo_institucional.setBackground(new java.awt.Color(223, 223, 223));
         correo_institucional.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -245,7 +250,7 @@ public class Personal extends javax.swing.JFrame {
         correo_institucional.setToolTipText("");
         correo_institucional.setBorder(null);
         correo_institucional.setDoubleBuffered(true);
-        getContentPane().add(correo_institucional, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, 310, 30));
+        getContentPane().add(correo_institucional, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 310, 30));
 
         direccion.setBackground(new java.awt.Color(223, 223, 223));
         direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -253,13 +258,13 @@ public class Personal extends javax.swing.JFrame {
         direccion.setToolTipText("");
         direccion.setBorder(null);
         direccion.setDoubleBuffered(true);
-        getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 380, 30));
+        getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 380, 30));
 
         field_password.setBackground(new java.awt.Color(223, 223, 223));
         field_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         field_password.setBorder(null);
         field_password.setEnabled(false);
-        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 600, 310, 30));
+        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 310, 30));
 
         sexo.setBackground(new java.awt.Color(102, 102, 102));
         sexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -268,7 +273,7 @@ public class Personal extends javax.swing.JFrame {
         sexo.setBorder(null);
         sexo.setFocusable(false);
         sexo.setLightWeightPopupEnabled(false);
-        getContentPane().add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 140, 30));
+        getContentPane().add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 140, 30));
 
         estado.setBackground(new java.awt.Color(102, 102, 102));
         estado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -277,7 +282,7 @@ public class Personal extends javax.swing.JFrame {
         estado.setBorder(null);
         estado.setFocusable(false);
         estado.setLightWeightPopupEnabled(false);
-        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 170, 30));
+        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 170, 30));
 
         carrera.setBackground(new java.awt.Color(102, 102, 102));
         carrera.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -286,7 +291,7 @@ public class Personal extends javax.swing.JFrame {
         carrera.setBorder(null);
         carrera.setFocusable(false);
         carrera.setLightWeightPopupEnabled(false);
-        getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, 240, 30));
+        getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 240, 30));
 
         tabla_personal.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_personal.setModel(new javax.swing.table.DefaultTableModel(
@@ -299,7 +304,7 @@ public class Personal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_personal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 690, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 690, 310));
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -311,7 +316,7 @@ public class Personal extends javax.swing.JFrame {
                 imprimirActionPerformed(evt);
             }
         });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 160, 60));
+        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 580, 160, 60));
 
         buscar2.setBackground(new java.awt.Color(255, 255, 255));
         buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -322,7 +327,7 @@ public class Personal extends javax.swing.JFrame {
                 buscar2ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 210, 140, 30));
+        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 200, 140, 30));
 
         mostrar_todos.setBackground(new java.awt.Color(255, 255, 255));
         mostrar_todos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -333,7 +338,7 @@ public class Personal extends javax.swing.JFrame {
                 mostrar_todosActionPerformed(evt);
             }
         });
-        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 590, 180, 60));
+        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 580, 180, 60));
 
         eliminar.setBackground(new java.awt.Color(255, 255, 255));
         eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -344,7 +349,7 @@ public class Personal extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 590, 180, 60));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 580, 180, 60));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -355,7 +360,7 @@ public class Personal extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 660, 130, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, 130, 40));
 
         buscar1.setBackground(new java.awt.Color(255, 255, 255));
         buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -366,7 +371,7 @@ public class Personal extends javax.swing.JFrame {
                 buscar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 660, 120, 40));
+        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 650, 120, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -377,7 +382,7 @@ public class Personal extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 660, 120, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, 120, 40));
 
         modificar1.setBackground(new java.awt.Color(255, 255, 255));
         modificar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -388,7 +393,45 @@ public class Personal extends javax.swing.JFrame {
                 modificar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, 130, 40));
+        getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 130, 40));
+
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
 
         pack();
         setLocationRelativeTo(null);
@@ -426,6 +469,15 @@ public class Personal extends javax.swing.JFrame {
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificar1ActionPerformed
+
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,6 +522,9 @@ public class Personal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JTextField anio;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
@@ -483,6 +538,7 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estado;
     private javax.swing.JPasswordField field_password;
+    private javax.swing.JMenu file;
     private javax.swing.JTextField id;
     private javax.swing.JButton imprimir;
     private javax.swing.JScrollPane jScrollPane1;
@@ -504,6 +560,7 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JLabel label_residencias;
     private javax.swing.JLabel label_sexo;
     private javax.swing.JLabel label_telefono;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JTextField mes;
     private javax.swing.JButton modificar1;
     private javax.swing.JButton mostrar_todos;

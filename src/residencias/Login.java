@@ -6,6 +6,7 @@
 package residencias;
 
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,12 +20,14 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
+        //Menu.setBackground(new Color(33,150,243));
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(33,150,243));
         
         // Initialize the object of the MySQL class
         db = new MySQL();
         //db.MySQLConnection("root","root","residencias");
+        
         
     }
 
@@ -59,7 +62,6 @@ public class Login extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Login");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setMaximumSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -194,18 +196,35 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(background_blue, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 700));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorderPainted(false);
         Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        file_exit.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         file_exit.setText("Salir");
+        file_exit.setBorderPainted(true);
+        file_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                file_exitActionPerformed(evt);
+            }
+        });
         file.add(file_exit);
 
         Menu.add(file);
 
         about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        about_rcsf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         about_rcsf.setText("Residencias CSF");
+        about_rcsf.setBorderPainted(true);
+        about_rcsf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_rcsfActionPerformed(evt);
+            }
+        });
         about.add(about_rcsf);
 
         Menu.add(about);
@@ -269,6 +288,17 @@ public class Login extends javax.swing.JFrame {
     private void fPasswordIsExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fPasswordIsExited
         button_fpassword.setForeground(new Color(76,76,76));
     }//GEN-LAST:event_fPasswordIsExited
+
+    private void about_rcsfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_rcsfActionPerformed
+       new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_rcsfActionPerformed
+
+    private void file_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_exitActionPerformed
+        System.exit(0);
+        
+        //new menu().setVisible(true);
+        //this.setVisible(false);
+    }//GEN-LAST:event_file_exitActionPerformed
 
     /**
      * @param args the command line arguments

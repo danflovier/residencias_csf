@@ -34,7 +34,7 @@ public class Vigencia extends javax.swing.JFrame {
         int screenWidth = screenSize.width;
         
         // Set size of the JFrame
-        this.setSize(screenWidth / 2 + 500, screenHeight - 200);
+        this.setSize(screenWidth / 2 + 100, screenHeight - 200);
         
         // Set default close operation
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -108,6 +108,11 @@ public class Vigencia extends javax.swing.JFrame {
         status = new javax.swing.JTextField();
         faltantes = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
+        Menu = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        log_out = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Residencias Santa Fe | Vigencia");
@@ -119,7 +124,7 @@ public class Vigencia extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 760, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 730, 180, 70));
 
         label_tvigencia.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_tvigencia.setForeground(new java.awt.Color(76, 76, 76));
@@ -128,7 +133,7 @@ public class Vigencia extends javax.swing.JFrame {
 
         label_logo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thermometer.png"))); // NOI18N
-        getContentPane().add(label_logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 220, 640));
+        getContentPane().add(label_logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 220, 640));
 
         label_line1.setBackground(new java.awt.Color(250, 197, 28));
         label_line1.setForeground(new java.awt.Color(3, 169, 244));
@@ -138,97 +143,97 @@ public class Vigencia extends javax.swing.JFrame {
         label_line2.setBackground(new java.awt.Color(255, 255, 255));
         label_line2.setForeground(new java.awt.Color(3, 169, 244));
         label_line2.setOpaque(true);
-        getContentPane().add(label_line2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 10));
+        getContentPane().add(label_line2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 200, 10));
 
         label_line3.setBackground(new java.awt.Color(255, 255, 255));
         label_line3.setForeground(new java.awt.Color(3, 169, 244));
         label_line3.setOpaque(true);
-        getContentPane().add(label_line3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 200, 10));
+        getContentPane().add(label_line3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 200, 10));
 
         label_line4.setBackground(new java.awt.Color(255, 255, 255));
         label_line4.setForeground(new java.awt.Color(3, 169, 244));
         label_line4.setOpaque(true);
-        getContentPane().add(label_line4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 200, 10));
+        getContentPane().add(label_line4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 200, 10));
 
         label_line5.setBackground(new java.awt.Color(255, 255, 255));
         label_line5.setForeground(new java.awt.Color(3, 169, 244));
         label_line5.setOpaque(true);
-        getContentPane().add(label_line5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, 200, 10));
+        getContentPane().add(label_line5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 200, 10));
 
         label_line6.setBackground(new java.awt.Color(255, 255, 255));
         label_line6.setForeground(new java.awt.Color(3, 169, 244));
         label_line6.setOpaque(true);
-        getContentPane().add(label_line6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 630, 200, 10));
+        getContentPane().add(label_line6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 610, 200, 10));
 
         label_line7.setBackground(new java.awt.Color(250, 197, 28));
         label_line7.setForeground(new java.awt.Color(3, 169, 244));
         label_line7.setOpaque(true);
-        getContentPane().add(label_line7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 530, 200, 10));
+        getContentPane().add(label_line7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, 200, 10));
 
         label_expirada.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_expirada.setForeground(new java.awt.Color(204, 204, 204));
         label_expirada.setText("EXPIRADA");
-        getContentPane().add(label_expirada, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 200, -1));
+        getContentPane().add(label_expirada, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 200, -1));
 
         label_porexpirar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_porexpirar.setForeground(new java.awt.Color(204, 204, 204));
         label_porexpirar.setText("POR EXPIRAR");
-        getContentPane().add(label_porexpirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 200, -1));
+        getContentPane().add(label_porexpirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 200, -1));
 
         label_vigente.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_vigente.setForeground(new java.awt.Color(204, 204, 204));
         label_vigente.setText("VIGENTE ");
-        getContentPane().add(label_vigente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 200, -1));
+        getContentPane().add(label_vigente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 200, -1));
 
         label_actual.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_actual.setForeground(new java.awt.Color(204, 204, 204));
         label_actual.setText("ACTUAL");
-        getContentPane().add(label_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, 200, -1));
+        getContentPane().add(label_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 200, -1));
 
         label_inicial.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_inicial.setForeground(new java.awt.Color(204, 204, 204));
         label_inicial.setText("INICIAL");
-        getContentPane().add(label_inicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 200, -1));
+        getContentPane().add(label_inicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 570, 200, -1));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
         label_buscar.setText("BUSCAR ALUMNO:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
 
         label_nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_nombre.setForeground(new java.awt.Color(76, 76, 76));
         label_nombre.setText("NOMBRE COMPLETO");
-        getContentPane().add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 310, -1, -1));
+        getContentPane().add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
 
         label_faltantes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_faltantes.setForeground(new java.awt.Color(76, 76, 76));
         label_faltantes.setText("DÍAS FALTANTES");
-        getContentPane().add(label_faltantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 650, -1, -1));
+        getContentPane().add(label_faltantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 670, -1, -1));
 
         label_vigencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_vigencia.setForeground(new java.awt.Color(76, 76, 76));
         label_vigencia.setText("VIGENCIA");
-        getContentPane().add(label_vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 390, -1, -1));
+        getContentPane().add(label_vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, -1, -1));
 
         label_status.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_status.setForeground(new java.awt.Color(76, 76, 76));
         label_status.setText("STATUS");
-        getContentPane().add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 550, -1, -1));
+        getContentPane().add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 570, -1, -1));
 
         label_ingreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_ingreso.setForeground(new java.awt.Color(76, 76, 76));
         label_ingreso.setText("FECHA DE INGRESO");
-        getContentPane().add(label_ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 390, -1, -1));
+        getContentPane().add(label_ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, -1, -1));
 
         label_pasados.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_pasados.setForeground(new java.awt.Color(76, 76, 76));
         label_pasados.setText("DÍAS PASADOS");
-        getContentPane().add(label_pasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 600, -1, -1));
+        getContentPane().add(label_pasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 620, -1, -1));
 
         label_estancia.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_estancia.setForeground(new java.awt.Color(76, 76, 76));
         label_estancia.setText("ESTANCIA");
-        getContentPane().add(label_estancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 490, 200, -1));
+        getContentPane().add(label_estancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 200, -1));
 
         buscar_alumno.setBackground(new java.awt.Color(223, 223, 223));
         buscar_alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -236,7 +241,7 @@ public class Vigencia extends javax.swing.JFrame {
         buscar_alumno.setToolTipText("");
         buscar_alumno.setBorder(null);
         buscar_alumno.setDoubleBuffered(true);
-        getContentPane().add(buscar_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 200, 30));
+        getContentPane().add(buscar_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -244,7 +249,7 @@ public class Vigencia extends javax.swing.JFrame {
         nombre.setToolTipText("");
         nombre.setBorder(null);
         nombre.setDoubleBuffered(true);
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 340, 440, 30));
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 440, 30));
 
         ingreso.setBackground(new java.awt.Color(223, 223, 223));
         ingreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -252,7 +257,7 @@ public class Vigencia extends javax.swing.JFrame {
         ingreso.setToolTipText("");
         ingreso.setBorder(null);
         ingreso.setDoubleBuffered(true);
-        getContentPane().add(ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 210, 30));
+        getContentPane().add(ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, 210, 30));
 
         vigencia.setBackground(new java.awt.Color(223, 223, 223));
         vigencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -260,7 +265,7 @@ public class Vigencia extends javax.swing.JFrame {
         vigencia.setToolTipText("");
         vigencia.setBorder(null);
         vigencia.setDoubleBuffered(true);
-        getContentPane().add(vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 420, 210, 30));
+        getContentPane().add(vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 210, 30));
 
         pasados.setBackground(new java.awt.Color(223, 223, 223));
         pasados.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -268,7 +273,7 @@ public class Vigencia extends javax.swing.JFrame {
         pasados.setToolTipText("");
         pasados.setBorder(null);
         pasados.setDoubleBuffered(true);
-        getContentPane().add(pasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 600, 160, 30));
+        getContentPane().add(pasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 620, 160, 30));
 
         status.setBackground(new java.awt.Color(223, 223, 223));
         status.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -276,7 +281,7 @@ public class Vigencia extends javax.swing.JFrame {
         status.setToolTipText("");
         status.setBorder(null);
         status.setDoubleBuffered(true);
-        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 550, 160, 30));
+        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 160, 30));
 
         faltantes.setBackground(new java.awt.Color(223, 223, 223));
         faltantes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -284,7 +289,7 @@ public class Vigencia extends javax.swing.JFrame {
         faltantes.setToolTipText("");
         faltantes.setBorder(null);
         faltantes.setDoubleBuffered(true);
-        getContentPane().add(faltantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 650, 160, 30));
+        getContentPane().add(faltantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 670, 160, 30));
 
         buscar.setBackground(new java.awt.Color(255, 255, 255));
         buscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -295,7 +300,45 @@ public class Vigencia extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 140, 30));
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 140, 30));
+
+        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBorder(null);
+        Menu.setBorderPainted(false);
+        Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Menu.setOpaque(false);
+
+        file.setText("File");
+        file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        log_out.setText("Cerrar sesión");
+        log_out.setBorderPainted(true);
+        log_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                log_outActionPerformed(evt);
+            }
+        });
+        file.add(log_out);
+
+        Menu.add(file);
+
+        about.setText("About...");
+        about.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        about_csf.setText("Residencias CSF");
+        about_csf.setBorderPainted(true);
+        about_csf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_csfActionPerformed(evt);
+            }
+        });
+        about.add(about_csf);
+
+        Menu.add(about);
+
+        setJMenuBar(Menu);
 
         pack();
         setLocationRelativeTo(null);
@@ -410,6 +453,15 @@ public class Vigencia extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_log_outActionPerformed
+
+    private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
+        new ResidenciasCSF().setVisible(true);
+    }//GEN-LAST:event_about_csfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,9 +626,13 @@ public class Vigencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu about;
+    private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton buscar;
     private javax.swing.JTextField buscar_alumno;
     private javax.swing.JTextField faltantes;
+    private javax.swing.JMenu file;
     private javax.swing.JTextField ingreso;
     private javax.swing.JLabel label_actual;
     private javax.swing.JLabel label_buscar;
@@ -601,6 +657,7 @@ public class Vigencia extends javax.swing.JFrame {
     private javax.swing.JLabel label_tvigencia;
     private javax.swing.JLabel label_vigencia;
     private javax.swing.JLabel label_vigente;
+    private javax.swing.JMenuItem log_out;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField pasados;
     private javax.swing.JTextField status;
