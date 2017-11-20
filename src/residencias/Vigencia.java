@@ -132,7 +132,7 @@ public class Vigencia extends javax.swing.JFrame {
         getContentPane().add(label_tvigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 350, -1));
 
         label_logo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_logo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thermometer.png"))); // NOI18N
+        label_logo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/termometro.png"))); // NOI18N
         getContentPane().add(label_logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 220, 640));
 
         label_line1.setBackground(new java.awt.Color(250, 197, 28));

@@ -7,18 +7,12 @@ package residencias;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.util.Vector;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -109,9 +103,7 @@ public class Asistencias extends javax.swing.JFrame {
                 } else {
                     System.out.println(model.getValueAt(row, 1) + ": " + false);
                 }
-        }
-
-               
+        }  
     }
     
     

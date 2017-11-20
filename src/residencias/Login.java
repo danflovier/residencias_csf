@@ -241,8 +241,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_button_fpasswordActionPerformed
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
-
-        db.MySQLConnection("root","root","residencias");
+    db.MySQLConnection("root","root","residencias");
+    new Menu().setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_button_loginActionPerformed
 
     private void button_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_registerActionPerformed

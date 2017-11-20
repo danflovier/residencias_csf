@@ -468,8 +468,8 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_modificar1ActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
-    new Login().setVisible(true);
-    this.setVisible(false);
+        new Login().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_log_outActionPerformed
 
     private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
