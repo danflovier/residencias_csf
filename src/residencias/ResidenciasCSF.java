@@ -28,7 +28,7 @@ public class ResidenciasCSF extends javax.swing.JFrame {
         this.setSize(screenWidth / 2 - 100, screenHeight - 550);
         
         // Set default close operation
-        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
@@ -47,7 +47,6 @@ public class ResidenciasCSF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         label_username = new javax.swing.JLabel();
         label_username1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -67,19 +66,6 @@ public class ResidenciasCSF extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
-        jButton1.setToolTipText("");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 410, 70, 60));
 
         label_username.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_username.setForeground(new java.awt.Color(76, 76, 76));
@@ -139,10 +125,6 @@ public class ResidenciasCSF extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -182,7 +164,6 @@ public class ResidenciasCSF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel label_line3;
     private javax.swing.JLabel label_line4;
