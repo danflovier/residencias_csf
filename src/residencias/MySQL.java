@@ -17,6 +17,7 @@ import java.sql.SQLException;
 public class MySQL {
     
     private static Connection connection;
+    final String url = "jdbc:mysql://localhost:3306/";
     
     /*
     public MySQL(){
@@ -38,11 +39,12 @@ public class MySQL {
         }
     }*/
     
-    public void MySQLConnection(String user, String pass, String db_name) {
+    public Connection MySQLConnection(String user, String pass, String db_name) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/" + db_name, user, pass);
+            connection = DriverManager.getConnection(url + db_name, user, pass);
             System.out.println("Connected to the database");
+            return connection;
         } 
         catch (ClassNotFoundException ex) {
             System.out.println("An error occurred.");
@@ -50,6 +52,7 @@ public class MySQL {
         catch (SQLException ex) {
             System.out.println("An error occurred. Maybe user/password is invalid");
         }
+        return connection;
     }
     
     

@@ -7,7 +7,14 @@ package residencias;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +23,9 @@ import javax.swing.ImageIcon;
 public class Login extends javax.swing.JFrame {
     
     final private MySQL db; 
-    
+    final String user = "root";
+    final String passwd = "";
+    final String database ="residencias";
     public Login() {
         initComponents();
         
@@ -241,9 +250,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_button_fpasswordActionPerformed
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
-    db.MySQLConnection("root","root","residencias");
-    new Menu().setVisible(true);
-    this.setVisible(false);
+        Connection connect = db.MySQLConnection(user,passwd,database);
+        String query = "{call login(?,?)}";
+        ResultSet result;
+        String admin = field_username.getText();
+        String pass = String.copyValueOf(field_password.getPassword());
+        try {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, admin);
+            call.setString(2, pass);
+            result = call.executeQuery();
+            if(result.next())
+            {
+                new Menu().setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña inválido", "Error de autenticación", NORMAL);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_button_loginActionPerformed
 
     private void button_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_registerActionPerformed

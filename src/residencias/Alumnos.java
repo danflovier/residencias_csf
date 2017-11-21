@@ -6,20 +6,32 @@
 package residencias;
 
 import java.awt.Color;
+import static java.awt.Frame.NORMAL;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author danflovier
  */
 public class Alumnos extends javax.swing.JFrame {
-    
+    final private MySQL db; 
+    final String user = "root";
+    final String passwd = "";
+    final String database ="residencias";
     public Alumnos() {
         initComponents();
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
-        
+        db = new MySQL();
     }
 
     /**
@@ -296,7 +308,7 @@ public class Alumnos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "MATRÍCULA", "NOMBRE", "FECHA NACIMIENTO", "SEXO", "DIRECCION", "ESTADO", "CARRERA", "DEPORTE", "TELÉFONO", "CORREO INSTITUCIONAL"
+                "MATRÍCULA", "NOMBRE", "FECHA NACIMIENTO", "SEXO", "DIRECCION", "CARRERA", "DEPORTE", "ESTADO", "TELÉFONO", "CORREO INSTITUCIONAL", "CUARTO"
             }
         ));
         jScrollPane1.setViewportView(tabla_alumnos);
@@ -434,10 +446,90 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
         // TODO add your handling code here:
+        Connection connect = db.MySQLConnection(user,passwd,database);
+        String query = "{call getAlumno(?)}";
+        ResultSet result;
+        DefaultTableModel modelo = new DefaultTableModel();
+        String alumno = buscar_alumno.getText();
+        modelo.addColumn("Matricula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Fecha_nacimiento");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Direccion_casa");
+        modelo.addColumn("Carrera");
+        modelo.addColumn("Deporte");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo institucional");
+        modelo.addColumn("Cuarto");
+        tabla_alumnos.setModel(modelo);
+        String [] datosAlumno = new String[11];
+        try {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, alumno);
+            result = call.executeQuery();
+            while(result.next()){
+                datosAlumno[0] = result.getString("Matricula");
+                datosAlumno[1] = result.getString("Nombre");
+                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
+                datosAlumno[3] = result.getString("Sexo");
+                datosAlumno[4] = result.getString("Direccion_casa");
+                datosAlumno[5] = result.getString("Carrera");
+                datosAlumno[6] = result.getString("Deporte");
+                datosAlumno[7] = result.getString("Estado");
+                datosAlumno[8] = result.getString("Telefono");
+                datosAlumno[9] = result.getString("Correo institucional");
+                datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
+            }
+            modelo.addRow(datosAlumno);
+            tabla_alumnos.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buscar2ActionPerformed
 
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
         // TODO add your handling code here:
+        Connection connect = db.MySQLConnection(user,passwd,database);
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        DefaultTableModel modelo = new DefaultTableModel();
+        String alumno = buscar_alumno.getText();
+        modelo.addColumn("Matricula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Fecha_nacimiento");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Direccion_casa");
+        modelo.addColumn("Carrera");
+        modelo.addColumn("Deporte");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo institucional");
+        modelo.addColumn("Cuarto");
+        tabla_alumnos.setModel(modelo);
+        String [] datosAlumno = new String[11];
+        try {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next()){
+                datosAlumno[0] = result.getString("Matricula");
+                datosAlumno[1] = result.getString("Nombre");
+                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
+                datosAlumno[3] = result.getString("Sexo");
+                datosAlumno[4] = result.getString("Direccion_casa");
+                datosAlumno[5] = result.getString("Carrera");
+                datosAlumno[6] = result.getString("Deporte");
+                datosAlumno[7] = result.getString("Estado");
+                datosAlumno[8] = result.getString("Telefono");
+                datosAlumno[9] = result.getString("Correo institucional");
+                datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
+                modelo.addRow(datosAlumno);
+                tabla_alumnos.setModel(modelo);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -446,6 +538,7 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_registrarActionPerformed
 
     private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
