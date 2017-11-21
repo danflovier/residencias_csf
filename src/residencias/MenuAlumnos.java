@@ -269,7 +269,8 @@ public class MenuAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_tutoresActionPerformed
 
     private void expedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expedienteActionPerformed
-        // TODO add your handling code here:
+        new MenuExpediente().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_expedienteActionPerformed
 
     /**

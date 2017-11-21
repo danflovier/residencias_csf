@@ -63,14 +63,14 @@ public class HistorialMedico extends javax.swing.JFrame {
         tabla_alumnos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         alergias = new javax.swing.JTextArea();
-        imprimir = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
         buscar1 = new javax.swing.JButton();
         buscar2 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
-        modificar1 = new javax.swing.JButton();
+        modificar = new javax.swing.JButton();
+        imprimir = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -241,7 +241,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         buscar_historial.setDoubleBuffered(true);
         getContentPane().add(buscar_historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 190, 200, 30));
 
-        antidoping.setBackground(new java.awt.Color(102, 102, 102));
+        antidoping.setBackground(new java.awt.Color(204, 204, 204));
         antidoping.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         antidoping.setForeground(new java.awt.Color(76, 76, 76));
         antidoping.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Positivo", "Negativo" }));
@@ -250,7 +250,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         antidoping.setLightWeightPopupEnabled(false);
         getContentPane().add(antidoping, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 140, 30));
 
-        sangre.setBackground(new java.awt.Color(102, 102, 102));
+        sangre.setBackground(new java.awt.Color(204, 204, 204));
         sangre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sangre.setForeground(new java.awt.Color(76, 76, 76));
         sangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "O[+]", "O[-]", "A[+]", "A[-]", "B[+]", "B[-]", "AB[+]", "AB[-]" }));
@@ -281,18 +281,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         jScrollPane2.setViewportView(alergias);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 360, 120));
-
-        imprimir.setBackground(new java.awt.Color(255, 255, 255));
-        imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
-        imprimir.setText("IMPRIMIR");
-        imprimir.setBorder(null);
-        imprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 160, 60));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -336,7 +324,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 660, 120, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 660, 130, 40));
 
         mostrar_todos.setBackground(new java.awt.Color(255, 255, 255));
         mostrar_todos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -360,22 +348,32 @@ public class HistorialMedico extends javax.swing.JFrame {
         });
         getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 570, 180, 60));
 
-        modificar1.setBackground(new java.awt.Color(255, 255, 255));
-        modificar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        modificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        modificar1.setText("MODIFICAR");
-        modificar1.addActionListener(new java.awt.event.ActionListener() {
+        modificar.setBackground(new java.awt.Color(255, 255, 255));
+        modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
+        modificar.setText("MODIFICAR");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar1ActionPerformed(evt);
+                modificarActionPerformed(evt);
             }
         });
-        getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 660, 130, 40));
+        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 660, 130, 40));
+
+        imprimir.setBackground(new java.awt.Color(255, 255, 255));
+        imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
+        imprimir.setText("IMPRIMIR");
+        imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 180, 60));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
         Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Menu.setOpaque(false);
 
         file.setText("File");
         file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -417,11 +415,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_padecimientosActionPerformed
 
-    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimirActionPerformed
-
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_registrarActionPerformed
@@ -450,9 +443,9 @@ public class HistorialMedico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cirugiasActionPerformed
 
-    private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modificar1ActionPerformed
+    }//GEN-LAST:event_modificarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
         new Login().setVisible(true);
@@ -462,6 +455,10 @@ public class HistorialMedico extends javax.swing.JFrame {
     private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
+
+    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -542,7 +539,7 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JLabel label_peso;
     private javax.swing.JLabel label_sangre;
     private javax.swing.JMenuItem log_out;
-    private javax.swing.JButton modificar1;
+    private javax.swing.JButton modificar;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JTextField padecimientos;
     private javax.swing.JTextField peso;

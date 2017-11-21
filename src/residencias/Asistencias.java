@@ -216,7 +216,6 @@ public class Asistencias extends javax.swing.JFrame {
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
         Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Menu.setOpaque(false);
 
         file.setText("File");
         file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N

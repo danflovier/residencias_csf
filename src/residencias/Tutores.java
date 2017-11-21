@@ -50,14 +50,14 @@ public class Tutores extends javax.swing.JFrame {
         contrasena = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_tutores = new javax.swing.JTable();
-        imprimir = new javax.swing.JButton();
         buscar2 = new javax.swing.JButton();
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
         buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        modificar1 = new javax.swing.JButton();
+        modificar = new javax.swing.JButton();
+        imprimir = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -206,18 +206,6 @@ public class Tutores extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, 690, 310));
 
-        imprimir.setBackground(new java.awt.Color(255, 255, 255));
-        imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
-        imprimir.setText("IMPRIMIR");
-        imprimir.setBorder(null);
-        imprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 160, 60));
-
         buscar2.setBackground(new java.awt.Color(255, 255, 255));
         buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         buscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
@@ -260,7 +248,7 @@ public class Tutores extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 130, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, 130, 40));
 
         buscar1.setBackground(new java.awt.Color(255, 255, 255));
         buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -271,7 +259,7 @@ public class Tutores extends javax.swing.JFrame {
                 buscar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, 120, 40));
+        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 120, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -282,24 +270,34 @@ public class Tutores extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 590, 120, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 140, 40));
 
-        modificar1.setBackground(new java.awt.Color(255, 255, 255));
-        modificar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        modificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        modificar1.setText("MODIFICAR");
-        modificar1.addActionListener(new java.awt.event.ActionListener() {
+        modificar.setBackground(new java.awt.Color(255, 255, 255));
+        modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
+        modificar.setText("MODIFICAR");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar1ActionPerformed(evt);
+                modificarActionPerformed(evt);
             }
         });
-        getContentPane().add(modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 130, 40));
+        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 590, 130, 40));
+
+        imprimir.setBackground(new java.awt.Color(255, 255, 255));
+        imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
+        imprimir.setText("IMPRIMIR");
+        imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 180, 60));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
         Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Menu.setOpaque(false);
 
         file.setText("File");
         file.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -349,11 +347,6 @@ public class Tutores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_iduserIsMouseExited
 
-    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimirActionPerformed
-
     private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscar2ActionPerformed
@@ -378,9 +371,9 @@ public class Tutores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarActionPerformed
 
-    private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modificar1ActionPerformed
+    }//GEN-LAST:event_modificarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
         new Login().setVisible(true);
@@ -390,6 +383,10 @@ public class Tutores extends javax.swing.JFrame {
     private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
+
+    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,7 +482,7 @@ public class Tutores extends javax.swing.JFrame {
     private javax.swing.JLabel label_residencias;
     private javax.swing.JLabel label_telefono;
     private javax.swing.JMenuItem log_out;
-    private javax.swing.JButton modificar1;
+    private javax.swing.JButton modificar;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JTextField nombre;
     private javax.swing.JButton registrar;

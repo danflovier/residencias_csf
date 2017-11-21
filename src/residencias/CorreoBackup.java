@@ -171,7 +171,7 @@ public class CorreoBackup extends javax.swing.JFrame {
         field_password.setBorder(null);
         getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 720, 190, 30));
 
-        server.setBackground(new java.awt.Color(102, 102, 102));
+        server.setBackground(new java.awt.Color(204, 204, 204));
         server.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         server.setForeground(new java.awt.Color(76, 76, 76));
         server.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "smtp.gmail.com" }));
