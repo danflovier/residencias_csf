@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.joda.time.Years;
+import org.joda.time.LocalDate;
 
 /**
  *
@@ -538,7 +540,20 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
-        
+        String matriculaAlumno = matricula.getText();
+        String nombreAlumno = nombre.getText();
+        String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();      
+        LocalDate birthdate = new LocalDate (Integer.parseInt(anio.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
+        LocalDate now = new LocalDate();
+        Years edadAlumno = Years.yearsBetween(birthdate, now);
+        edad.setText(edadAlumno.toString());
+        String sexoAlumno = sexo.toString();
+        String estadoAlumno = estado.toString();
+        String direction = direccion.getText();
+        String career = carrera.toString();
+        String sport = deporte.toString();
+        String phone = telefono.getText();
+        String correo = correo_institucional.getText();
     }//GEN-LAST:event_registrarActionPerformed
 
     private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
