@@ -7,6 +7,12 @@ package residencias;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -20,57 +26,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Asistencias extends javax.swing.JFrame {
      private static final int BOOLEAN_COLUMN = 2;
+     final private MySQL db;
      
     public Asistencias() {
         initComponents();
         
+        db = new MySQL();
+        
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
         
-        //this.add( new Asistencias() );
-        
-        DefaultTableModel model;
-                
-        model = (DefaultTableModel)tabla_alumnos.getModel();
-        model.addTableModelListener(new CheckBoxModelListener());
-        
-        
-     /*   tabla_alumnos.setDefaultRenderer(Object.class, new TableCellRenderer(){
-            private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
-
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                String s = table.getColumnName(2);
-                //System.out.print(s);
-                if(isSelected){
-                    if(column==0 && row >=0)
-                    c.setBackground(Color.YELLOW);
-                }
-                else
-                    c.setBackground(Color.WHITE);
-
-       //Add below code here
-                return c;
-            }
-
-        });*/
-        
-     /*
-        for(int i=0;i<model.getRowCount();i++){
-            System.out.println("ASISTENCIA: " + model.getValueAt(i,2));
-            if ((Boolean)model.getValueAt(i,2) == false){  
-                System.out.println("ENTRÉ");
-      
-                break;
-            }
-     
-        }*/
-        
-        //tabla_alumnos.getModel().addTableModelListener(new CheckBoxModelListener());
-        
-        
-        
+        //Set the students in the database on the table
+        initAlumnos(); 
     }
     public class CheckTableModelListener extends DefaultTableCellRenderer {
         @Override
@@ -137,8 +104,6 @@ public class Asistencias extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Alumnos");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(1500, 800));
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,9 +129,7 @@ public class Asistencias extends javax.swing.JFrame {
         tabla_alumnos.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_alumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"jojo", "jeje", null, null},
-                {"Prueba", "prueba", null, null},
-                {"A01023226", "Daniela",  new Boolean(false), null}
+
             },
             new String [] {
                 "MATRÍCULA", "NOMBRE", "ASISTENCIA", "MOTIVO AUSENCIA"
@@ -272,7 +235,24 @@ public class Asistencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        // TODO add your handling code here:
+        int registros = tabla_alumnos.getRowCount();
+        for(int i = 0; i < registros; i++)
+        {
+            String asistencia;
+            Object box = tabla_alumnos.getValueAt(i, 2);
+            if(box == null)
+                asistencia = "false";
+            else
+            {
+                asistencia = box.toString();
+            }
+            Object motivo = tabla_alumnos.getValueAt(i, 3);
+            if(asistencia == "false")
+                if(motivo != null)
+                    registraAusencia((String) tabla_alumnos.getValueAt(i, 0), motivo.toString());
+                else
+                    registraAusencia((String) tabla_alumnos.getValueAt(i, 0), "");
+        }
     }//GEN-LAST:event_registrarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
@@ -293,6 +273,52 @@ public class Asistencias extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
+    private void registraAusencia(String matricula, String motivo)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call agregarAusencia(?,?)}";
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, motivo);
+            call.setString(2, matricula);
+            call.executeQuery();
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void initAlumnos()
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        DefaultTableModel modelo = (DefaultTableModel)tabla_alumnos.getModel();
+        tabla_alumnos.setModel(modelo);
+        String [] datosAlumno = new String[4];
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next())
+            {
+                datosAlumno[0] = result.getString("Matricula");
+                datosAlumno[1] = result.getString("Nombre");
+                datosAlumno[2] = null;
+                datosAlumno[3] = null;
+                modelo.addRow(datosAlumno);
+                tabla_alumnos.setModel(modelo);
+            }
+            
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
