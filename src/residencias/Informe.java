@@ -329,14 +329,6 @@ public class Informe extends javax.swing.JFrame {
         back.setContentAreaFilled(false);
         back.setMaximumSize(new java.awt.Dimension(129, 65));
         back.setMinimumSize(new java.awt.Dimension(129, 65));
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backisEmailCursorEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                backisEmailCursorExited(evt);
-            }
-        });
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -636,14 +628,6 @@ public class Informe extends javax.swing.JFrame {
     private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
-
-    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
-        back.setBackground(new Color(231,231,231));
-    }//GEN-LAST:event_backisEmailCursorEntered
-
-    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
-        back.setBackground(new Color(255,255,255));
-    }//GEN-LAST:event_backisEmailCursorExited
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuExpediente().setVisible(true);
