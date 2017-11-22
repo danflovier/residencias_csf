@@ -609,7 +609,7 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
