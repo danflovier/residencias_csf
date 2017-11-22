@@ -25,9 +25,8 @@ import org.joda.time.LocalDate;
  */
 public class Alumnos extends javax.swing.JFrame {
     final private MySQL db; 
-    final String user = "root";
-    final String passwd = "";
-    final String database ="residencias";
+    
+    
     public Alumnos() {
         initComponents();
         
@@ -448,7 +447,7 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
         // TODO add your handling code here:
-        Connection connect = db.MySQLConnection(user,passwd,database);
+        Connection connect = db.MySQLConnection();
         String query = "{call getAlumno(?)}";
         ResultSet result;
         DefaultTableModel modelo = new DefaultTableModel();
@@ -492,7 +491,7 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
         // TODO add your handling code here:
-        Connection connect = db.MySQLConnection(user,passwd,database);
+        Connection connect = db.MySQLConnection();
         String query = "{call getAlumnos()}";
         ResultSet result;
         DefaultTableModel modelo = new DefaultTableModel();

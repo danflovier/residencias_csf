@@ -23,9 +23,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     final private MySQL db; 
-    final String user = "root";
-    final String passwd = "";
-    final String database ="residencias";
+
     public Login() {
         initComponents();
         
@@ -250,7 +248,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_button_fpasswordActionPerformed
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
-        Connection connect = db.MySQLConnection(user,passwd,database);
+        Connection connect = db.MySQLConnection();
         String query = "{call login(?,?)}";
         ResultSet result;
         String admin = field_username.getText();
