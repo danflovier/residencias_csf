@@ -417,7 +417,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private javax.swing.JMenu file;
     private javax.swing.JTextField id;
     private javax.swing.JTextField id_expediente;
-    private javax.swing.JButton imprimir;
     private javax.swing.JButton imprimir1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_buscar;
