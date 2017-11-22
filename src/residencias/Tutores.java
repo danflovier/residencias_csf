@@ -305,14 +305,6 @@ public class Tutores extends javax.swing.JFrame {
         back.setContentAreaFilled(false);
         back.setMaximumSize(new java.awt.Dimension(129, 65));
         back.setMinimumSize(new java.awt.Dimension(129, 65));
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backisEmailCursorEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                backisEmailCursorExited(evt);
-            }
-        });
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -413,16 +405,6 @@ public class Tutores extends javax.swing.JFrame {
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimirActionPerformed
-
-    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
-        back.setBackground(new Color(231,231,231));
-        //button_send.setForeground(new Color(220,220,220));
-    }//GEN-LAST:event_backisEmailCursorEntered
-
-    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
-        back.setBackground(new Color(255,255,255));
-        //button_send.setForeground(new Color(76,76,76));
-    }//GEN-LAST:event_backisEmailCursorExited
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuAlumnos().setVisible(true);

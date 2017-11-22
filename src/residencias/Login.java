@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     final private MySQL db; 
-
     public Login() {
         initComponents();
         

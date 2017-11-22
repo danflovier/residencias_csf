@@ -55,6 +55,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
         eliminar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         imprimir1 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -269,6 +270,23 @@ public class HistorialAcademico extends javax.swing.JFrame {
         });
         getContentPane().add(imprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, 180, 60));
 
+        back.setBackground(java.awt.Color.white);
+        back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        back.setForeground(new java.awt.Color(76, 76, 76));
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-button.png"))); // NOI18N
+        back.setText("REGRESAR");
+        back.setBorder(null);
+        back.setBorderPainted(false);
+        back.setContentAreaFilled(false);
+        back.setMaximumSize(new java.awt.Dimension(129, 65));
+        back.setMinimumSize(new java.awt.Dimension(129, 65));
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 130, 40));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -355,6 +373,11 @@ public class HistorialAcademico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimir1ActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        new MenuExpediente().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,6 +432,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu about;
     private javax.swing.JMenuItem about_csf;
+    private javax.swing.JButton back;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_historial;

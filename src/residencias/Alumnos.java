@@ -9,6 +9,7 @@ import java.awt.Color;
 import static java.awt.Frame.NORMAL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,14 +26,34 @@ import org.joda.time.LocalDate;
  */
 public class Alumnos extends javax.swing.JFrame {
     final private MySQL db; 
-    
+    Connection con;
+    boolean day = false;
+    boolean month = false;
+    boolean year = false;
     
     public Alumnos() {
         initComponents();
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
-        db = new MySQL();
+        db = new MySQL(); 
+    }
+    
+    public void clearRegisterForm(){
+        matricula.setText(null);
+        nombre.setText(null);
+        anio.setText(null);
+        mes.setText(null);
+        dia.setText(null);  
+        sexo.setSelectedIndex(0);
+        estado.setSelectedIndex(0);
+        direccion.setText(null);
+        carrera.setSelectedIndex(0);
+        deporte.setSelectedIndex(0);
+        telefono.setText(null);
+        correo_institucional.setText(null);
+        cuarto.setEnabled(false);
+        cuarto.removeAllItems();
     }
     
     public Boolean validateData(){
@@ -106,7 +127,7 @@ public class Alumnos extends javax.swing.JFrame {
         label_deporte = new javax.swing.JLabel();
         label_direccion = new javax.swing.JLabel();
         label_telefono = new javax.swing.JLabel();
-        label_correo = new javax.swing.JLabel();
+        label_cuarto = new javax.swing.JLabel();
         label_buscar = new javax.swing.JLabel();
         label_logo = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
@@ -134,6 +155,8 @@ public class Alumnos extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
+        cuarto = new javax.swing.JComboBox<>();
+        label_correo1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -145,9 +168,9 @@ public class Alumnos extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Alumnos");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setPreferredSize(new java.awt.Dimension(1500, 900));
+        setPreferredSize(new java.awt.Dimension(1500, 800));
         setResizable(false);
-        setSize(new java.awt.Dimension(1500, 900));
+        setSize(new java.awt.Dimension(1500, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -220,10 +243,10 @@ public class Alumnos extends javax.swing.JFrame {
         label_telefono.setText("TELÉFONO");
         getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 240, -1));
 
-        label_correo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_correo.setForeground(new java.awt.Color(76, 76, 76));
-        label_correo.setText("CORREO INSTITUCIONAL");
-        getContentPane().add(label_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 310, -1));
+        label_cuarto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_cuarto.setForeground(new java.awt.Color(76, 76, 76));
+        label_cuarto.setText("CUARTO A ASIGNAR");
+        getContentPane().add(label_cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 200, 30));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
@@ -232,7 +255,7 @@ public class Alumnos extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 740, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 180, 70));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -242,14 +265,12 @@ public class Alumnos extends javax.swing.JFrame {
         matricula.setBackground(new java.awt.Color(223, 223, 223));
         matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         matricula.setToolTipText("");
-        matricula.setBorder(null);
         matricula.setDoubleBuffered(true);
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         nombre.setToolTipText("");
-        nombre.setBorder(null);
         nombre.setDoubleBuffered(true);
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 580, 30));
 
@@ -257,39 +278,50 @@ public class Alumnos extends javax.swing.JFrame {
         dia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         dia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dia.setToolTipText("");
-        dia.setBorder(null);
         dia.setDoubleBuffered(true);
+        dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaActionPerformed(evt);
+            }
+        });
         getContentPane().add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 80, 30));
 
         mes.setBackground(new java.awt.Color(223, 223, 223));
         mes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         mes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         mes.setToolTipText("");
-        mes.setBorder(null);
         mes.setDoubleBuffered(true);
+        mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesActionPerformed(evt);
+            }
+        });
         getContentPane().add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 80, 30));
 
         anio.setBackground(new java.awt.Color(223, 223, 223));
         anio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         anio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         anio.setToolTipText("");
-        anio.setBorder(null);
         anio.setDoubleBuffered(true);
+        anio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anioActionPerformed(evt);
+            }
+        });
         getContentPane().add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 80, 30));
 
         edad.setBackground(new java.awt.Color(223, 223, 223));
         edad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         edad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         edad.setToolTipText("");
-        edad.setBorder(null);
         edad.setDoubleBuffered(true);
+        edad.setEnabled(false);
         getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 80, 30));
 
         direccion.setBackground(new java.awt.Color(223, 223, 223));
         direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         direccion.setToolTipText("");
-        direccion.setBorder(null);
         direccion.setDoubleBuffered(true);
         getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 380, 30));
 
@@ -297,7 +329,6 @@ public class Alumnos extends javax.swing.JFrame {
         telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         telefono.setToolTipText("");
-        telefono.setBorder(null);
         telefono.setDoubleBuffered(true);
         getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, 240, 30));
 
@@ -305,7 +336,6 @@ public class Alumnos extends javax.swing.JFrame {
         correo_institucional.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         correo_institucional.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         correo_institucional.setToolTipText("");
-        correo_institucional.setBorder(null);
         correo_institucional.setDoubleBuffered(true);
         getContentPane().add(correo_institucional, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 600, 310, 30));
 
@@ -313,7 +343,6 @@ public class Alumnos extends javax.swing.JFrame {
         buscar_alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         buscar_alumno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         buscar_alumno.setToolTipText("");
-        buscar_alumno.setBorder(null);
         buscar_alumno.setDoubleBuffered(true);
         getContentPane().add(buscar_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 200, 30));
 
@@ -321,16 +350,19 @@ public class Alumnos extends javax.swing.JFrame {
         sexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sexo.setForeground(new java.awt.Color(76, 76, 76));
         sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "M", "F" }));
-        sexo.setBorder(null);
         sexo.setFocusable(false);
         sexo.setLightWeightPopupEnabled(false);
+        sexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexoActionPerformed(evt);
+            }
+        });
         getContentPane().add(sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 140, 30));
 
         estado.setBackground(new java.awt.Color(204, 204, 204));
         estado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         estado.setForeground(new java.awt.Color(76, 76, 76));
         estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
-        estado.setBorder(null);
         estado.setFocusable(false);
         estado.setLightWeightPopupEnabled(false);
         getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 170, 30));
@@ -339,7 +371,6 @@ public class Alumnos extends javax.swing.JFrame {
         deporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         deporte.setForeground(new java.awt.Color(76, 76, 76));
         deporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----------", "---Deportes---", "Basketball", "Volleyball", "Fútbol", "Soccer", "Fútbol Americano", "Atletismo", "Cheer & dance", "Tennis", "---Actividades---", "Cinematografía", "Dibujo", "Canto", "Teatro", "Literatura", "Fotografía", "Piano", "Guitarra acústica", "Guitarra eléctrica", "Salsa", "Yoga", "Jazz" }));
-        deporte.setBorder(null);
         deporte.setFocusable(false);
         deporte.setLightWeightPopupEnabled(false);
         getContentPane().add(deporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 290, 30));
@@ -348,7 +379,6 @@ public class Alumnos extends javax.swing.JFrame {
         carrera.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         carrera.setForeground(new java.awt.Color(76, 76, 76));
         carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----------", "-Arquitectura-", "LDI", "-Bioingeniería-", "IA", "IBT", "IDS", "IIA", "IQA", "IQP", "-Ingenierías-", "IC", "IID", "IMT", "IFI", "IIS", "IMA", "IME", "-Ciencias sociales-", "LED", "LEF", "LRI", "LTS", "-Negocios-", "LAF", "LAE", "LCPF", "LCDE", "LEM", "LMC", "LIN", "-Tecnologías-", "ISDR", "ITC", "ITI", "ITE", "ITS", "-Comunicación y Música-", "IMI", "LCMD" }));
-        carrera.setBorder(null);
         carrera.setFocusable(false);
         carrera.setLightWeightPopupEnabled(false);
         getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 260, 30));
@@ -361,7 +391,15 @@ public class Alumnos extends javax.swing.JFrame {
             new String [] {
                 "MATRÍCULA", "NOMBRE", "FECHA NACIMIENTO", "SEXO", "DIRECCION", "CARRERA", "DEPORTE", "ESTADO", "TELÉFONO", "CORREO INSTITUCIONAL", "CUARTO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabla_alumnos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 690, 310));
@@ -408,7 +446,7 @@ public class Alumnos extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 670, 130, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, 130, 40));
 
         buscar1.setBackground(new java.awt.Color(255, 255, 255));
         buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -419,7 +457,7 @@ public class Alumnos extends javax.swing.JFrame {
                 buscar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 670, 120, 40));
+        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 710, 120, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -430,7 +468,7 @@ public class Alumnos extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 670, 140, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 710, 140, 40));
 
         modificar.setBackground(new java.awt.Color(255, 255, 255));
         modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -441,7 +479,7 @@ public class Alumnos extends javax.swing.JFrame {
                 modificarActionPerformed(evt);
             }
         });
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 670, 130, 40));
+        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 710, 130, 40));
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -454,6 +492,16 @@ public class Alumnos extends javax.swing.JFrame {
         });
         getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 180, 60));
 
+        cuarto.setEnabled(false);
+        cuarto.setName("cuarto"); // NOI18N
+
+        getContentPane().add(cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 670, 130, -1));
+
+        label_correo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_correo1.setForeground(new java.awt.Color(76, 76, 76));
+        label_correo1.setText("CORREO INSTITUCIONAL");
+        getContentPane().add(label_correo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 310, -1));
+
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         back.setForeground(new java.awt.Color(76, 76, 76));
@@ -464,14 +512,6 @@ public class Alumnos extends javax.swing.JFrame {
         back.setContentAreaFilled(false);
         back.setMaximumSize(new java.awt.Dimension(129, 65));
         back.setMinimumSize(new java.awt.Dimension(129, 65));
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backisEmailCursorEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                backisEmailCursorExited(evt);
-            }
-        });
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -566,11 +606,10 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
         // TODO add your handling code here:
-        Connection connect = db.MySQLConnection();
+        con = db.MySQLConnection();
         String query = "{call getAlumnos()}";
         ResultSet result;
         DefaultTableModel modelo = new DefaultTableModel();
-        String alumno = buscar_alumno.getText();
         modelo.addColumn("Matricula");
         modelo.addColumn("Nombre");
         modelo.addColumn("Fecha_nacimiento");
@@ -583,9 +622,10 @@ public class Alumnos extends javax.swing.JFrame {
         modelo.addColumn("Correo institucional");
         modelo.addColumn("Cuarto");
         tabla_alumnos.setModel(modelo);
+        
         String [] datosAlumno = new String[11];
         try {
-            CallableStatement call = connect.prepareCall(query);
+            CallableStatement call = con.prepareCall(query);
             result = call.executeQuery();
             while(result.next()){
                 datosAlumno[0] = result.getString("Matricula");
@@ -600,7 +640,7 @@ public class Alumnos extends javax.swing.JFrame {
                 datosAlumno[9] = result.getString("Correo institucional");
                 datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
                 modelo.addRow(datosAlumno);
-                tabla_alumnos.setModel(modelo);
+                tabla_alumnos.setModel(modelo);                
             }
             
         } catch (SQLException ex) {
@@ -609,7 +649,19 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        
+
+        // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{ call eliminarAlumno(?) }";
+        try {
+            CallableStatement st = con.prepareCall(query);
+            String matriculaAlumno = (String) tabla_alumnos.getValueAt(tabla_alumnos.getSelectedRow(), 0);
+            st.setString(1, matriculaAlumno);
+            st.executeQuery();
+            mostrar_todos.doClick();
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
@@ -619,18 +671,38 @@ public class Alumnos extends javax.swing.JFrame {
         
         String matriculaAlumno = matricula.getText();
         String nombreAlumno = nombre.getText();
-        String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();      
-        LocalDate birthdate = new LocalDate (Integer.parseInt(anio.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
-        LocalDate now = new LocalDate();
-        Years edadAlumno = Years.yearsBetween(birthdate, now);
-        edad.setText(edadAlumno.toString());
-        String sexoAlumno = sexo.toString();
-        String estadoAlumno = estado.toString();
+        String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();  
+        String sexoAlumno = sexo.getSelectedItem().toString();
+        String estadoAlumno = estado.getSelectedItem().toString();
         String direction = direccion.getText();
-        String career = carrera.toString();
-        String sport = deporte.toString();
+        String career = carrera.getSelectedItem().toString();
+        String sport = deporte.getSelectedItem().toString();
         String phone = telefono.getText();
         String correo = correo_institucional.getText();
+        int habitacion = Integer.parseInt(cuarto.getSelectedItem().toString());
+        //JOptionPane.showConfirmDialog(null, "Este ", phone, WIDTH)
+        con = db.MySQLConnection();
+        String query = "{ call registrarAlumno(?,?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            CallableStatement st = con.prepareCall(query);
+            st.setString(1,matriculaAlumno);
+            st.setString(2,nombreAlumno);
+            st.setDate(3,Date.valueOf(fecha));
+            st.setString(4,sexoAlumno);
+            st.setString(5,direction);
+            st.setString(6,career);
+            st.setString(7,sport);
+            st.setString(8,estadoAlumno);
+            st.setString(9,phone);
+            st.setString(10,correo);
+            st.setInt(11,habitacion);
+            st.executeQuery();
+            JOptionPane.showMessageDialog(null, "Alumno registrado correctamente", "Registro de alumno", JOptionPane.INFORMATION_MESSAGE);
+            clearRegisterForm();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_registrarActionPerformed
 
     private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
@@ -658,20 +730,74 @@ public class Alumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimirActionPerformed
 
-    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
-        back.setBackground(new Color(231,231,231));
-        //button_send.setForeground(new Color(220,220,220));
-    }//GEN-LAST:event_backisEmailCursorEntered
 
-    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
-        back.setBackground(new Color(255,255,255));
-        //button_send.setForeground(new Color(76,76,76));
-    }//GEN-LAST:event_backisEmailCursorExited
+    private void sexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoActionPerformed
+        // TODO add your handling code here:
+        cuarto.removeAllItems();
+        if(!sexo.getSelectedItem().toString().equals("Seleccionar")){
+            cuarto.setEnabled(true);
+            con = db.MySQLConnection();
+            String query = "{ call getHabitacionesDisponibles(?)}";
+            ResultSet result;
+            try {
+                CallableStatement st = con.prepareCall(query);
+                st.setString(1, sexo.getSelectedItem().toString());
+                result = st.executeQuery();
+                while(result.next()){
+                    cuarto.addItem(String.valueOf(result.getInt("ID_cuarto")));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            cuarto.removeAllItems();
+            cuarto.setEnabled(false);
+        }
+        
+
+
+    }//GEN-LAST:event_sexoActionPerformed
+
+    private void mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesActionPerformed
+        // TODO add your handling code here:
+        month = true;
+        System.out.println("Hola");
+        if(year && month && day){
+            LocalDate birthdate = new LocalDate (Integer.parseInt(anio.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
+            LocalDate now = new LocalDate();
+            Years edadAlumno = Years.yearsBetween(birthdate, now);
+            edad.setText(String.valueOf(edadAlumno.getYears()));
+        }
+    }//GEN-LAST:event_mesActionPerformed
+
+    private void diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaActionPerformed
+        // TODO add your handling code here:
+        day = true;
+        if(year && month && day){
+            LocalDate birthdate = new LocalDate (Integer.parseInt(anio.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
+            LocalDate now = new LocalDate();
+            Years edadAlumno = Years.yearsBetween(birthdate, now);
+            edad.setText(String.valueOf(edadAlumno.getYears()));
+        }
+    }//GEN-LAST:event_diaActionPerformed
+
+    private void anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioActionPerformed
+        // TODO add your handling code here:
+        year = true;
+        if(year && month && day){
+            LocalDate birthdate = new LocalDate (Integer.parseInt(anio.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
+            LocalDate now = new LocalDate();
+            Years edadAlumno = Years.yearsBetween(birthdate, now);
+            edad.setText(String.valueOf(edadAlumno.getYears()));
+        }
+    }//GEN-LAST:event_anioActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuAlumnos().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -727,6 +853,7 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JComboBox<String> carrera;
     private javax.swing.JTextField correo_institucional;
+    private javax.swing.JComboBox<String> cuarto;
     private javax.swing.JComboBox<String> deporte;
     private javax.swing.JTextField dia;
     private javax.swing.JTextField direccion;
@@ -739,7 +866,8 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JLabel label_anio;
     private javax.swing.JLabel label_buscar;
     private javax.swing.JLabel label_carrera;
-    private javax.swing.JLabel label_correo;
+    private javax.swing.JLabel label_correo1;
+    private javax.swing.JLabel label_cuarto;
     private javax.swing.JLabel label_deporte;
     private javax.swing.JLabel label_dia;
     private javax.swing.JLabel label_direccion;
