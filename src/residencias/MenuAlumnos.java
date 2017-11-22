@@ -64,6 +64,7 @@ public class MenuAlumnos extends javax.swing.JFrame {
         tutores = new javax.swing.JButton();
         expediente = new javax.swing.JButton();
         habitacion = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         file_exit = new javax.swing.JMenuItem();
@@ -196,6 +197,31 @@ public class MenuAlumnos extends javax.swing.JFrame {
         });
         getContentPane().add(habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 140, 130));
 
+        back.setBackground(java.awt.Color.white);
+        back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        back.setForeground(new java.awt.Color(76, 76, 76));
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-button.png"))); // NOI18N
+        back.setText("REGRESAR");
+        back.setBorder(null);
+        back.setBorderPainted(false);
+        back.setContentAreaFilled(false);
+        back.setMaximumSize(new java.awt.Dimension(129, 65));
+        back.setMinimumSize(new java.awt.Dimension(129, 65));
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backisEmailCursorEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backisEmailCursorExited(evt);
+            }
+        });
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 130, 40));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorderPainted(false);
         Menu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -273,6 +299,21 @@ public class MenuAlumnos extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_expedienteActionPerformed
 
+    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
+        back.setBackground(new Color(231,231,231));
+        //button_send.setForeground(new Color(220,220,220));
+    }//GEN-LAST:event_backisEmailCursorEntered
+
+    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
+        back.setBackground(new Color(255,255,255));
+        //button_send.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_backisEmailCursorExited
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        new Menu().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -317,6 +358,7 @@ public class MenuAlumnos extends javax.swing.JFrame {
     private javax.swing.JMenuItem about_rcsf;
     private javax.swing.JButton alumnos;
     private javax.swing.JButton asistencia;
+    private javax.swing.JButton back;
     private javax.swing.JButton expediente;
     private javax.swing.JMenu file;
     private javax.swing.JMenuItem file_exit;

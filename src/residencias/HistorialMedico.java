@@ -71,6 +71,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         eliminar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -81,9 +82,9 @@ public class HistorialMedico extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Historial Médico");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setPreferredSize(new java.awt.Dimension(1500, 800));
+        setPreferredSize(new java.awt.Dimension(1500, 900));
         setResizable(false);
-        setSize(new java.awt.Dimension(1500, 800));
+        setSize(new java.awt.Dimension(1500, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -113,7 +114,7 @@ public class HistorialMedico extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 650, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 720, 180, 70));
 
         label_line.setBackground(new java.awt.Color(84, 172, 210));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -370,6 +371,31 @@ public class HistorialMedico extends javax.swing.JFrame {
         });
         getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 180, 60));
 
+        back.setBackground(java.awt.Color.white);
+        back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        back.setForeground(new java.awt.Color(76, 76, 76));
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-button.png"))); // NOI18N
+        back.setText("REGRESAR");
+        back.setBorder(null);
+        back.setBorderPainted(false);
+        back.setContentAreaFilled(false);
+        back.setMaximumSize(new java.awt.Dimension(129, 65));
+        back.setMinimumSize(new java.awt.Dimension(129, 65));
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backisEmailCursorEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backisEmailCursorExited(evt);
+            }
+        });
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 750, 130, 40));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -460,6 +486,21 @@ public class HistorialMedico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimirActionPerformed
 
+    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
+        back.setBackground(new Color(231,231,231));
+        //button_send.setForeground(new Color(220,220,220));
+    }//GEN-LAST:event_backisEmailCursorEntered
+
+    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
+        back.setBackground(new Color(255,255,255));
+        //button_send.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_backisEmailCursorExited
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        new MenuExpediente().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -509,6 +550,7 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JTextArea alergias;
     private javax.swing.JTextField altura;
     private javax.swing.JComboBox<String> antidoping;
+    private javax.swing.JButton back;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_historial;
