@@ -126,6 +126,7 @@ public class Asistencias extends javax.swing.JFrame {
         tabla_alumnos = new javax.swing.JTable();
         registrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -212,6 +213,31 @@ public class Asistencias extends javax.swing.JFrame {
         });
         getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 120, 40));
 
+        back.setBackground(java.awt.Color.white);
+        back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        back.setForeground(new java.awt.Color(76, 76, 76));
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-button.png"))); // NOI18N
+        back.setText("REGRESAR");
+        back.setBorder(null);
+        back.setBorderPainted(false);
+        back.setContentAreaFilled(false);
+        back.setMaximumSize(new java.awt.Dimension(129, 65));
+        back.setMinimumSize(new java.awt.Dimension(129, 65));
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backisEmailCursorEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backisEmailCursorExited(evt);
+            }
+        });
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 680, 130, 40));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -270,6 +296,21 @@ public class Asistencias extends javax.swing.JFrame {
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
 
+    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
+        back.setBackground(new Color(231,231,231));
+        //button_send.setForeground(new Color(220,220,220));
+    }//GEN-LAST:event_backisEmailCursorEntered
+
+    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
+        back.setBackground(new Color(255,255,255));
+        //button_send.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_backisEmailCursorExited
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        new MenuAlumnos().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -325,6 +366,7 @@ public class Asistencias extends javax.swing.JFrame {
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu about;
     private javax.swing.JMenuItem about_csf;
+    private javax.swing.JButton back;
     private javax.swing.JButton cancelar;
     private javax.swing.JMenu file;
     private javax.swing.JScrollPane jScrollPane1;

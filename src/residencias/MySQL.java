@@ -17,35 +17,17 @@ import java.sql.SQLException;
 public class MySQL {
     
     private static Connection connection;
-    final String url = "jdbc:mysql://localhost:3306/";
+
+    final String port = "3307";
+    final String url = "jdbc:mysql://localhost:" + port + "/";
     final String user = "root";
-    final String passwd = "";
-    final String db_name ="residencias";
-    
-    /*
-    public MySQL(){
-        // connection object
-        Connection connection = null;
- 
-        try {
-            String url = "jdbc:mysql://localhost:3307/residencias";
-            String user = "root";
-            String password = "root";
- 
-            connection = DriverManager.getConnection(url, user, password);
-            if (connection != null) {
-                System.out.println("Connected to the database residencias");
-            }
-        } catch (SQLException ex) {
-            System.out.println("An error occurred. Maybe user/password is invalid");
-            ex.printStackTrace();
-        }
-    }*/
+    final String pass = "";
+    final String db_name = "residencias";
     
     public Connection MySQLConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url + db_name, user, passwd);
+            connection = DriverManager.getConnection(url + db_name, user, pass);
             System.out.println("Connected to the database");
             return connection;
         } 
