@@ -18,6 +18,9 @@ public class MySQL {
     
     private static Connection connection;
     final String url = "jdbc:mysql://localhost:3306/";
+    final String user = "root";
+    final String passwd = "";
+    final String db_name ="residencias";
     
     /*
     public MySQL(){
@@ -39,10 +42,10 @@ public class MySQL {
         }
     }*/
     
-    public Connection MySQLConnection(String user, String pass, String db_name) {
+    public Connection MySQLConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url + db_name, user, pass);
+            connection = DriverManager.getConnection(url + db_name, user, passwd);
             System.out.println("Connected to the database");
             return connection;
         } 
