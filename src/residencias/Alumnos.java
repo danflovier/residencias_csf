@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -156,12 +155,8 @@ public class Alumnos extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
-<<<<<<< HEAD
         cuarto = new javax.swing.JComboBox<>();
         label_correo1 = new javax.swing.JLabel();
-=======
-        back = new javax.swing.JButton();
->>>>>>> bf4da6d611529fc77c47dc122918ad1ea07bb03d
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -172,9 +167,9 @@ public class Alumnos extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Alumnos");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setPreferredSize(new java.awt.Dimension(1500, 900));
+        setPreferredSize(new java.awt.Dimension(1500, 800));
         setResizable(false);
-        setSize(new java.awt.Dimension(1500, 900));
+        setSize(new java.awt.Dimension(1500, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -259,7 +254,7 @@ public class Alumnos extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 740, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 180, 70));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -450,11 +445,7 @@ public class Alumnos extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, 130, 40));
-=======
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 670, 130, 40));
->>>>>>> bf4da6d611529fc77c47dc122918ad1ea07bb03d
 
         buscar1.setBackground(new java.awt.Color(255, 255, 255));
         buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -465,11 +456,7 @@ public class Alumnos extends javax.swing.JFrame {
                 buscar1ActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 710, 120, 40));
-=======
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 670, 120, 40));
->>>>>>> bf4da6d611529fc77c47dc122918ad1ea07bb03d
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -480,11 +467,7 @@ public class Alumnos extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 710, 140, 40));
-=======
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 670, 140, 40));
->>>>>>> bf4da6d611529fc77c47dc122918ad1ea07bb03d
 
         modificar.setBackground(new java.awt.Color(255, 255, 255));
         modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -495,11 +478,7 @@ public class Alumnos extends javax.swing.JFrame {
                 modificarActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 710, 130, 40));
-=======
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 670, 130, 40));
->>>>>>> bf4da6d611529fc77c47dc122918ad1ea07bb03d
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -512,7 +491,6 @@ public class Alumnos extends javax.swing.JFrame {
         });
         getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 180, 60));
 
-<<<<<<< HEAD
         cuarto.setEnabled(false);
         cuarto.setName("cuarto"); // NOI18N
 
@@ -522,32 +500,6 @@ public class Alumnos extends javax.swing.JFrame {
         label_correo1.setForeground(new java.awt.Color(76, 76, 76));
         label_correo1.setText("CORREO INSTITUCIONAL");
         getContentPane().add(label_correo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 310, -1));
-=======
-        back.setBackground(java.awt.Color.white);
-        back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        back.setForeground(new java.awt.Color(76, 76, 76));
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-button.png"))); // NOI18N
-        back.setText("REGRESAR");
-        back.setBorder(null);
-        back.setBorderPainted(false);
-        back.setContentAreaFilled(false);
-        back.setMaximumSize(new java.awt.Dimension(129, 65));
-        back.setMinimumSize(new java.awt.Dimension(129, 65));
-        back.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backisEmailCursorEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                backisEmailCursorExited(evt);
-            }
-        });
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
-            }
-        });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 770, 130, 40));
->>>>>>> bf4da6d611529fc77c47dc122918ad1ea07bb03d
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -885,7 +837,6 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JMenu about;
     private javax.swing.JMenuItem about_csf;
     private javax.swing.JTextField anio;
-    private javax.swing.JButton back;
     private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_alumno;
