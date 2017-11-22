@@ -35,9 +35,52 @@ public class Alumnos extends javax.swing.JFrame {
         db = new MySQL();
     }
     
-    public void validateData(){
-        if (matricula.getText().length() < 9) {
-            JOptionPane.showMessageDialog(this,"La matrícula Debe contener 9 caracteres","ERROR",JOptionPane.INFORMATION_MESSAGE);
+    public Boolean validateData(){
+        String error = "";
+        if ((!"".equals(matricula.getText())) && (!"".equals(nombre.getText())) && (dia.getText()!="") 
+                && (!"".equals(mes.getText())) && (!"".equals(anio.getText())) 
+                && (sexo.getSelectedItem()!="Seleccionar") && (!"".equals(direccion.getText()))
+                && (carrera.getSelectedItem()!="----------") && (deporte.getSelectedItem()!="----------")
+                && (!"".equals(telefono.getText())) && (!"".equals(correo_institucional.getText()))){
+            
+                if ((matricula.getText().length() != 9) && (matricula.getText().charAt(0) != 'A') ){
+                    error = error + "\n- Formato de la matrícula incorrecto";
+                    matricula.setText("");
+                }
+                
+                if ((dia.getText().length() != 2) || (!Character.isDigit(dia.getText().charAt(0))) && (!Character.isDigit(dia.getText().charAt(1))) ){
+                    error = error + "\n- Formato del día incorrecto";
+                    dia.setText("");
+                }
+                
+                if ((mes.getText().length() != 2) || (!Character.isDigit(mes.getText().charAt(0))) && (!Character.isDigit(mes.getText().charAt(1))) ){          
+                    error = error + "\n- Formato del mes incorrecto";
+                    mes.setText("");
+                }
+                
+                if ((anio.getText().length() != 4) || (!Character.isDigit(anio.getText().charAt(0))) && (!Character.isDigit(anio.getText().charAt(1))) && (!Character.isDigit(anio.getText().charAt(2))) && (!Character.isDigit(anio.getText().charAt(3))) ){
+                    error = error + "\n- Formato del año incorrecto";
+                    anio.setText("");
+                }
+                
+                if (telefono.getText().length() == 0 || telefono.getText().length() > 10){
+                    error = error + "\n- Formato del teléfono incorrecto";
+                    telefono.setText("");
+                }
+                
+                if ("".equals(error)){
+                    return true;
+                }
+                
+                else{
+                    JOptionPane.showMessageDialog(this,"Ingreso de datos incorrectos:" + error,"ERROR",JOptionPane.INFORMATION_MESSAGE);
+                    return false;
+                }
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Campos vacíos. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            
+            return false;
         }
     }
 
@@ -201,11 +244,6 @@ public class Alumnos extends javax.swing.JFrame {
         matricula.setToolTipText("");
         matricula.setBorder(null);
         matricula.setDoubleBuffered(true);
-        matricula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pruebita(evt);
-            }
-        });
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
@@ -576,6 +614,9 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
+        Boolean res = validateData();
+        System.out.println(res);
+        
         String matriculaAlumno = matricula.getText();
         String nombreAlumno = nombre.getText();
         String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();      
@@ -631,19 +672,6 @@ public class Alumnos extends javax.swing.JFrame {
         new MenuAlumnos().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
-
-    private void pruebita(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pruebita
-        int key = evt.getKeyCode();
-        
-        if (key == evt.VK_9){
-            JOptionPane.showMessageDialog(this,"La matrícula Debe contener 9 caracteres","ERROR",JOptionPane.INFORMATION_MESSAGE);
-        }
-        /*if (matricula.getText().length() < 9) {
-            JOptionPane.showMessageDialog(this,"La matrícula Debe contener 9 caracteres","ERROR",JOptionPane.INFORMATION_MESSAGE);
-        
-        }*/
-
-    }//GEN-LAST:event_pruebita
 
     /**
      * @param args the command line arguments
