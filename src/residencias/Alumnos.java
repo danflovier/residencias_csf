@@ -649,6 +649,7 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+
         // TODO add your handling code here:
         con = db.MySQLConnection();
         String query = "{ call eliminarAlumno(?) }";
@@ -791,16 +792,6 @@ public class Alumnos extends javax.swing.JFrame {
             edad.setText(String.valueOf(edadAlumno.getYears()));
         }
     }//GEN-LAST:event_anioActionPerformed
-
-    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
-        back.setBackground(new Color(231,231,231));
-        //button_send.setForeground(new Color(220,220,220));
-    }//GEN-LAST:event_backisEmailCursorEntered
-
-    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
-        back.setBackground(new Color(255,255,255));
-        //button_send.setForeground(new Color(76,76,76));
-    }//GEN-LAST:event_backisEmailCursorExited
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuAlumnos().setVisible(true);
