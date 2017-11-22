@@ -683,9 +683,6 @@ public class Alumnos extends javax.swing.JFrame {
             cuarto.removeAllItems();
             cuarto.setEnabled(false);
         }
-        
-
-
     }//GEN-LAST:event_sexoActionPerformed
 
     private void mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesActionPerformed
