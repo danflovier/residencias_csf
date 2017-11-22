@@ -5,7 +5,6 @@
  */
 package residencias;
 
-import com.mysql.jdbc.exceptions.MySQLDataException;
 import java.awt.Color;
 import static java.awt.Frame.NORMAL;
 import java.sql.CallableStatement;
@@ -15,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +30,7 @@ public class Alumnos extends javax.swing.JFrame {
     boolean day = false;
     boolean month = false;
     boolean year = false;
+    
     public Alumnos() {
         initComponents();
         
@@ -55,6 +54,55 @@ public class Alumnos extends javax.swing.JFrame {
         correo_institucional.setText(null);
         cuarto.setEnabled(false);
         cuarto.removeAllItems();
+    }
+    
+    public Boolean validateData(){
+        String error = "";
+        if ((!"".equals(matricula.getText())) && (!"".equals(nombre.getText())) && (dia.getText()!="") 
+                && (!"".equals(mes.getText())) && (!"".equals(anio.getText())) 
+                && (sexo.getSelectedItem()!="Seleccionar") && (!"".equals(direccion.getText()))
+                && (carrera.getSelectedItem()!="----------") && (deporte.getSelectedItem()!="----------")
+                && (!"".equals(telefono.getText())) && (!"".equals(correo_institucional.getText()))){
+            
+                if ((matricula.getText().length() != 9) && (matricula.getText().charAt(0) != 'A') ){
+                    error = error + "\n- Formato de la matrícula incorrecto";
+                    matricula.setText("");
+                }
+                
+                if ((dia.getText().length() != 2) || (!Character.isDigit(dia.getText().charAt(0))) && (!Character.isDigit(dia.getText().charAt(1))) ){
+                    error = error + "\n- Formato del día incorrecto";
+                    dia.setText("");
+                }
+                
+                if ((mes.getText().length() != 2) || (!Character.isDigit(mes.getText().charAt(0))) && (!Character.isDigit(mes.getText().charAt(1))) ){          
+                    error = error + "\n- Formato del mes incorrecto";
+                    mes.setText("");
+                }
+                
+                if ((anio.getText().length() != 4) || (!Character.isDigit(anio.getText().charAt(0))) && (!Character.isDigit(anio.getText().charAt(1))) && (!Character.isDigit(anio.getText().charAt(2))) && (!Character.isDigit(anio.getText().charAt(3))) ){
+                    error = error + "\n- Formato del año incorrecto";
+                    anio.setText("");
+                }
+                
+                if (telefono.getText().length() == 0 || telefono.getText().length() > 10){
+                    error = error + "\n- Formato del teléfono incorrecto";
+                    telefono.setText("");
+                }
+                
+                if ("".equals(error)){
+                    return true;
+                }
+                
+                else{
+                    JOptionPane.showMessageDialog(this,"Ingreso de datos incorrectos:" + error,"ERROR",JOptionPane.INFORMATION_MESSAGE);
+                    return false;
+                }
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Campos vacíos. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            
+            return false;
+        }
     }
 
     /**
@@ -599,6 +647,9 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
+        Boolean res = validateData();
+        System.out.println(res);
+        
         String matriculaAlumno = matricula.getText();
         String nombreAlumno = nombre.getText();
         String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();  
@@ -659,6 +710,7 @@ public class Alumnos extends javax.swing.JFrame {
     private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_imprimirActionPerformed
+
 
     private void sexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoActionPerformed
         // TODO add your handling code here:
@@ -721,6 +773,22 @@ public class Alumnos extends javax.swing.JFrame {
             edad.setText(String.valueOf(edadAlumno.getYears()));
         }
     }//GEN-LAST:event_anioActionPerformed
+
+    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
+        back.setBackground(new Color(231,231,231));
+        //button_send.setForeground(new Color(220,220,220));
+    }//GEN-LAST:event_backisEmailCursorEntered
+
+    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
+        back.setBackground(new Color(255,255,255));
+        //button_send.setForeground(new Color(76,76,76));
+    }//GEN-LAST:event_backisEmailCursorExited
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        new MenuAlumnos().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
+
 
     /**
      * @param args the command line arguments
