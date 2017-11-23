@@ -11,9 +11,18 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -39,42 +48,6 @@ public class Asistencias extends javax.swing.JFrame {
         //Set the students in the database on the table
         initAlumnos(); 
     }
-    public class CheckTableModelListener extends DefaultTableCellRenderer {
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            c.setBackground(row % 2 == 0 ? Color.BLACK : Color.WHITE);
-            
-            return c;
-        }
-    }
-    
-    public class CheckBoxModelListener implements TableModelListener {
-        int row;
-        int column;
-        DefaultTableModel model;
-        String columnName;
-        
-        public void tableChanged(TableModelEvent e) {
-            row = e.getFirstRow();
-            column = e.getColumn();
-          
-            model = (DefaultTableModel) e.getSource();
-            columnName = model.getColumnName(column);
-                Boolean checked = (Boolean) model.getValueAt(row, column);
-
-                if (checked) {
-                    System.out.println(model.getValueAt(row, 1) + ": " + true);
-
-                    
-                } else {
-                    System.out.println(model.getValueAt(row, 1) + ": " + false);
-                }
-        }  
-    }
-    
-    
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -249,14 +222,18 @@ public class Asistencias extends javax.swing.JFrame {
             Object motivo = tabla_alumnos.getValueAt(i, 3);
             if(asistencia == "false")
                 if(motivo != null)
-                    registraAusencia((String) tabla_alumnos.getValueAt(i, 0), motivo.toString());
+                    registraAusencia((String) tabla_alumnos.getValueAt(i, 0), motivo.toString(), true, tabla_alumnos.getValueAt(i, 1).toString());
                 else
-                    registraAusencia((String) tabla_alumnos.getValueAt(i, 0), "");
+                    registraAusencia((String) tabla_alumnos.getValueAt(i, 0), "", false, tabla_alumnos.getValueAt(i, 1).toString());
         }
     }//GEN-LAST:event_registrarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        int registros = tabla_alumnos.getRowCount();
+        for(int i = 0; i < registros; i++)
+        {
+            tabla_alumnos.setValueAt(false, i, 2);
+        }
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
@@ -273,7 +250,7 @@ public class Asistencias extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-    private void registraAusencia(String matricula, String motivo)
+    private void registraAusencia(String matricula, String motivo, boolean justificada, String nombre)
     {
         Connection connect = db.MySQLConnection();
         String query = "{call agregarAusencia(?,?)}";
@@ -288,6 +265,98 @@ public class Asistencias extends javax.swing.JFrame {
         {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        if(!justificada)
+            enviaCorreoATutor(matricula, nombre);
+    }
+    
+    private void enviaCorreoATutor(String matricula, String nombre)
+    {
+        Properties props = new Properties();
+            // Hostname
+            //props.put("mail.smtp.host", server.getSelectedItem());
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            
+            // Protocol
+            props.put("mail.transport.protocol", "smtp");
+            
+            // TTLS
+            props.put("mail.smtp.starttls.enable", "true");
+            
+            // Authorize
+            props.put("mail.smtp.auth", "true");
+            
+            // SMTP Port
+            props.put("mail.smtp.port", "465");
+            
+            // SSL Port
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            
+            // Start session from the properties
+            Session session = Session.getDefaultInstance(props);
+            
+            String correoTo = getCorreoDeTutor(matricula);
+            
+            try 
+            {
+                InternetAddress fromAddress = new InternetAddress("residencias.csf2017@gmail.com");
+                InternetAddress toAddress;
+                if(correoTo != "")
+                {
+                    toAddress = new InternetAddress(correoTo);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this,"No se pudo mandar correo al tutor de " + matricula,"ERROR",JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                    
+                Message message = new MimeMessage(session);
+                message.setFrom(fromAddress);
+                message.setRecipient(Message.RecipientType.TO, toAddress);
+                Date date = new Date();
+                message.setSubject("FALTA INJUSTIFICADA: " + matricula);
+                message.setText("Estimado tutor: \n\nSe informa por este medio que el día de hoy (" + date.toString() + ")"
+                                + " el alumno " + nombre 
+                                + " ha adquirido una falta sin justificación alguna!\n"
+                                + "\n\nSi tiene alguna duda o aclaración, favor de comunicarse con el Departamento Administrativo de Residencias CSF.\n\nSaludos cordiales.");
+                
+                String username = "residencias.csf2017";
+
+                // Send the message
+                Transport.send(message, username, "Residencias2017");
+                JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
+
+                registrar.setEnabled(false);
+            } 
+            catch (MessagingException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this,"Lo sentimos, el mensaje no ha sido enviado. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            }
+    }
+    
+    private String getCorreoDeTutor(String matricula)
+    {
+        String correo = "";
+        Connection connect = db.MySQLConnection();
+        String query = "{call getCorreoTutor(?)}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            while(result.next())
+            {
+                correo = result.getString("Correo institucional");
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return correo;
     }
     
     private void initAlumnos()
