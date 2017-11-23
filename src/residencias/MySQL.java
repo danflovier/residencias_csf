@@ -18,11 +18,13 @@ public class MySQL {
     
     private static Connection connection;
 
-    final String port = "3306";
+    final String port = "3307";
+    //final String port = "3306";
     final String url = "jdbc:mysql://localhost:" + port + "/";
     final String user = "root";
     final String pass = "";
-    final String db_name = "residencias";
+    //final String db_name = "residencias";
+    final String db_name = "images_db";
     
     public Connection MySQLConnection() {
         try {
