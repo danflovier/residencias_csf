@@ -208,6 +208,8 @@ public class Asistencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
+        registrar.setEnabled(false);
+        back.setEnabled(false);
         int registros = tabla_alumnos.getRowCount();
         for(int i = 0; i < registros; i++)
         {
@@ -226,6 +228,7 @@ public class Asistencias extends javax.swing.JFrame {
                 else
                     registraAusencia((String) tabla_alumnos.getValueAt(i, 0), "", false, tabla_alumnos.getValueAt(i, 1).toString());
         }
+        back.setEnabled(true);
     }//GEN-LAST:event_registrarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
@@ -326,7 +329,7 @@ public class Asistencias extends javax.swing.JFrame {
 
                 // Send the message
                 Transport.send(message, username, "Residencias2017");
-                JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito\nal alumno " + nombre,"ÉXITO",JOptionPane.INFORMATION_MESSAGE);
 
                 registrar.setEnabled(false);
             } 
