@@ -66,7 +66,6 @@ public class Tutores extends javax.swing.JFrame {
         eliminar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        imprimir = new javax.swing.JButton();
         back = new javax.swing.JButton();
         label_alumno = new javax.swing.JLabel();
         alumno = new javax.swing.JComboBox<>();
@@ -260,19 +259,7 @@ public class Tutores extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, 140, 40));
-
-        imprimir.setBackground(new java.awt.Color(255, 255, 255));
-        imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
-        imprimir.setText("IMPRIMIR");
-        imprimir.setEnabled(false);
-        imprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 570, 180, 60));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 590, 140, 40));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -449,10 +436,6 @@ public class Tutores extends javax.swing.JFrame {
     private void about_csfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_csfActionPerformed
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
-
-    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimirActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuAlumnos().setVisible(true);
@@ -640,7 +623,6 @@ public class Tutores extends javax.swing.JFrame {
     private javax.swing.JButton eliminar;
     private javax.swing.JMenu file;
     private javax.swing.JTextField id;
-    private javax.swing.JButton imprimir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_alumno;
     private javax.swing.JLabel label_buscar;

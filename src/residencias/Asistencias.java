@@ -72,8 +72,9 @@ public class Asistencias extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Alumnos");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
+        setPreferredSize(new java.awt.Dimension(746, 791));
         setResizable(false);
-        setSize(new java.awt.Dimension(1500, 800));
+        setSize(new java.awt.Dimension(746, 791));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
@@ -87,12 +88,12 @@ public class Asistencias extends javax.swing.JFrame {
 
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 650, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 630, 180, 70));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
         label_line.setOpaque(true);
-        getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 500, 10));
+        getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 520, 10));
 
         tabla_alumnos.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_alumnos.setModel(new javax.swing.table.DefaultTableModel(
@@ -120,7 +121,7 @@ public class Asistencias extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_alumnos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 530, 340));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 530, 350));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -131,7 +132,7 @@ public class Asistencias extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 130, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 130, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -142,7 +143,7 @@ public class Asistencias extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 120, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 570, 120, 40));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -152,6 +153,7 @@ public class Asistencias extends javax.swing.JFrame {
         back.setBorder(null);
         back.setBorderPainted(false);
         back.setContentAreaFilled(false);
+        back.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         back.setMaximumSize(new java.awt.Dimension(129, 65));
         back.setMinimumSize(new java.awt.Dimension(129, 65));
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +161,7 @@ public class Asistencias extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 680, 130, 40));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 660, 130, 40));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -171,7 +173,6 @@ public class Asistencias extends javax.swing.JFrame {
 
         log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         log_out.setText("Cerrar sesión");
-        log_out.setBorderPainted(true);
         log_out.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 log_outActionPerformed(evt);
@@ -186,7 +187,6 @@ public class Asistencias extends javax.swing.JFrame {
 
         about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         about_csf.setText("Residencias CSF");
-        about_csf.setBorderPainted(true);
         about_csf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 about_csfActionPerformed(evt);

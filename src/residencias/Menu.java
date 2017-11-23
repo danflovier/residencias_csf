@@ -268,13 +268,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_adminMouseIsExited
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
-        // TODO add your handling code here:
+        new Personal().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_adminActionPerformed
 
     private void prefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prefectoActionPerformed
-
+        new Prefecto().setVisible(true);
         this.setVisible(false);
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_prefectoActionPerformed
 
     private void prefectoMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefectoMouseIsEntered

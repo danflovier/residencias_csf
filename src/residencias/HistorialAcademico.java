@@ -54,7 +54,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
-        imprimir1 = new javax.swing.JButton();
         back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -259,17 +258,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         });
         getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 130, 40));
 
-        imprimir1.setBackground(new java.awt.Color(255, 255, 255));
-        imprimir1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        imprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
-        imprimir1.setText("IMPRIMIR");
-        imprimir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimir1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(imprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, 180, 60));
-
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         back.setForeground(new java.awt.Color(76, 76, 76));
@@ -369,10 +357,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
 
-    private void imprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimir1ActionPerformed
-
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuExpediente().setVisible(true);
         this.setVisible(false);
@@ -441,7 +425,6 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private javax.swing.JMenu file;
     private javax.swing.JTextField id;
     private javax.swing.JTextField id_expediente;
-    private javax.swing.JButton imprimir1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_buscar;
     private javax.swing.JLabel label_id;
