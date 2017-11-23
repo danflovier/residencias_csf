@@ -6,19 +6,32 @@
 package residencias;
 
 import java.awt.Color;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author danflovier
  */
 public class Tutores extends javax.swing.JFrame {
+    final private MySQL db;
     
     public Tutores() {
         initComponents();
         
+        db = new MySQL();
+        
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
+        
+        initAlumnos();
     }
 
     /**
@@ -34,7 +47,6 @@ public class Tutores extends javax.swing.JFrame {
         label_login = new javax.swing.JLabel();
         label_residencias = new javax.swing.JLabel();
         label_nombre = new javax.swing.JLabel();
-        label_contrasena = new javax.swing.JLabel();
         label_direccion = new javax.swing.JLabel();
         label_telefono = new javax.swing.JLabel();
         label_correo = new javax.swing.JLabel();
@@ -47,18 +59,17 @@ public class Tutores extends javax.swing.JFrame {
         direccion = new javax.swing.JTextField();
         telefono = new javax.swing.JTextField();
         correo_electronico = new javax.swing.JTextField();
-        contrasena = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_tutores = new javax.swing.JTable();
         buscar2 = new javax.swing.JButton();
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
-        buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        modificar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        label_alumno = new javax.swing.JLabel();
+        alumno = new javax.swing.JComboBox<>();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -77,7 +88,7 @@ public class Tutores extends javax.swing.JFrame {
         label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_id.setForeground(new java.awt.Color(76, 76, 76));
         label_id.setText("ID");
-        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
+        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_login.setForeground(new java.awt.Color(76, 76, 76));
@@ -91,22 +102,17 @@ public class Tutores extends javax.swing.JFrame {
         label_nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_nombre.setForeground(new java.awt.Color(76, 76, 76));
         label_nombre.setText("NOMBRE COMPLETO");
-        getContentPane().add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
-
-        label_contrasena.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_contrasena.setForeground(new java.awt.Color(76, 76, 76));
-        label_contrasena.setText("CONTRASEÑA");
-        getContentPane().add(label_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 190, -1));
+        getContentPane().add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         label_direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_direccion.setForeground(new java.awt.Color(76, 76, 76));
         label_direccion.setText("DIRECCIÓN");
-        getContentPane().add(label_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 300, -1));
+        getContentPane().add(label_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 300, -1));
 
         label_telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_telefono.setForeground(new java.awt.Color(76, 76, 76));
         label_telefono.setText("TELÉFONO");
-        getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 240, -1));
+        getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 240, -1));
 
         label_correo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_correo.setForeground(new java.awt.Color(76, 76, 76));
@@ -141,7 +147,7 @@ public class Tutores extends javax.swing.JFrame {
                 iduserIsMouseExited(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 200, 30));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 200, 30));
 
         buscar_tutor.setBackground(new java.awt.Color(223, 223, 223));
         buscar_tutor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -157,7 +163,7 @@ public class Tutores extends javax.swing.JFrame {
         nombre.setToolTipText("");
         nombre.setBorder(null);
         nombre.setDoubleBuffered(true);
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 580, 30));
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 580, 30));
 
         direccion.setBackground(new java.awt.Color(223, 223, 223));
         direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -170,7 +176,7 @@ public class Tutores extends javax.swing.JFrame {
                 direccionActionPerformed(evt);
             }
         });
-        getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 300, 30));
+        getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 300, 30));
 
         telefono.setBackground(new java.awt.Color(223, 223, 223));
         telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -178,7 +184,7 @@ public class Tutores extends javax.swing.JFrame {
         telefono.setToolTipText("");
         telefono.setBorder(null);
         telefono.setDoubleBuffered(true);
-        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 240, 30));
+        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 240, 30));
 
         correo_electronico.setBackground(new java.awt.Color(223, 223, 223));
         correo_electronico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -188,19 +194,13 @@ public class Tutores extends javax.swing.JFrame {
         correo_electronico.setDoubleBuffered(true);
         getContentPane().add(correo_electronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 370, 30));
 
-        contrasena.setBackground(new java.awt.Color(223, 223, 223));
-        contrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        contrasena.setBorder(null);
-        contrasena.setEnabled(false);
-        getContentPane().add(contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 190, 30));
-
         tabla_tutores.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_tutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOMBRE", "DIRECCION", "TELEFONO", "CORREO ELECTRONICO", "CONTRASEÑA"
+                "ID", "NOMBRE", "TELEFONO", "DIRECCION", "CORREO ELECTRONICO", "ASIGNADO A"
             }
         ));
         jScrollPane1.setViewportView(tabla_tutores);
@@ -249,18 +249,7 @@ public class Tutores extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, 130, 40));
-
-        buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar1.setText("BUSCAR");
-        buscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 120, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 130, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -271,23 +260,13 @@ public class Tutores extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 140, 40));
-
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
-        modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        modificar.setText("MODIFICAR");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 590, 130, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, 140, 40));
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
         imprimir.setText("IMPRIMIR");
+        imprimir.setEnabled(false);
         imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirActionPerformed(evt);
@@ -312,6 +291,16 @@ public class Tutores extends javax.swing.JFrame {
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, 130, 40));
 
+        label_alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_alumno.setForeground(new java.awt.Color(76, 76, 76));
+        label_alumno.setText("ALUMNO");
+        getContentPane().add(label_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 240, -1));
+
+        alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        alumno.setMaximumRowCount(100);
+        alumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        getContentPane().add(alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 240, 30));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -322,7 +311,6 @@ public class Tutores extends javax.swing.JFrame {
 
         log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         log_out.setText("Cerrar sesión");
-        log_out.setBorderPainted(true);
         log_out.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 log_outActionPerformed(evt);
@@ -337,7 +325,6 @@ public class Tutores extends javax.swing.JFrame {
 
         about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         about_csf.setText("Residencias CSF");
-        about_csf.setBorderPainted(true);
         about_csf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 about_csfActionPerformed(evt);
@@ -366,32 +353,93 @@ public class Tutores extends javax.swing.JFrame {
     }//GEN-LAST:event_iduserIsMouseExited
 
     private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
-        // TODO add your handling code here:
+        if(buscar_tutor.getText() != null)
+        {
+            DefaultTableModel modelo = (DefaultTableModel)tabla_tutores.getModel();
+            modelo.setRowCount(0);
+            mostrarTutores(buscar_tutor.getText());
+            buscar_tutor.setText("");
+        }
     }//GEN-LAST:event_buscar2ActionPerformed
 
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel)tabla_tutores.getModel();
+        modelo.setRowCount(0);
+        mostrarTutores();
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
+        if(tabla_tutores.getRowCount() > 0)
+        {
+            int[] rows = tabla_tutores.getSelectedRows();
+            if(rows.length != 0)
+            {
+                for(int i : rows)
+                {
+                    eliminarTutor(tabla_tutores.getValueAt(i, 0).toString());
+                }
+                for(int j : rows)
+                {
+                    int model = tabla_tutores.convertRowIndexToModel(j);
+                    DefaultTableModel modelo = (DefaultTableModel)tabla_tutores.getModel();
+                    modelo.removeRow(model);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Por favor seleccione al menos un tutor a eliminar!","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            }
+            alumno.removeAllItems();
+            initAlumnos();            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"No hay registros en la tabla para eliminar!","ERROR",JOptionPane.INFORMATION_MESSAGE);            
+        }
+        
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        // TODO add your handling code here:
+        if(nombre.getText() != null && telefono.getText() != null && correo_electronico.getText() != null && direccion.getText() != null && id.getText() != null && alumno.getSelectedIndex() != 0)
+        {
+            Connection connect = db.MySQLConnection();
+            String query = "{call agregarTutor(?,?,?,?,?,?)}";
+            try 
+            {
+                CallableStatement call = connect.prepareCall(query);
+                call.setString(1, id.getText());
+                call.setString(2, nombre.getText());
+                call.setString(3, telefono.getText());
+                call.setString(4, direccion.getText());
+                call.setString(5, correo_electronico.getText());
+                call.setString(6, alumno.getSelectedItem().toString());
+                call.executeQuery();
+                
+            } 
+            catch (SQLException ex)
+            {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            alumno.removeAllItems();
+            initAlumnos();
+        }
+        else
+        {
+            if(alumno.getItemCount() <= 1)
+                JOptionPane.showMessageDialog(this,"Ya no hay alumnos disponibles para asignar a un tutor!","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(this,"Por favor complete todos los campos de registro!","ERROR",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_registrarActionPerformed
 
-    private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar1ActionPerformed
-
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        nombre.setText("");
+        telefono.setText("");
+        correo_electronico.setText("");
+        direccion.setText("");
+        id.setText("");
+        alumno.setSelectedIndex(0);
     }//GEN-LAST:event_cancelarActionPerformed
-
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
         new Login().setVisible(true);
@@ -411,6 +459,107 @@ public class Tutores extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
+    private void mostrarTutores(String busqueda)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call buscaTutor(?)}";
+        ResultSet result;
+        DefaultTableModel modelo = (DefaultTableModel)tabla_tutores.getModel();
+        tabla_tutores.setModel(modelo);
+        String [] datosTutor= new String[6];
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, busqueda);
+            result = call.executeQuery();
+            while(result.next())
+            {
+                datosTutor[0] = result.getString("ID_tutor");
+                datosTutor[1] = result.getString("Nombre");
+                datosTutor[2] = result.getString("Telefono");
+                datosTutor[3] = result.getString("Direccion");
+                datosTutor[4] = result.getString("Correo institucional");
+                datosTutor[5] = result.getString("ALUMNO_Matricula");
+                
+                modelo.addRow(datosTutor);
+                tabla_tutores.setModel(modelo);
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void mostrarTutores()
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call getTutores()}";
+        ResultSet result;
+        DefaultTableModel modelo = (DefaultTableModel)tabla_tutores.getModel();
+        tabla_tutores.setModel(modelo);
+        String [] datosTutor= new String[6];
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next())
+            {
+                datosTutor[0] = result.getString("ID_tutor");
+                datosTutor[1] = result.getString("Nombre");
+                datosTutor[2] = result.getString("Telefono");
+                datosTutor[3] = result.getString("Direccion");
+                datosTutor[4] = result.getString("Correo institucional");
+                datosTutor[5] = result.getString("ALUMNO_Matricula");
+                
+                modelo.addRow(datosTutor);
+                tabla_tutores.setModel(modelo);
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void eliminarTutor(String id)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call eliminar_tutor(?)}";
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, id);
+            call.executeQuery();
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void initAlumnos()
+    {
+        if(alumno.getItemCount() == 0)
+            alumno.addItem("Seleccionar");
+        Connection connect = db.MySQLConnection();
+        String query = "{call getAlumnosSinTutor()}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next())
+            {
+                alumno.addItem(result.getString("Matricula"));
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -481,12 +630,11 @@ public class Tutores extends javax.swing.JFrame {
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu about;
     private javax.swing.JMenuItem about_csf;
+    private javax.swing.JComboBox<String> alumno;
     private javax.swing.JButton back;
-    private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_tutor;
     private javax.swing.JButton cancelar;
-    private javax.swing.JPasswordField contrasena;
     private javax.swing.JTextField correo_electronico;
     private javax.swing.JTextField direccion;
     private javax.swing.JButton eliminar;
@@ -494,8 +642,8 @@ public class Tutores extends javax.swing.JFrame {
     private javax.swing.JTextField id;
     private javax.swing.JButton imprimir;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_alumno;
     private javax.swing.JLabel label_buscar;
-    private javax.swing.JLabel label_contrasena;
     private javax.swing.JLabel label_correo;
     private javax.swing.JLabel label_direccion;
     private javax.swing.JLabel label_id;
@@ -506,7 +654,6 @@ public class Tutores extends javax.swing.JFrame {
     private javax.swing.JLabel label_residencias;
     private javax.swing.JLabel label_telefono;
     private javax.swing.JMenuItem log_out;
-    private javax.swing.JButton modificar;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JTextField nombre;
     private javax.swing.JButton registrar;
