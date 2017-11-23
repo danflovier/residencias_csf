@@ -219,8 +219,8 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_fpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_fpasswordActionPerformed
-
-       // TODO add your handling code here:
+        new Contraseña().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_button_fpasswordActionPerformed
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
