@@ -6,7 +6,6 @@
 package residencias;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,10 +22,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -210,6 +205,7 @@ public class Asistencias extends javax.swing.JFrame {
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         registrar.setEnabled(false);
         back.setEnabled(false);
+        cancelar.setEnabled(false);
         int registros = tabla_alumnos.getRowCount();
         for(int i = 0; i < registros; i++)
         {
