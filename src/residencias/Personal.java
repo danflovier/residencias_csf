@@ -46,7 +46,6 @@ public class Personal extends javax.swing.JFrame {
         label_telefono = new javax.swing.JLabel();
         label_correo = new javax.swing.JLabel();
         label_logo = new javax.swing.JLabel();
-        label_puesto = new javax.swing.JLabel();
         label_buscar = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
@@ -61,7 +60,6 @@ public class Personal extends javax.swing.JFrame {
         field_password = new javax.swing.JPasswordField();
         sexo = new javax.swing.JComboBox<>();
         estado = new javax.swing.JComboBox<>();
-        carrera = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_personal = new javax.swing.JTable();
         buscar2 = new javax.swing.JButton();
@@ -153,7 +151,7 @@ public class Personal extends javax.swing.JFrame {
         label_contrasena.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_contrasena.setForeground(new java.awt.Color(76, 76, 76));
         label_contrasena.setText("CONTRASEÑA");
-        getContentPane().add(label_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 310, -1));
+        getContentPane().add(label_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 310, -1));
 
         label_direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_direccion.setForeground(new java.awt.Color(76, 76, 76));
@@ -173,11 +171,6 @@ public class Personal extends javax.swing.JFrame {
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
         getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 180, 70));
-
-        label_puesto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_puesto.setForeground(new java.awt.Color(76, 76, 76));
-        label_puesto.setText("PUESTO");
-        getContentPane().add(label_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 240, -1));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
@@ -265,7 +258,7 @@ public class Personal extends javax.swing.JFrame {
         field_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         field_password.setBorder(null);
         field_password.setEnabled(false);
-        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 310, 30));
+        getContentPane().add(field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 580, 30));
 
         sexo.setBackground(new java.awt.Color(204, 204, 204));
         sexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -284,15 +277,6 @@ public class Personal extends javax.swing.JFrame {
         estado.setFocusable(false);
         estado.setLightWeightPopupEnabled(false);
         getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 170, 30));
-
-        carrera.setBackground(new java.awt.Color(204, 204, 204));
-        carrera.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        carrera.setForeground(new java.awt.Color(76, 76, 76));
-        carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------", "Administrador", "Prefecto" }));
-        carrera.setBorder(null);
-        carrera.setFocusable(false);
-        carrera.setLightWeightPopupEnabled(false);
-        getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 240, 30));
 
         tabla_personal.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_personal.setModel(new javax.swing.table.DefaultTableModel(
@@ -551,7 +535,6 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_personal;
     private javax.swing.JButton cancelar;
-    private javax.swing.JComboBox<String> carrera;
     private javax.swing.JTextField correo_institucional;
     private javax.swing.JTextField dia;
     private javax.swing.JTextField direccion;
@@ -577,7 +560,6 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JLabel label_logo;
     private javax.swing.JLabel label_mes;
     private javax.swing.JLabel label_nombre;
-    private javax.swing.JLabel label_puesto;
     private javax.swing.JLabel label_residencias;
     private javax.swing.JLabel label_sexo;
     private javax.swing.JLabel label_telefono;

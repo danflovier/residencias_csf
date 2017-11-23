@@ -48,7 +48,6 @@ public class Login extends javax.swing.JFrame {
 
         button_fpassword = new javax.swing.JButton();
         button_login = new javax.swing.JButton();
-        button_register = new javax.swing.JButton();
         field_password = new javax.swing.JPasswordField();
         field_username = new javax.swing.JTextField();
         label_image = new javax.swing.JLabel();
@@ -92,7 +91,7 @@ public class Login extends javax.swing.JFrame {
                 button_fpasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(button_fpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 180, 20));
+        getContentPane().add(button_fpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, 180, 20));
 
         button_login.setBackground(new java.awt.Color(26, 188, 156));
         button_login.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -116,28 +115,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(button_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 230, 50));
-
-        button_register.setBackground(new java.awt.Color(26, 188, 156));
-        button_register.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        button_register.setForeground(new java.awt.Color(76, 76, 76));
-        button_register.setText("NUEVO USUARIO");
-        button_register.setBorder(null);
-        button_register.setBorderPainted(false);
-        button_register.setContentAreaFilled(false);
-        button_register.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                newUserMouseIsEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                newUserMouseIsExited(evt);
-            }
-        });
-        button_register.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_registerActionPerformed(evt);
-            }
-        });
-        getContentPane().add(button_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, 120, 20));
 
         field_password.setBackground(new java.awt.Color(223, 223, 223));
         field_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -270,10 +247,6 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_button_loginActionPerformed
 
-    private void button_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_registerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button_registerActionPerformed
-
     private void LoginIsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginIsMouseEntered
         button_login.setBackground(new Color(0,168,133));
     }//GEN-LAST:event_LoginIsMouseEntered
@@ -297,14 +270,6 @@ public class Login extends javax.swing.JFrame {
     private void passMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passMouseIsEntered
         field_password.setBackground(new Color(203,201,201));
     }//GEN-LAST:event_passMouseIsEntered
-
-    private void newUserMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserMouseIsEntered
-        button_register.setForeground(new Color(33,150,243));
-    }//GEN-LAST:event_newUserMouseIsEntered
-
-    private void newUserMouseIsExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserMouseIsExited
-        button_register.setForeground(new Color(76,76,76));
-    }//GEN-LAST:event_newUserMouseIsExited
 
     private void fPasswordMouseIsEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fPasswordMouseIsEntered
         button_fpassword.setForeground(new Color(33,150,243));
@@ -368,7 +333,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel background_white1;
     private javax.swing.JButton button_fpassword;
     private javax.swing.JButton button_login;
-    private javax.swing.JButton button_register;
     private javax.swing.JPasswordField field_password;
     private javax.swing.JTextField field_username;
     private javax.swing.JMenu file;

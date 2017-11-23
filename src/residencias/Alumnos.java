@@ -155,9 +155,9 @@ public class Alumnos extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
-        cuarto = new javax.swing.JComboBox<>();
         label_correo1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        cuarto = new javax.swing.JComboBox<>();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -241,12 +241,12 @@ public class Alumnos extends javax.swing.JFrame {
         label_telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_telefono.setForeground(new java.awt.Color(76, 76, 76));
         label_telefono.setText("TELÉFONO");
-        getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 240, -1));
+        getContentPane().add(label_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 240, -1));
 
         label_cuarto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_cuarto.setForeground(new java.awt.Color(76, 76, 76));
         label_cuarto.setText("CUARTO A ASIGNAR");
-        getContentPane().add(label_cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 200, 30));
+        getContentPane().add(label_cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 640, 200, 30));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
@@ -381,7 +381,7 @@ public class Alumnos extends javax.swing.JFrame {
         carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----------", "-Arquitectura-", "LDI", "-Bioingeniería-", "IA", "IBT", "IDS", "IIA", "IQA", "IQP", "-Ingenierías-", "IC", "IID", "IMT", "IFI", "IIS", "IMA", "IME", "-Ciencias sociales-", "LED", "LEF", "LRI", "LTS", "-Negocios-", "LAF", "LAE", "LCPF", "LCDE", "LEM", "LMC", "LIN", "-Tecnologías-", "ISDR", "ITC", "ITI", "ITE", "ITS", "-Comunicación y Música-", "IMI", "LCMD" }));
         carrera.setFocusable(false);
         carrera.setLightWeightPopupEnabled(false);
-        getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 260, 30));
+        getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 260, 30));
 
         tabla_alumnos.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_alumnos.setModel(new javax.swing.table.DefaultTableModel(
@@ -492,11 +492,6 @@ public class Alumnos extends javax.swing.JFrame {
         });
         getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 180, 60));
 
-        cuarto.setEnabled(false);
-        cuarto.setName("cuarto"); // NOI18N
-
-        getContentPane().add(cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 670, 130, -1));
-
         label_correo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_correo1.setForeground(new java.awt.Color(76, 76, 76));
         label_correo1.setText("CORREO INSTITUCIONAL");
@@ -518,6 +513,13 @@ public class Alumnos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 770, 130, 40));
+
+        cuarto.setBackground(new java.awt.Color(204, 204, 204));
+        cuarto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cuarto.setForeground(new java.awt.Color(76, 76, 76));
+        cuarto.setFocusable(false);
+        cuarto.setLightWeightPopupEnabled(false);
+        getContentPane().add(cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 670, 150, 30));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
