@@ -89,7 +89,7 @@ public class MenuExpediente extends javax.swing.JFrame {
         label_vigencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         label_vigencia.setForeground(new java.awt.Color(76, 76, 76));
         label_vigencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_vigencia.setText("VIGENCIA");
+        label_vigencia.setText("INFORME");
         getContentPane().add(label_vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 60, 20));
 
         label_academico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -101,7 +101,7 @@ public class MenuExpediente extends javax.swing.JFrame {
         label_psicologico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         label_psicologico.setForeground(new java.awt.Color(76, 76, 76));
         label_psicologico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_psicologico.setText("P. PSICOlÖGICO");
+        label_psicologico.setText("P. PSICOLÓGICO");
         getContentPane().add(label_psicologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 120, 20));
 
         label_medico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

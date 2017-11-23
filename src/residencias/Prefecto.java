@@ -409,7 +409,7 @@ public class Prefecto extends javax.swing.JFrame {
 
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        new MenuAlumnos().setVisible(true);
+        new Menu().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 

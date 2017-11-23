@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/danflovier/Documents/Residencias/src/residencias/Alumnos.java</file>
+            <file>file:/C:/Users/danflovier/Documents/Residencias/src/residencias/Asistencias.java</file>
+        </group>
+>>>>>>> b967f231ad232229b9cb0ae4051fc664f05d7b81
     </open-files>
 </project-private>

@@ -8,6 +8,10 @@ package residencias;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -16,16 +20,22 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author danflovier
  */
 public class Contraseña extends javax.swing.JFrame {
-    
+    final private MySQL db;
+     
     public Contraseña() {
         initComponents();
+        
+        db = new MySQL();
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(33,150,243));
@@ -198,35 +208,55 @@ public class Contraseña extends javax.swing.JFrame {
             // Start session from the properties
             Session session = Session.getDefaultInstance(props);
             
+            Connection con = db.MySQLConnection();
+            String query = "{call getPassAdmin(?)}";
+            ResultSet result;
+            String contrasena = "";
+            
             // Try to send email if allthe fields of data are filled
-            //if (server.getSelectedItem() != "Seleccionar" && field_from.getText() != null && field_to.getText() != null && field_subject.getText() != null && text_message != null && field_password != null){
             if (!"".equals(field_correo.getText())){
-                
+                // Get password from the db if user of admin exists
                 try {
-                    String contraseña = "abcd";
-                    InternetAddress fromAddress = new InternetAddress("residencias.csf2017@gmail.com");
-                    InternetAddress toAddress = new InternetAddress(field_correo.getText());
+                    CallableStatement call = con.prepareCall(query);
+                    call.setString(1, field_correo.getText());
+                    result = call.executeQuery();
+            
+                    while(result.next()){
+                        contrasena = result.getString("Contrasena");
+                    }
+                    
+                    try {
 
-                    Message message = new MimeMessage(session);
-                    message.setFrom(fromAddress);
-                    message.setRecipient(Message.RecipientType.TO, toAddress);
-                    message.setSubject("Residencias CSF | Recuperación de contraseña");
-                    message.setText("Estimado usuario.\nLa contraseña de su usuario es: " + contraseña);
+                        InternetAddress fromAddress = new InternetAddress("residencias.csf2017@gmail.com");
+                        InternetAddress toAddress = new InternetAddress(field_correo.getText());
+
+                        Message message = new MimeMessage(session);
+                        message.setFrom(fromAddress);
+                        message.setRecipient(Message.RecipientType.TO, toAddress);
+                        message.setSubject("Residencias CSF | Recuperación de contraseña");
+                        message.setText("Estimado usuario.\nLa contraseña de su usuario es: " + contrasena);
                     
-                    String email = "residencias.csf2017@gmail.com";
-                    String username = email.replace("@gmail.com","");
+                        String email = "residencias.csf2017@gmail.com";
+                        String username = email.replace("@gmail.com","");
                     
-                    // Send the message
-                    Transport.send(message, username, new String("Residencias2017"));
-                    JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
+                        // Send the message
+                        Transport.send(message, username, new String("Residencias2017"));
+                        JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
                     
-                    field_correo.setText("");
+                        field_correo.setText("");
                     
+                    } 
+                    catch (MessagingException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(this,"Lo sentimos, el mensaje no ha sido enviado. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } 
-                catch (MessagingException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this,"Lo sentimos, el mensaje no ha sido enviado. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+                catch (SQLException ex){
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this,"El correo electrónico no existe. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);
+                    
                 }
+                
             }
             else{
                 JOptionPane.showMessageDialog(this,"Llena los campos correctamente.","ERROR",JOptionPane.INFORMATION_MESSAGE);

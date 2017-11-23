@@ -37,7 +37,7 @@ public class Alumnos extends javax.swing.JFrame {
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
-        db = new MySQL();         
+        db = new MySQL(); 
     }
     
     public void clearRegisterForm(){
@@ -151,7 +151,7 @@ public class Alumnos extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     public void calcularEdad(){
         if(year && month && day){
             LocalDate birthdate = new LocalDate (Integer.parseInt(anio.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
@@ -211,23 +211,24 @@ public class Alumnos extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
+        cuarto = new javax.swing.JComboBox<>();
         label_correo1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        cuarto = new javax.swing.JComboBox<>();
-        label_ingreso = new javax.swing.JLabel();
-        label_vigencia = new javax.swing.JLabel();
         label_dia1 = new javax.swing.JLabel();
         label_mes1 = new javax.swing.JLabel();
         label_anio1 = new javax.swing.JLabel();
         anio1 = new javax.swing.JTextField();
         mes1 = new javax.swing.JTextField();
         dia1 = new javax.swing.JTextField();
-        label_dia2 = new javax.swing.JLabel();
         label_mes2 = new javax.swing.JLabel();
+        label_dia2 = new javax.swing.JLabel();
         label_anio2 = new javax.swing.JLabel();
         anio2 = new javax.swing.JTextField();
         mes2 = new javax.swing.JTextField();
         dia2 = new javax.swing.JTextField();
+        label_telefono1 = new javax.swing.JLabel();
+        label_ingreso = new javax.swing.JLabel();
+        label_salida = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -238,6 +239,7 @@ public class Alumnos extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Alumnos");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
+        setPreferredSize(new java.awt.Dimension(1500, 900));
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -315,7 +317,7 @@ public class Alumnos extends javax.swing.JFrame {
         label_cuarto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_cuarto.setForeground(new java.awt.Color(76, 76, 76));
         label_cuarto.setText("CUARTO A ASIGNAR");
-        getContentPane().add(label_cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 200, 30));
+        getContentPane().add(label_cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 200, 30));
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
@@ -334,12 +336,14 @@ public class Alumnos extends javax.swing.JFrame {
         matricula.setBackground(new java.awt.Color(223, 223, 223));
         matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         matricula.setToolTipText("");
+        matricula.setBorder(null);
         matricula.setDoubleBuffered(true);
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         nombre.setToolTipText("");
+        nombre.setBorder(null);
         nombre.setDoubleBuffered(true);
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 580, 30));
 
@@ -347,6 +351,7 @@ public class Alumnos extends javax.swing.JFrame {
         dia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         dia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dia.setToolTipText("");
+        dia.setBorder(null);
         dia.setDoubleBuffered(true);
         dia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +364,7 @@ public class Alumnos extends javax.swing.JFrame {
         mes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         mes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         mes.setToolTipText("");
+        mes.setBorder(null);
         mes.setDoubleBuffered(true);
         mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +377,7 @@ public class Alumnos extends javax.swing.JFrame {
         anio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         anio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         anio.setToolTipText("");
+        anio.setBorder(null);
         anio.setDoubleBuffered(true);
         anio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,6 +390,7 @@ public class Alumnos extends javax.swing.JFrame {
         edad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         edad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         edad.setToolTipText("");
+        edad.setBorder(null);
         edad.setDoubleBuffered(true);
         edad.setEnabled(false);
         getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 80, 30));
@@ -391,6 +399,7 @@ public class Alumnos extends javax.swing.JFrame {
         direccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         direccion.setToolTipText("");
+        direccion.setBorder(null);
         direccion.setDoubleBuffered(true);
         getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 380, 30));
 
@@ -398,6 +407,7 @@ public class Alumnos extends javax.swing.JFrame {
         telefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         telefono.setToolTipText("");
+        telefono.setBorder(null);
         telefono.setDoubleBuffered(true);
         getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 600, 240, 30));
 
@@ -405,6 +415,7 @@ public class Alumnos extends javax.swing.JFrame {
         correo_institucional.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         correo_institucional.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         correo_institucional.setToolTipText("");
+        correo_institucional.setBorder(null);
         correo_institucional.setDoubleBuffered(true);
         getContentPane().add(correo_institucional, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 600, 310, 30));
 
@@ -419,6 +430,7 @@ public class Alumnos extends javax.swing.JFrame {
         sexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sexo.setForeground(new java.awt.Color(76, 76, 76));
         sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "M", "F" }));
+        sexo.setBorder(null);
         sexo.setFocusable(false);
         sexo.setLightWeightPopupEnabled(false);
         sexo.addActionListener(new java.awt.event.ActionListener() {
@@ -432,6 +444,7 @@ public class Alumnos extends javax.swing.JFrame {
         estado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         estado.setForeground(new java.awt.Color(76, 76, 76));
         estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
+        estado.setBorder(null);
         estado.setFocusable(false);
         estado.setLightWeightPopupEnabled(false);
         getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 170, 30));
@@ -515,7 +528,7 @@ public class Alumnos extends javax.swing.JFrame {
                 registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 740, 130, 40));
+        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 740, 130, 40));
 
         buscar1.setBackground(new java.awt.Color(255, 255, 255));
         buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -526,7 +539,7 @@ public class Alumnos extends javax.swing.JFrame {
                 buscar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 740, 120, 40));
+        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 740, 120, 40));
 
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -548,7 +561,7 @@ public class Alumnos extends javax.swing.JFrame {
                 modificarActionPerformed(evt);
             }
         });
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 740, 130, 40));
+        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 740, 130, 40));
 
         imprimir.setBackground(new java.awt.Color(255, 255, 255));
         imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -560,6 +573,13 @@ public class Alumnos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 180, 60));
+
+        cuarto.setBackground(new java.awt.Color(204, 204, 204));
+        cuarto.setBorder(null);
+        cuarto.setEnabled(false);
+        cuarto.setName("cuarto"); // NOI18N
+
+        getContentPane().add(cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 180, 30));
 
         label_correo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_correo1.setForeground(new java.awt.Color(76, 76, 76));
@@ -574,6 +594,7 @@ public class Alumnos extends javax.swing.JFrame {
         back.setBorder(null);
         back.setBorderPainted(false);
         back.setContentAreaFilled(false);
+        back.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         back.setMaximumSize(new java.awt.Dimension(129, 65));
         back.setMinimumSize(new java.awt.Dimension(129, 65));
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -581,132 +602,136 @@ public class Alumnos extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 790, 130, 40));
-
-        cuarto.setBackground(new java.awt.Color(204, 204, 204));
-        cuarto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cuarto.setForeground(new java.awt.Color(76, 76, 76));
-        cuarto.setFocusable(false);
-        cuarto.setLightWeightPopupEnabled(false);
-        getContentPane().add(cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 150, 30));
-
-        label_ingreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_ingreso.setForeground(new java.awt.Color(76, 76, 76));
-        label_ingreso.setText("FECHA DE INGRESO");
-        getContentPane().add(label_ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, -1, -1));
-
-        label_vigencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_vigencia.setForeground(new java.awt.Color(76, 76, 76));
-        label_vigencia.setText("VIGENCIA");
-        getContentPane().add(label_vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 640, -1, -1));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 800, 130, 40));
 
         label_dia1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_dia1.setForeground(new java.awt.Color(76, 76, 76));
         label_dia1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_dia1.setText("DD");
-        getContentPane().add(label_dia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, 80, -1));
+        getContentPane().add(label_dia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, 80, -1));
 
         label_mes1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_mes1.setForeground(new java.awt.Color(76, 76, 76));
         label_mes1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_mes1.setText("MM");
-        getContentPane().add(label_mes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, 80, -1));
+        getContentPane().add(label_mes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 670, 80, -1));
 
         label_anio1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_anio1.setForeground(new java.awt.Color(76, 76, 76));
         label_anio1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_anio1.setText("AAAA");
-        getContentPane().add(label_anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 670, 70, -1));
+        getContentPane().add(label_anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 670, 70, -1));
 
         anio1.setBackground(new java.awt.Color(223, 223, 223));
         anio1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         anio1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         anio1.setToolTipText("");
+        anio1.setBorder(null);
         anio1.setDoubleBuffered(true);
         anio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anio1ActionPerformed(evt);
             }
         });
-        getContentPane().add(anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 700, 80, 30));
+        getContentPane().add(anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 700, 80, 30));
 
         mes1.setBackground(new java.awt.Color(223, 223, 223));
         mes1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         mes1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         mes1.setToolTipText("");
+        mes1.setBorder(null);
         mes1.setDoubleBuffered(true);
         mes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mes1ActionPerformed(evt);
             }
         });
-        getContentPane().add(mes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 700, 80, 30));
+        getContentPane().add(mes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 700, 80, 30));
 
         dia1.setBackground(new java.awt.Color(223, 223, 223));
         dia1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         dia1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dia1.setToolTipText("");
+        dia1.setBorder(null);
         dia1.setDoubleBuffered(true);
         dia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dia1ActionPerformed(evt);
             }
         });
-        getContentPane().add(dia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 700, 80, 30));
-
-        label_dia2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_dia2.setForeground(new java.awt.Color(76, 76, 76));
-        label_dia2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_dia2.setText("DD");
-        getContentPane().add(label_dia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 670, 80, -1));
+        getContentPane().add(dia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 700, 80, 30));
 
         label_mes2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_mes2.setForeground(new java.awt.Color(76, 76, 76));
         label_mes2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_mes2.setText("MM");
-        getContentPane().add(label_mes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 670, 80, -1));
+        getContentPane().add(label_mes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 670, 80, -1));
+
+        label_dia2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_dia2.setForeground(new java.awt.Color(76, 76, 76));
+        label_dia2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_dia2.setText("DD");
+        getContentPane().add(label_dia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 670, 80, -1));
 
         label_anio2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_anio2.setForeground(new java.awt.Color(76, 76, 76));
         label_anio2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_anio2.setText("AAAA");
-        getContentPane().add(label_anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 670, 70, -1));
+        getContentPane().add(label_anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 70, -1));
 
         anio2.setBackground(new java.awt.Color(223, 223, 223));
         anio2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         anio2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         anio2.setToolTipText("");
+        anio2.setBorder(null);
         anio2.setDoubleBuffered(true);
         anio2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anio2ActionPerformed(evt);
             }
         });
-        getContentPane().add(anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 700, 80, 30));
+        getContentPane().add(anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 700, 80, 30));
 
         mes2.setBackground(new java.awt.Color(223, 223, 223));
         mes2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         mes2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         mes2.setToolTipText("");
+        mes2.setBorder(null);
         mes2.setDoubleBuffered(true);
         mes2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mes2ActionPerformed(evt);
             }
         });
-        getContentPane().add(mes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 700, 80, 30));
+        getContentPane().add(mes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 700, 80, 30));
 
         dia2.setBackground(new java.awt.Color(223, 223, 223));
         dia2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         dia2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dia2.setToolTipText("");
+        dia2.setBorder(null);
         dia2.setDoubleBuffered(true);
         dia2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dia2ActionPerformed(evt);
             }
         });
-        getContentPane().add(dia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 700, 80, 30));
+        getContentPane().add(dia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 700, 80, 30));
+
+        label_telefono1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_telefono1.setForeground(new java.awt.Color(76, 76, 76));
+        label_telefono1.setText("TELÉFONO");
+        getContentPane().add(label_telefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 240, -1));
+
+        label_ingreso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_ingreso.setForeground(new java.awt.Color(76, 76, 76));
+        label_ingreso.setText("INGRESO");
+        getContentPane().add(label_ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 640, 240, -1));
+
+        label_salida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_salida.setForeground(new java.awt.Color(76, 76, 76));
+        label_salida.setText("SALIDA");
+        getContentPane().add(label_salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 640, 310, -1));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -838,26 +863,21 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
-        String matriculaAlumno;
-        if(tabla_alumnos.getSelectedRow() != -1){
-            matriculaAlumno= (String) tabla_alumnos.getValueAt(tabla_alumnos.getSelectedRow(), 0);
-            con = db.MySQLConnection();
-            String query = "{ call eliminarAlumno(?) }";
-            try {
-                CallableStatement st = con.prepareCall(query);
-                st.setString(1, matriculaAlumno);
-                st.executeQuery();
-                mostrar_todos.doClick();
-            } catch (SQLException ex) {
-                Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        con = db.MySQLConnection();
+        String query = "{ call eliminarAlumno(?) }";
+        try {
+            CallableStatement st = con.prepareCall(query);
+            String matriculaAlumno = (String) tabla_alumnos.getValueAt(tabla_alumnos.getSelectedRow(), 0);
+            st.setString(1, matriculaAlumno);
+            st.executeQuery();
+            mostrar_todos.doClick();
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        // TODO add your handling code here:
         Boolean res = validateData();
         String query;
         String matriculaAlumno = matricula.getText();
@@ -873,6 +893,7 @@ public class Alumnos extends javax.swing.JFrame {
         String ingreso = anio1.getText()+"-"+mes1.getText()+"-"+dia1.getText();
         String salida= anio2.getText()+"-"+mes2.getText()+"-"+dia2.getText();
         int habitacion = Integer.parseInt(cuarto.getSelectedItem().toString());
+        //JOptionPane.showConfirmDialog(null, "Este ", phone, WIDTH)
         con = db.MySQLConnection();
         CallableStatement st;
         ResultSet result;
@@ -880,26 +901,26 @@ public class Alumnos extends javax.swing.JFrame {
         int aceptar = 3;
         if(res){
             try {
-               query = "{ call getInventario(?) }";
-               st = con.prepareCall(query);
-               st.setInt(1,habitacion);
-               result = st.executeQuery();
-               while(result.next()){
-                   condiciones[0]=String.valueOf(result.getInt("NumeroCamas"));
-                   condiciones[1]=String.valueOf(result.getInt("NumeroMuebles"));
-               }
-               aceptar=JOptionPane.showConfirmDialog(null, "El estado de la habitación es el siguiente:\n"
-                       + "Número camas: "+condiciones[0]
-                       + "\nNúmero de muebles: " + condiciones[1]+"\n", "Aceptar Condiciones de Habitación",JOptionPane.YES_NO_CANCEL_OPTION);
+                   query = "{ call getInventario(?) }";
+                   st = con.prepareCall(query);
+                   st.setInt(1,habitacion);
+                   result = st.executeQuery();
+                   while(result.next()){
+                       condiciones[0]=String.valueOf(result.getInt("NumeroCamas"));
+                       condiciones[1]=String.valueOf(result.getInt("NumeroMuebles"));
+                   }
+                   aceptar=JOptionPane.showConfirmDialog(null, "El estado de la habitación es el siguiente:\n"
+                           + "Número camas: "+condiciones[0]
+                           + "\nNúmero de muebles: " + condiciones[1]+"\n¿Aceptas las condiciones del cuarto?", "Aceptar Condiciones de Habitación",JOptionPane.YES_NO_CANCEL_OPTION);
 
-           } catch (SQLException ex) {
-               Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
-           }   
-        }
-        if(res && aceptar == 0){
-            query = "{ call registrarAlumno(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
-            try {
-                st = con.prepareCall(query);
+               } catch (SQLException ex) {
+                   Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+               }   
+            }
+            if(res && aceptar == 0){
+                query = "{ call registrarAlumno(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+                try {
+                    st = con.prepareCall(query);
                 st.setString(1,matriculaAlumno);
                 st.setString(2,nombreAlumno);
                 st.setDate(3,Date.valueOf(fecha));
@@ -910,9 +931,9 @@ public class Alumnos extends javax.swing.JFrame {
                 st.setString(8,estadoAlumno);
                 st.setString(9,phone);
                 st.setString(10,correo);
-                st.setDate(11,Date.valueOf(ingreso));
-                st.setDate(12,Date.valueOf(salida));
-                st.setInt(13,habitacion);
+                    st.setDate(11,Date.valueOf(ingreso));
+                    st.setDate(12,Date.valueOf(salida));
+                    st.setInt(13,habitacion);
                 st.executeQuery();
                 JOptionPane.showMessageDialog(null, "Alumno registrado correctamente", "Registro de alumno", JOptionPane.INFORMATION_MESSAGE);
                 clearRegisterForm();
@@ -920,10 +941,10 @@ public class Alumnos extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        if((res && aceptar == 1) || (res && aceptar == 2)){
-            JOptionPane.showMessageDialog(null, "No se puede registrar si no acepta las condiciones\nde la habitación", "Error de registro", JOptionPane.INFORMATION_MESSAGE);
-            clearRegisterForm();
+            if((res && aceptar == 1) || (res && aceptar == 2)){
+                JOptionPane.showMessageDialog(null, "No se puede registrar si no acepta las condiciones\nde la habitación", "Error de registro", JOptionPane.INFORMATION_MESSAGE);
+                clearRegisterForm();
+            }
         }
     }//GEN-LAST:event_registrarActionPerformed
 
@@ -983,12 +1004,10 @@ public class Alumnos extends javax.swing.JFrame {
         enableTextField();
         if(!registrar.isEnabled())
             registrar.setEnabled(true);
-        
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-        
         enableTextField();
         Boolean res = validateData();
         external = !external;
@@ -1072,38 +1091,27 @@ public class Alumnos extends javax.swing.JFrame {
             cuarto.removeAllItems();
             cuarto.setEnabled(false);
         }
-        
-
-
     }//GEN-LAST:event_sexoActionPerformed
 
     private void mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesActionPerformed
         // TODO add your handling code here:
+        month = true;
         month = true;
         calcularEdad();
     }//GEN-LAST:event_mesActionPerformed
 
     private void diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaActionPerformed
         // TODO add your handling code here:
-        day = true;
+         day = true;
         calcularEdad();
     }//GEN-LAST:event_diaActionPerformed
 
     private void anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioActionPerformed
         // TODO add your handling code here:
         year = true;
+        year = true;
         calcularEdad();
     }//GEN-LAST:event_anioActionPerformed
-
-    private void backisEmailCursorEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorEntered
-        back.setBackground(new Color(231,231,231));
-        //button_send.setForeground(new Color(220,220,220));
-    }//GEN-LAST:event_backisEmailCursorEntered
-
-    private void backisEmailCursorExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backisEmailCursorExited
-        back.setBackground(new Color(255,255,255));
-        //button_send.setForeground(new Color(76,76,76));
-    }//GEN-LAST:event_backisEmailCursorExited
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuAlumnos().setVisible(true);
@@ -1226,9 +1234,10 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JLabel label_mes1;
     private javax.swing.JLabel label_mes2;
     private javax.swing.JLabel label_nombre;
+    private javax.swing.JLabel label_salida;
     private javax.swing.JLabel label_sexo;
     private javax.swing.JLabel label_telefono;
-    private javax.swing.JLabel label_vigencia;
+    private javax.swing.JLabel label_telefono1;
     private javax.swing.JMenuItem log_out;
     private javax.swing.JTextField matricula;
     private javax.swing.JTextField mes;

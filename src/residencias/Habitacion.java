@@ -79,7 +79,7 @@ public class Habitacion extends javax.swing.JFrame {
 
         label_habitacion.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_habitacion.setForeground(new java.awt.Color(76, 76, 76));
-        label_habitacion.setText("HABITACION");
+        label_habitacion.setText("HABITACIÓN");
         getContentPane().add(label_habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         label_residencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
