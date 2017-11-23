@@ -391,7 +391,6 @@ public class Indisciplinas extends javax.swing.JFrame {
 
         log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         log_out.setText("Cerrar sesión");
-        log_out.setBorderPainted(true);
         log_out.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 log_outActionPerformed(evt);
@@ -406,7 +405,6 @@ public class Indisciplinas extends javax.swing.JFrame {
 
         about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         about_csf.setText("Residencias CSF");
-        about_csf.setBorderPainted(true);
         about_csf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 about_csfActionPerformed(evt);
