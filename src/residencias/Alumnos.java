@@ -578,6 +578,11 @@ public class Alumnos extends javax.swing.JFrame {
         cuarto.setBorder(null);
         cuarto.setEnabled(false);
         cuarto.setName("cuarto"); // NOI18N
+        cuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuartoActionPerformed(evt);
+            }
+        });
 
         getContentPane().add(cuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 180, 30));
 
@@ -1141,6 +1146,10 @@ public class Alumnos extends javax.swing.JFrame {
     private void dia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dia2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dia2ActionPerformed
+
+    private void cuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuartoActionPerformed
 
 
     /**
