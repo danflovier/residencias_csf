@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/danflovier/Documents/Residencias/residencias_csf/src/residencias/Habitacion.java</file>
             <file>file:/C:/Users/danflovier/Documents/Residencias/residencias_csf/src/residencias/Indisciplinas.java</file>
             <file>file:/C:/Users/danflovier/Documents/Residencias/residencias_csf/src/residencias/Personal.java</file>
             <file>file:/C:/Users/danflovier/Documents/Residencias/residencias_csf/src/residencias/HistorialMedico.java</file>
             <file>file:/C:/Users/danflovier/Documents/Residencias/residencias_csf/src/residencias/MySQL.java</file>
+=======
+            <file>file:/C:/Users/Horacio/Desktop/ITC/5to_semestre/AYMSS/ProyectoFinal/residencias_csf/src/residencias/Alumnos.java</file>
+            <file>file:/C:/Users/Horacio/Desktop/ITC/5to_semestre/AYMSS/ProyectoFinal/residencias_csf/src/residencias/HistorialMedico.java</file>
+            <file>file:/C:/Users/Horacio/Desktop/ITC/5to_semestre/AYMSS/ProyectoFinal/residencias_csf/src/residencias/Tutores.java</file>
+            <file>file:/C:/Users/Horacio/Desktop/ITC/5to_semestre/AYMSS/ProyectoFinal/residencias_csf/src/residencias/MySQL.java</file>
+>>>>>>> d6b75b2316fff04499c53c517204ecc335314b21
         </group>
     </open-files>
 </project-private>

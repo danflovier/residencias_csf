@@ -6,7 +6,17 @@
 package residencias;
 
 import java.awt.Color;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -14,13 +24,23 @@ import javax.swing.ImageIcon;
  */
 public class Visitas extends javax.swing.JFrame {
     
+    Connection con;
+    final private MySQL db;
     public Visitas() {
         initComponents();
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
+        db = new MySQL();
     }
-
+    public void clearRegisterForm(){
+        matricula.setText(null);
+        nombre.setText(null);
+        motivo.setText(null);
+        dia.setText(null);
+        mes.setText(null);
+        anio.setText(null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +50,6 @@ public class Visitas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label_id = new javax.swing.JLabel();
         label_login = new javax.swing.JLabel();
         label_residencias = new javax.swing.JLabel();
         label_nombre = new javax.swing.JLabel();
@@ -41,23 +60,22 @@ public class Visitas extends javax.swing.JFrame {
         label_logo = new javax.swing.JLabel();
         label_buscar = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
-        buscar_visita = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         motivo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_personal = new javax.swing.JTable();
-        buscar2 = new javax.swing.JButton();
         mostrar_todos = new javax.swing.JButton();
-        eliminar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
-        buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        modificar = new javax.swing.JButton();
         back = new javax.swing.JButton();
         dia = new javax.swing.JTextField();
         mes = new javax.swing.JTextField();
         anio = new javax.swing.JTextField();
-        id = new javax.swing.JComboBox<>();
+        label_buscar1 = new javax.swing.JLabel();
+        buscar_alumno = new javax.swing.JTextField();
+        buscar2 = new javax.swing.JButton();
+        matricula = new javax.swing.JTextField();
+        eliminar = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -71,11 +89,6 @@ public class Visitas extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_id.setForeground(new java.awt.Color(76, 76, 76));
-        label_id.setText("ID");
-        getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
         label_login.setForeground(new java.awt.Color(76, 76, 76));
@@ -120,21 +133,13 @@ public class Visitas extends javax.swing.JFrame {
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
-        label_buscar.setText("BUSCAR PERSONAL:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, -1));
+        label_buscar.setText("VER VISITAS");
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, -1));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
         label_line.setOpaque(true);
         getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 340, 10));
-
-        buscar_visita.setBackground(new java.awt.Color(223, 223, 223));
-        buscar_visita.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        buscar_visita.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        buscar_visita.setToolTipText("");
-        buscar_visita.setBorder(null);
-        buscar_visita.setDoubleBuffered(true);
-        getContentPane().add(buscar_visita, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -158,23 +163,12 @@ public class Visitas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "VISITANTE", "FECHA", "MOTIVO"
+                "ID", "VISITANTE", "FECHA", "MOTIVO", "ALUMNO VISITADO"
             }
         ));
         jScrollPane1.setViewportView(tabla_personal);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 690, 260));
-
-        buscar2.setBackground(new java.awt.Color(255, 255, 255));
-        buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar2.setText("BUSCAR");
-        buscar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 200, 140, 30));
 
         mostrar_todos.setBackground(new java.awt.Color(255, 255, 255));
         mostrar_todos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -185,18 +179,7 @@ public class Visitas extends javax.swing.JFrame {
                 mostrar_todosActionPerformed(evt);
             }
         });
-        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 570, 180, 60));
-
-        eliminar.setBackground(new java.awt.Color(255, 255, 255));
-        eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
-        eliminar.setText("ELIMINAR");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 570, 180, 60));
+        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 570, 180, 60));
 
         registrar.setBackground(new java.awt.Color(255, 255, 255));
         registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -209,17 +192,6 @@ public class Visitas extends javax.swing.JFrame {
         });
         getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 590, 130, 40));
 
-        buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar1.setText("BUSCAR");
-        buscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 120, 40));
-
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
@@ -230,17 +202,6 @@ public class Visitas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 590, 140, 40));
-
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
-        modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        modificar.setText("MODIFICAR");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 590, 130, 40));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -283,14 +244,47 @@ public class Visitas extends javax.swing.JFrame {
         anio.setDoubleBuffered(true);
         getContentPane().add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 80, 30));
 
-        id.setBackground(new java.awt.Color(204, 204, 204));
-        id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        id.setForeground(new java.awt.Color(76, 76, 76));
-        id.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "M", "F" }));
-        id.setBorder(null);
-        id.setFocusable(false);
-        id.setLightWeightPopupEnabled(false);
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 280, 30));
+        label_buscar1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_buscar1.setForeground(new java.awt.Color(76, 76, 76));
+        label_buscar1.setText("<html>MATRÍCULA DEL ALUMNO<br>QUE VISITA:</html>");
+        getContentPane().add(label_buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+
+        buscar_alumno.setBackground(new java.awt.Color(223, 223, 223));
+        buscar_alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        buscar_alumno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        buscar_alumno.setToolTipText("");
+        buscar_alumno.setDoubleBuffered(true);
+        getContentPane().add(buscar_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 200, 30));
+
+        buscar2.setBackground(new java.awt.Color(255, 255, 255));
+        buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
+        buscar2.setText("BUSCAR");
+        buscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 210, 140, 30));
+
+        matricula.setBackground(new java.awt.Color(223, 223, 223));
+        matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        matricula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        matricula.setToolTipText("");
+        matricula.setBorder(null);
+        matricula.setDoubleBuffered(true);
+        getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 240, 30));
+
+        eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
+        eliminar.setLabel("BORRAR RESULTADOS");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 570, 290, 60));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -333,33 +327,65 @@ public class Visitas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar2ActionPerformed
-
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
         // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{call getVisitas()}";
+        ResultSet result;
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("VISITANTE");
+        modelo.addColumn("FECHA");
+        modelo.addColumn("MOTIVO");
+        modelo.addColumn("ALUMNO VISITADO");
+        tabla_personal.setModel(modelo);
+        
+        String [] datosVisita = new String[5];
+        try {
+            CallableStatement call = con.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next()){
+                datosVisita[0] = result.getString("ID_visita");
+                datosVisita[1] = result.getString("Visitante");
+                datosVisita[2] = result.getDate("Fecha").toString();
+                datosVisita[3] = result.getString("Motivo");
+                datosVisita[4] = result.getString("EXPEDIENTE_ID_EXPEDIENTE").replaceAll("EXP", "");
+                modelo.addRow(datosVisita);
+                tabla_personal.setModel(modelo);                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mostrar_todosActionPerformed
-
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
+        if(!matricula.getText().equals(null)){
+            con = db.MySQLConnection();
+            String query = "{call registrarVisita(?, ?, ?, ?)}";
+            String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();  
+            try {
+                CallableStatement call = con.prepareCall(query);
+                call.setString(1, nombre.getText());
+                call.setDate(2, Date.valueOf(fecha));
+                call.setString(3, motivo.getText());
+                call.setString(4, matricula.getText());
+                call.executeQuery();
+                JOptionPane.showMessageDialog(null, "Visita registrada con exito");
+                clearRegisterForm();
+            } catch (SQLException ex) {
+                Logger.getLogger(Visitas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Seleccione una matrícula");
     }//GEN-LAST:event_registrarActionPerformed
-
-    private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar1ActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
+        clearRegisterForm();
     }//GEN-LAST:event_cancelarActionPerformed
-
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
         new Login().setVisible(true);
@@ -374,6 +400,44 @@ public class Visitas extends javax.swing.JFrame {
         new MenuAlumnos().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
+        // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{call getVisitasAlumno(?)}";
+        String alumno = buscar_alumno.getText();
+        ResultSet result;
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("VISITANTE");
+        modelo.addColumn("FECHA");
+        modelo.addColumn("MOTIVO");
+        modelo.addColumn("ALUMNO VISITADO");
+        tabla_personal.setModel(modelo);
+        
+        String [] datosVisita = new String[5];
+        try {
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, alumno);
+            result = call.executeQuery();
+            while(result.next()){
+                datosVisita[0] = result.getString("ID_visita");
+                datosVisita[1] = result.getString("Visitante");
+                datosVisita[2] = result.getDate("Fecha").toString();
+                datosVisita[3] = result.getString("Motivo");
+                datosVisita[4] = result.getString("EXPEDIENTE_ID_EXPEDIENTE").replaceAll("EXP", "");   
+                modelo.addRow(datosVisita);
+                tabla_personal.setModel(modelo); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buscar2ActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tabla_personal.getModel();
+        modelo.setNumRows(0);
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -431,19 +495,17 @@ public class Visitas extends javax.swing.JFrame {
     private javax.swing.JMenuItem about_csf;
     private javax.swing.JTextField anio;
     private javax.swing.JButton back;
-    private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
-    private javax.swing.JTextField buscar_visita;
+    private javax.swing.JTextField buscar_alumno;
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField dia;
     private javax.swing.JButton eliminar;
     private javax.swing.JMenu file;
-    private javax.swing.JComboBox<String> id;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_anio;
     private javax.swing.JLabel label_buscar;
+    private javax.swing.JLabel label_buscar1;
     private javax.swing.JLabel label_dia;
-    private javax.swing.JLabel label_id;
     private javax.swing.JLabel label_line;
     private javax.swing.JLabel label_login;
     private javax.swing.JLabel label_logo;
@@ -452,8 +514,8 @@ public class Visitas extends javax.swing.JFrame {
     private javax.swing.JLabel label_nombre;
     private javax.swing.JLabel label_residencias;
     private javax.swing.JMenuItem log_out;
+    private javax.swing.JTextField matricula;
     private javax.swing.JTextField mes;
-    private javax.swing.JButton modificar;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JTextField motivo;
     private javax.swing.JTextField nombre;

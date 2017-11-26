@@ -286,6 +286,11 @@ public class Tutores extends javax.swing.JFrame {
         alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         alumno.setMaximumRowCount(100);
         alumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        alumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alumnoActionPerformed(evt);
+            }
+        });
         getContentPane().add(alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 240, 30));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
@@ -441,6 +446,10 @@ public class Tutores extends javax.swing.JFrame {
         new MenuAlumnos().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alumnoActionPerformed
 
     private void mostrarTutores(String busqueda)
     {

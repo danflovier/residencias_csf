@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -42,9 +43,25 @@ public class HistorialMedico extends javax.swing.JFrame {
         this.getContentPane().setBackground(new Color(255,255,255));  
         
 
-        db = new MySQL(); 
+        db = new MySQL();
+        initMatricula();
+        
     }
     
+    public void initMatricula(){
+        con = db.MySQLConnection();
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        try {
+            CallableStatement st = con.prepareCall(query);
+            result = st.executeQuery();
+            while(result.next()){
+                matricula.addItem(result.getString("Matricula"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     String imgPath = null;
     
     public ImageIcon ResizeImage(String ImagePath, byte[] pic){
@@ -273,10 +290,15 @@ public class HistorialMedico extends javax.swing.JFrame {
         matricula.setBackground(new java.awt.Color(204, 204, 204));
         matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         matricula.setForeground(new java.awt.Color(76, 76, 76));
-        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8" }));
+        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         matricula.setBorder(null);
         matricula.setFocusable(false);
         matricula.setLightWeightPopupEnabled(false);
+        matricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matriculaActionPerformed(evt);
+            }
+        });
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 240, 30));
 
         label_buscar1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -354,9 +376,8 @@ public class HistorialMedico extends javax.swing.JFrame {
 
     private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
         con = db.MySQLConnection();
-        int id = Integer.parseInt(matricula.getSelectedItem().toString());
-        String SelectQuery = "SELECT * FROM tbl_images WHERE id = "+id;
-        
+        String id = matricula.getSelectedItem().toString();
+        String SelectQuery = "{call getHistorialMedico(?)}";        
         Statement st;
         ResultSet rs;
         
@@ -477,6 +498,11 @@ public class HistorialMedico extends javax.swing.JFrame {
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
+        // TODO add your handling code here:
+    //initMatricula();
+    }//GEN-LAST:event_matriculaActionPerformed
 
     /**
      * @param args the command line arguments
