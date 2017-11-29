@@ -79,7 +79,7 @@ public class Prefecto extends javax.swing.JFrame {
         about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Residencias Santa Fe | Alumnos");
+        setTitle("Residencias Santa Fe | Prefectos");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(1532, 860));
@@ -261,7 +261,6 @@ public class Prefecto extends javax.swing.JFrame {
 
         log_out.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         log_out.setText("Cerrar sesión");
-        log_out.setBorderPainted(true);
         log_out.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 log_outActionPerformed(evt);
@@ -276,7 +275,6 @@ public class Prefecto extends javax.swing.JFrame {
 
         about_csf.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         about_csf.setText("Residencias CSF");
-        about_csf.setBorderPainted(true);
         about_csf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 about_csfActionPerformed(evt);
@@ -293,104 +291,48 @@ public class Prefecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_alumnosActionPerformed
-
-        Connection connect = db.MySQLConnection();
-        String query = "{call getAlumno(?)}";
-        ResultSet result;
-        DefaultTableModel modelo = new DefaultTableModel();
-        String alumno = buscar_alumno.getText();
-        modelo.addColumn("Matricula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Fecha_nacimiento");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Direccion_casa");
-        modelo.addColumn("Carrera");
-        modelo.addColumn("Deporte");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Correo institucional");
-        modelo.addColumn("Cuarto");
-        tabla_alumnos.setModel(modelo);
-        String [] datosAlumno = new String[11];
-        try {
-            CallableStatement call = connect.prepareCall(query);
-            call.setString(1, alumno);
-            result = call.executeQuery();
-            while(result.next()){
-                datosAlumno[0] = result.getString("Matricula");
-                datosAlumno[1] = result.getString("Nombre");
-                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
-                datosAlumno[3] = result.getString("Sexo");
-                datosAlumno[4] = result.getString("Direccion_casa");
-                datosAlumno[5] = result.getString("Carrera");
-                datosAlumno[6] = result.getString("Deporte");
-                datosAlumno[7] = result.getString("Estado");
-                datosAlumno[8] = result.getString("Telefono");
-                datosAlumno[9] = result.getString("Correo institucional");
-                datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
-            }
-            modelo.addRow(datosAlumno);
-            tabla_alumnos.setModel(modelo);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        if(buscar_alumno.getText() != null)
+        {
+            borrarAlumnos();
+            mostrarAlumnos(buscar_alumno.getText());
+            buscar_alumno.setText("");
         }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Por favor ingrese al menos un criterio de busqueda!","ERROR",JOptionPane.INFORMATION_MESSAGE);
+        }        
     }//GEN-LAST:event_buscar_alumnosActionPerformed
 
     private void mostrar_prefectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_prefectosActionPerformed
-        con = db.MySQLConnection();
-        String query = "{call getPrefectos()}";
-        ResultSet result;
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Matricula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Fecha_nacimiento");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Direccion_casa");
-        modelo.addColumn("Carrera");
-        modelo.addColumn("Deporte");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Correo institucional");
-        modelo.addColumn("Cuarto");
-        tabla_prefectos.setModel(modelo);
-        
-        String [] datosAlumno = new String[11];
-        try {
-            CallableStatement call = con.prepareCall(query);
-            result = call.executeQuery();
-            while(result.next()){
-                datosAlumno[0] = result.getString("Matricula");
-                datosAlumno[1] = result.getString("Nombre");
-                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
-                datosAlumno[3] = result.getString("Sexo");
-                datosAlumno[4] = result.getString("Direccion_casa");
-                datosAlumno[5] = result.getString("Carrera");
-                datosAlumno[6] = result.getString("Deporte");
-                datosAlumno[7] = result.getString("Estado");
-                datosAlumno[8] = result.getString("Telefono");
-                datosAlumno[9] = result.getString("Correo institucional");
-                datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
-                modelo.addRow(datosAlumno);
-                tabla_prefectos.setModel(modelo);                
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        borrarPrefectos();
+        mostrarPrefectos();
     }//GEN-LAST:event_mostrar_prefectosActionPerformed
 
     private void eliminar_prefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_prefectoActionPerformed
-        
-        con = db.MySQLConnection();
-        String query = "{ call eliminarPrefecto(?) }";
-        try {
-            CallableStatement st = con.prepareCall(query);
-            String matriculaAlumno = (String) tabla_prefectos.getValueAt(tabla_prefectos.getSelectedRow(), 0);
-            st.setString(1, matriculaAlumno);
-            st.executeQuery();
-            mostrar_prefectos.doClick();
-        } catch (SQLException ex) {
-            Logger.getLogger(Prefecto.class.getName()).log(Level.SEVERE, null, ex);
+        if(tabla_prefectos.getRowCount() > 0)
+        {
+            int[] rows = tabla_prefectos.getSelectedRows();
+            if(rows.length != 0)
+            {
+                for(int i : rows)
+                {
+                    eliminarPrefecto(tabla_prefectos.getValueAt(i, 0).toString());
+                }
+                for(int j : rows)
+                {
+                    int model = tabla_prefectos.convertRowIndexToModel(j);
+                    DefaultTableModel modelo = (DefaultTableModel)tabla_prefectos.getModel();
+                    modelo.removeRow(model);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Por favor seleccione al menos un prefecto a eliminar!","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            }         
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"No hay registros en la tabla para eliminar!","ERROR",JOptionPane.INFORMATION_MESSAGE);            
         }
     }//GEN-LAST:event_eliminar_prefectoActionPerformed
 
@@ -404,7 +346,31 @@ public class Prefecto extends javax.swing.JFrame {
     }//GEN-LAST:event_about_csfActionPerformed
 
     private void agregar_prefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_prefectoActionPerformed
-        // TODO add your handling code here:
+        if(tabla_alumnos.getRowCount() > 0)
+        {
+            int[] rows = tabla_alumnos.getSelectedRows();
+            if(rows.length != 0)
+            {
+                for(int i : rows)
+                {
+                    agregarPrefecto(tabla_alumnos.getValueAt(i, 0).toString());
+                }
+                for(int j : rows)
+                {
+                    int model = tabla_alumnos.convertRowIndexToModel(j);
+                    DefaultTableModel modelo = (DefaultTableModel)tabla_alumnos.getModel();
+                    modelo.removeRow(model);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Por favor seleccione al menos un alumno a registrar como prefecto!","ERROR",JOptionPane.INFORMATION_MESSAGE);
+            }         
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"No hay registros en la tabla para registrar!","ERROR",JOptionPane.INFORMATION_MESSAGE);            
+        }
     }//GEN-LAST:event_agregar_prefectoActionPerformed
 
 
@@ -415,92 +381,199 @@ public class Prefecto extends javax.swing.JFrame {
 
     private void mostrar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_alumnosActionPerformed
         // TODO add your handling code here:
-        con = db.MySQLConnection();
-        String query = "{call getAlumnos()}";
-        ResultSet result;
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Matricula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Fecha_nacimiento");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Direccion_casa");
-        modelo.addColumn("Carrera");
-        modelo.addColumn("Deporte");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Correo institucional");
-        modelo.addColumn("Cuarto");
-        tabla_alumnos.setModel(modelo);
-        
-        String [] datosAlumno = new String[11];
-        try {
-            CallableStatement call = con.prepareCall(query);
-            result = call.executeQuery();
-            while(result.next()){
-                datosAlumno[0] = result.getString("Matricula");
-                datosAlumno[1] = result.getString("Nombre");
-                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
-                datosAlumno[3] = result.getString("Sexo");
-                datosAlumno[4] = result.getString("Direccion_casa");
-                datosAlumno[5] = result.getString("Carrera");
-                datosAlumno[6] = result.getString("Deporte");
-                datosAlumno[7] = result.getString("Estado");
-                datosAlumno[8] = result.getString("Telefono");
-                datosAlumno[9] = result.getString("Correo institucional");
-                datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
-                modelo.addRow(datosAlumno);
-                tabla_alumnos.setModel(modelo);                
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        borrarAlumnos();
+        mostrarAlumnos();
     }//GEN-LAST:event_mostrar_alumnosActionPerformed
 
     private void buscar_prefectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_prefectosActionPerformed
-        Connection connect = db.MySQLConnection();
-        String query = "{call getAlumno(?)}";
-        ResultSet result;
-        DefaultTableModel modelo = new DefaultTableModel();
-        String alumno = buscar_prefecto.getText();
-        modelo.addColumn("Matricula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Fecha_nacimiento");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Direccion_casa");
-        modelo.addColumn("Carrera");
-        modelo.addColumn("Deporte");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Correo institucional");
-        modelo.addColumn("Cuarto");
-        tabla_prefectos.setModel(modelo);
-        String [] datosAlumno = new String[11];
-        try {
-            CallableStatement call = connect.prepareCall(query);
-            call.setString(1, alumno);
-            result = call.executeQuery();
-            while(result.next()){
-                datosAlumno[0] = result.getString("Matricula");
-                datosAlumno[1] = result.getString("Nombre");
-                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
-                datosAlumno[3] = result.getString("Sexo");
-                datosAlumno[4] = result.getString("Direccion_casa");
-                datosAlumno[5] = result.getString("Carrera");
-                datosAlumno[6] = result.getString("Deporte");
-                datosAlumno[7] = result.getString("Estado");
-                datosAlumno[8] = result.getString("Telefono");
-                datosAlumno[9] = result.getString("Correo institucional");
-                datosAlumno[10] = result.getString("CUARTO_ID_cuarto");
-            }
-            modelo.addRow(datosAlumno);
-            tabla_prefectos.setModel(modelo);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        if(buscar_prefecto.getText() != null)
+        {
+            borrarPrefectos();
+            mostrarPrefectos(buscar_prefecto.getText());
+            buscar_prefecto.setText("");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Por favor ingrese al menos un criterio de busqueda!","ERROR",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buscar_prefectosActionPerformed
 
-
+    private void borrarPrefectos()
+    {
+        DefaultTableModel modelo = (DefaultTableModel)tabla_prefectos.getModel();
+        modelo.setRowCount(0);
+    }
+    
+    private void borrarAlumnos()
+    {
+        DefaultTableModel modelo = (DefaultTableModel)tabla_alumnos.getModel();
+        modelo.setRowCount(0);
+    }
+    
+    private void mostrarPrefectos()
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call getPrefectos()}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            mostrarPrefectos(result);
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void mostrarPrefectos(String busqueda)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call buscarPrefectos(?)}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, busqueda);
+            result = call.executeQuery();
+            mostrarPrefectos(result);
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void mostrarPrefectos(ResultSet res)
+    {
+        DefaultTableModel modelo = (DefaultTableModel)tabla_prefectos.getModel();
+        tabla_prefectos.setModel(modelo);
+        String [] datosAlumno= new String[11];
+        try 
+        {
+            while(res.next())
+            {
+                datosAlumno[0] = res.getString("Matricula");
+                datosAlumno[1] = res.getString("Nombre");
+                datosAlumno[2] = res.getString("Fecha_nacimiento");
+                datosAlumno[3] = res.getString("Sexo");
+                datosAlumno[4] = res.getString("Direccion_casa");
+                datosAlumno[5] = res.getString("Carrera");
+                datosAlumno[6] = res.getString("Deporte");
+                datosAlumno[7] = res.getString("Estado");
+                datosAlumno[8] = res.getString("Telefono");
+                datosAlumno[9] = res.getString("Correo institucional");
+                datosAlumno[10] = res.getString("CUARTO_ID_cuarto");
+                
+                modelo.addRow(datosAlumno);
+                tabla_prefectos.setModel(modelo);
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void eliminarPrefecto(String id)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call eliminarPrefecto(?)}";
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, id);
+            call.executeQuery();
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void mostrarAlumnos()
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call getAlumnosNP()}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            mostrarAlumnos(result);
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void mostrarAlumnos(String busqueda)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call buscarAlumnoNP(?)}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, busqueda);
+            result = call.executeQuery();
+            mostrarAlumnos(result);
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void mostrarAlumnos(ResultSet res)
+    {
+        DefaultTableModel modelo = (DefaultTableModel)tabla_alumnos.getModel();
+        tabla_alumnos.setModel(modelo);
+        String [] datosAlumno= new String[11];
+        try 
+        {
+            while(res.next())
+            {
+                datosAlumno[0] = res.getString("Matricula");
+                datosAlumno[1] = res.getString("Nombre");
+                datosAlumno[2] = res.getString("Fecha_nacimiento");
+                datosAlumno[3] = res.getString("Sexo");
+                datosAlumno[4] = res.getString("Direccion_casa");
+                datosAlumno[5] = res.getString("Carrera");
+                datosAlumno[6] = res.getString("Deporte");
+                datosAlumno[7] = res.getString("Estado");
+                datosAlumno[8] = res.getString("Telefono");
+                datosAlumno[9] = res.getString("Correo institucional");
+                datosAlumno[10] = res.getString("CUARTO_ID_cuarto");
+                
+                modelo.addRow(datosAlumno);
+                tabla_alumnos.setModel(modelo);
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void agregarPrefecto(String id)
+    {
+        Connection connect = db.MySQLConnection();
+        String query = "{call agregarPrefecto(?)}";
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, id);
+            call.executeQuery();
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
