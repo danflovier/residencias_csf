@@ -6,24 +6,73 @@
 package residencias;
 
 import java.awt.Color;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author danflovier
  */
 public class Personal extends javax.swing.JFrame {
+    final private MySQL db; 
+    Connection con;
     
     public Personal() {
         initComponents();
         
         // Set a background color to the JFrame
         this.getContentPane().setBackground(new Color(255,255,255));
-        
+        db = new MySQL();
         nomina.setEnabled(false);
         contrasena.setEnabled(false);
+        initResidencias();
     }
-
+    public void clearRegisterForm(){
+        id.setText(null);
+        nombre.setText(null);
+        anio.setText(null);
+        mes.setText(null);
+        dia.setText(null);  
+        sexo.setSelectedIndex(0);
+        estado.setSelectedIndex(0);
+        direccion.setText(null);
+        puesto.setSelectedIndex(0);
+        telefono.setText(null);
+        correo_institucional.setText(null);
+        nomina.setText(null);
+        contrasena.setText(null);
+    }
+    
+    
+    private void initResidencias()
+    {
+        if(residencia.getItemCount() == 0)
+            residencia.addItem("Seleccionar");
+        Connection connect = db.MySQLConnection();
+        String query = "{call getResidencias()}";
+        ResultSet result;
+        try 
+        {
+            CallableStatement call = connect.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next())
+            {
+                residencia.addItem(result.getString("ID_residencia"));
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,16 +82,14 @@ public class Personal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        edad = new javax.swing.JTextField();
         label_id = new javax.swing.JLabel();
         label_login = new javax.swing.JLabel();
-        label_sexo = new javax.swing.JLabel();
+        label_residencia = new javax.swing.JLabel();
         label_residencias = new javax.swing.JLabel();
         label_nombre = new javax.swing.JLabel();
         label_dia = new javax.swing.JLabel();
         label_mes = new javax.swing.JLabel();
         label_anio = new javax.swing.JLabel();
-        label_edad = new javax.swing.JLabel();
         label_estado = new javax.swing.JLabel();
         label_contrasena = new javax.swing.JLabel();
         label_direccion = new javax.swing.JLabel();
@@ -71,14 +118,14 @@ public class Personal extends javax.swing.JFrame {
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
-        buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        modificar = new javax.swing.JButton();
         back = new javax.swing.JButton();
         label_nomina = new javax.swing.JLabel();
         direccion = new javax.swing.JTextField();
         label_admin = new javax.swing.JLabel();
         label_line3 = new javax.swing.JLabel();
+        residencia = new javax.swing.JComboBox<>();
+        label_sexo = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -94,14 +141,6 @@ public class Personal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1500, 1000));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        edad.setBackground(new java.awt.Color(223, 223, 223));
-        edad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        edad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        edad.setToolTipText("");
-        edad.setBorder(null);
-        edad.setDoubleBuffered(true);
-        getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 80, 30));
-
         label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_id.setForeground(new java.awt.Color(76, 76, 76));
         label_id.setText("ID");
@@ -112,11 +151,11 @@ public class Personal extends javax.swing.JFrame {
         label_login.setText("PERSONAL");
         getContentPane().add(label_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
-        label_sexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_sexo.setForeground(new java.awt.Color(76, 76, 76));
-        label_sexo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_sexo.setText("SEXO");
-        getContentPane().add(label_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 140, -1));
+        label_residencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_residencia.setForeground(new java.awt.Color(76, 76, 76));
+        label_residencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_residencia.setText("RESIDENCIA");
+        getContentPane().add(label_residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 140, -1));
 
         label_residencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_residencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
@@ -144,12 +183,6 @@ public class Personal extends javax.swing.JFrame {
         label_anio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_anio.setText("AAAA");
         getContentPane().add(label_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 70, -1));
-
-        label_edad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_edad.setForeground(new java.awt.Color(76, 76, 76));
-        label_edad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_edad.setText("EDAD");
-        getContentPane().add(label_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 150, -1));
 
         label_estado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_estado.setForeground(new java.awt.Color(76, 76, 76));
@@ -362,17 +395,6 @@ public class Personal extends javax.swing.JFrame {
         });
         getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 800, 130, 40));
 
-        buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar1.setText("BUSCAR");
-        buscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 800, 120, 40));
-
         cancelar.setBackground(new java.awt.Color(255, 255, 255));
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
@@ -382,18 +404,7 @@ public class Personal extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 800, 140, 40));
-
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
-        modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        modificar.setText("MODIFICAR");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 800, 130, 40));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 800, 140, 40));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -434,6 +445,21 @@ public class Personal extends javax.swing.JFrame {
         label_line3.setForeground(new java.awt.Color(3, 169, 244));
         label_line3.setOpaque(true);
         getContentPane().add(label_line3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 600, 210, 10));
+
+        residencia.setBackground(new java.awt.Color(204, 204, 204));
+        residencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        residencia.setForeground(new java.awt.Color(76, 76, 76));
+        residencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "M", "F" }));
+        residencia.setBorder(null);
+        residencia.setFocusable(false);
+        residencia.setLightWeightPopupEnabled(false);
+        getContentPane().add(residencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 140, 30));
+
+        label_sexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_sexo.setForeground(new java.awt.Color(76, 76, 76));
+        label_sexo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_sexo.setText("SEXO");
+        getContentPane().add(label_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 140, -1));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -482,27 +508,124 @@ public class Personal extends javax.swing.JFrame {
 
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
         // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{call getPersonal()}";
+        ResultSet result;
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Fecha de nacimiento");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo institucional");
+        modelo.addColumn("Puesto");
+        tabla_personal.setModel(modelo);
+        
+        String [] datosAlumno = new String[11];
+        try {
+            CallableStatement call = con.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next()){
+                datosAlumno[0] = result.getString("ID_personal");
+                datosAlumno[1] = result.getString("Nombre");
+                datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
+                datosAlumno[3] = result.getString("Sexo");
+                datosAlumno[4] = result.getString("Direccion");
+                datosAlumno[5] = result.getString("Estado");
+                datosAlumno[6] = result.getString("Telefono");
+                datosAlumno[7] = result.getString("Correo institucional");
+                datosAlumno[8] = result.getString("Puesto");
+                modelo.addRow(datosAlumno);
+                tabla_personal.setModel(modelo);                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{ call eliminarPersonal(?) }";
+        try {
+            CallableStatement st = con.prepareCall(query);
+            String idPersonal = (String) tabla_personal.getValueAt(tabla_personal.getSelectedRow(), 0);
+            st.setString(1, idPersonal);
+            st.executeQuery();
+            mostrar_todos.doClick();
+        } catch (SQLException ex) {
+            Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
+        String query;
+        Boolean res = true;
+        String idPersonal = id.getText();
+        String nombreA = nombre.getText();
+        String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();  
+        String sexoA = sexo.getSelectedItem().toString();
+        String estadoA = estado.getSelectedItem().toString();
+        String direction = direccion.getText();
+        String puestoA = puesto.getSelectedItem().toString();
+        String phone = telefono.getText();
+        String correo = correo_institucional.getText();
+        String residenciaA = residencia.getSelectedItem().toString();
+        String nom = "";
+        String pass = "";
+        if(nomina.isEnabled() && contrasena.isEnabled()){
+            nom = nomina.getText();
+            pass = String.copyValueOf(contrasena.getPassword());
+        }
         
-    }//GEN-LAST:event_registrarActionPerformed
+        //JOptionPane.showConfirmDialog(null, "Este ", phone, WIDTH)
+        con = db.MySQLConnection();
+        CallableStatement st;
+        
+        if(res){
+            query = "{ call insertarPersonal(?,?,?,?,?,?,?,?)}";
+            try {
+                st = con.prepareCall(query);
+                st.setString(1,idPersonal);
+                st.setString(2,nombreA);
+                st.setDate(3,Date.valueOf(fecha));
+                st.setString(4,sexoA);
+                st.setString(5,puestoA);
+                st.setString(6,direction);
+                st.setString(7,correo);
+                st.setString(8,residenciaA);
+            st.executeQuery();
+            JOptionPane.showMessageDialog(null, "Personal registrado correctamente", "Registro de personal", JOptionPane.INFORMATION_MESSAGE);
+            clearRegisterForm();
 
-    private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar1ActionPerformed
+            } catch (SQLException ex) {
+                Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(!nom.equals("") && !pass.equals("")){
+                query= "{ call agregarAdmin(?,?,?) }";
+                try {
+                    st = con.prepareCall(query);
+                    st.setString(1, nom);
+                    st.setString(2, pass);
+                    st.setString(3, residenciaA);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        
+            
+        }
+    }//GEN-LAST:event_registrarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
+        clearRegisterForm();
+        if(!registrar.isEnabled())
+            registrar.setEnabled(true);
     }//GEN-LAST:event_cancelarActionPerformed
-
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
         new Login().setVisible(true);
@@ -573,7 +696,6 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JMenuItem about_csf;
     private javax.swing.JTextField anio;
     private javax.swing.JButton back;
-    private javax.swing.JButton buscar1;
     private javax.swing.JButton buscar2;
     private javax.swing.JTextField buscar_personal;
     private javax.swing.JButton cancelar;
@@ -581,7 +703,6 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JTextField correo_institucional;
     private javax.swing.JTextField dia;
     private javax.swing.JTextField direccion;
-    private javax.swing.JTextField edad;
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estado;
     private javax.swing.JMenu file;
@@ -594,7 +715,6 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JLabel label_correo;
     private javax.swing.JLabel label_dia;
     private javax.swing.JLabel label_direccion;
-    private javax.swing.JLabel label_edad;
     private javax.swing.JLabel label_estado;
     private javax.swing.JLabel label_id;
     private javax.swing.JLabel label_line;
@@ -605,17 +725,18 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JLabel label_nombre;
     private javax.swing.JLabel label_nomina;
     private javax.swing.JLabel label_puesto;
+    private javax.swing.JLabel label_residencia;
     private javax.swing.JLabel label_residencias;
     private javax.swing.JLabel label_sexo;
     private javax.swing.JLabel label_telefono;
     private javax.swing.JMenuItem log_out;
     private javax.swing.JTextField mes;
-    private javax.swing.JButton modificar;
     private javax.swing.JButton mostrar_todos;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nomina;
     private javax.swing.JComboBox<String> puesto;
     private javax.swing.JButton registrar;
+    private javax.swing.JComboBox<String> residencia;
     private javax.swing.JComboBox<String> sexo;
     private javax.swing.JTable tabla_personal;
     private javax.swing.JTextField telefono;

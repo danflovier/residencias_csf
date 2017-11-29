@@ -45,6 +45,7 @@ public class Alumnos extends javax.swing.JFrame {
         nombre.setText(null);
         anio.setText(null);
         mes.setText(null);
+        edad.setText(null);
         dia.setText(null);  
         anio1.setText(null);
         mes1.setText(null);

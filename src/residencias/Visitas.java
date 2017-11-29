@@ -361,7 +361,7 @@ public class Visitas extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
-        if(!matricula.getText().equals(null)){
+        if(matricula.getText() != null){
             con = db.MySQLConnection();
             String query = "{call registrarVisita(?, ?, ?, ?)}";
             String fecha = anio.getText()+"-"+mes.getText()+"-"+dia.getText();  
