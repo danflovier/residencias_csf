@@ -97,6 +97,10 @@ public class HistorialMedico extends javax.swing.JFrame {
         upload = new javax.swing.JButton();
         back = new javax.swing.JButton();
         matricula = new javax.swing.JComboBox<>();
+        label_nota1 = new javax.swing.JLabel();
+        label_nota2 = new javax.swing.JLabel();
+        label_nota3 = new javax.swing.JLabel();
+        label_nota4 = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -223,6 +227,26 @@ public class HistorialMedico extends javax.swing.JFrame {
         matricula.setFocusable(false);
         matricula.setLightWeightPopupEnabled(false);
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 240, 30));
+
+        label_nota1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_nota1.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota1.setText("NOTA:");
+        getContentPane().add(label_nota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, -1, -1));
+
+        label_nota2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_nota2.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota2.setText("La imagen debe tener el formato");
+        getContentPane().add(label_nota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, -1, -1));
+
+        label_nota3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_nota3.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota3.setText(".JPG, .GIF o .PNG y debe tener un ");
+        getContentPane().add(label_nota3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 540, -1, -1));
+
+        label_nota4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_nota4.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota4.setText("tamaño máximo de 64KB");
+        getContentPane().add(label_nota4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, -1, -1));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -508,6 +532,10 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JLabel label_line;
     private javax.swing.JLabel label_login;
     private javax.swing.JLabel label_logo;
+    private javax.swing.JLabel label_nota1;
+    private javax.swing.JLabel label_nota2;
+    private javax.swing.JLabel label_nota3;
+    private javax.swing.JLabel label_nota4;
     private javax.swing.JMenuItem log_out;
     private javax.swing.JComboBox<String> matricula;
     private javax.swing.JButton upload;
