@@ -9,6 +9,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -33,6 +37,8 @@ import javax.swing.JOptionPane;
  * @author danflovier
  */
 public class Informe extends javax.swing.JFrame {
+    final private MySQL db;
+    Connection con;
     
     public Informe() {
         initComponents();
@@ -60,10 +66,158 @@ public class Informe extends javax.swing.JFrame {
         
         scrollPane_message.setBorder(null);
         
+        db = new MySQL();
+        initMatricula();
+        
+    }
+    
+    public void initMatricula(){
+        con = db.MySQLConnection();
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        try {
+            CallableStatement st = con.prepareCall(query);
+            result = st.executeQuery();
+            while(result.next()){
+                matricula.addItem(result.getString("Matricula"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static long betweenDates(Date firstDate, Date secondDate) throws IOException{
         return ChronoUnit.DAYS.between(firstDate.toInstant(), secondDate.toInstant());
+    }
+    
+    public String getCorreoTutor(String matricula){
+        String correo = "";
+        Connection con = db.MySQLConnection();
+        String query = "{call getCorreoTutor(?)}";
+        ResultSet result;
+        
+        try {
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            while(result.next()){
+                correo = result.getString("Correo institucional");
+            }
+        } 
+        catch (SQLException ex){
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return correo;
+    }
+    
+    public String getNombreAlumno(String matricula){
+        Connection con = db.MySQLConnection();
+        String query = "{call getAlumno(?)}";
+        ResultSet result;
+        String nombre_alumno = "";
+            
+        try { 
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            
+            while(result.next()){
+                nombre_alumno = result.getString("Nombre");
+            }
+                
+            }catch (SQLException ex){
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this,"La matrícula del alumno no existe. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);    
+            }
+        return nombre_alumno;
+    }
+    
+    public String getSalidaAlumno(String matricula){
+        Connection con = db.MySQLConnection();
+        String query = "{call getAlumno(?)}";
+        ResultSet result;
+        String fecha_salida = "";
+            
+        try { 
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            
+            while(result.next()){
+                fecha_salida = result.getString("Salida");
+            }
+                
+            }catch (SQLException ex){
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this,"La matrícula del alumno no existe. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);    
+            }
+        return fecha_salida;
+    }
+    
+    public String getIngresoAlumno(String matricula){
+        Connection con = db.MySQLConnection();
+        String query = "{call getAlumno(?)}";
+        ResultSet result;
+        String fecha_ingreso = "";
+            
+        try { 
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            
+            while(result.next()){
+                fecha_ingreso = result.getString("Ingreso");
+            }
+                
+            }catch (SQLException ex){
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this,"La matrícula del alumno no existe. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);    
+            }
+        return fecha_ingreso;
+    }
+    
+    public void cleanThermometer(){
+        label_expirada.setBackground(new Color(240,240,240));
+        label_expirada.setForeground(new Color(204,204,204));
+        label_line2.setBackground(new Color(255,255,255));
+    
+        label_porexpirar.setBackground(new Color(240,240,240));
+        label_porexpirar.setForeground(new Color(204,204,204));
+        label_line3.setBackground(new Color(255,255,255));
+    
+        label_vigente.setBackground(new Color(240,240,240));
+        label_vigente.setForeground(new Color(204,204,204));
+        label_line4.setBackground(new Color(255,255,255));
+    
+        label_actual.setBackground(new Color(240,240,240));
+        label_actual.setForeground(new Color(204,204,204));
+        label_line5.setBackground(new Color(255,255,255));
+    
+        label_inicial.setBackground(new Color(240,240,240));
+        label_inicial.setForeground(new Color(204,204,204));
+        label_line6.setBackground(new Color(255,255,255));
+    }
+    
+    public void cleanForm(){
+        matricula.setSelectedIndex(0);
+        nombre.setText("");
+        ingreso.setText("");
+        vigencia.setText("");
+        status.setText("");
+        pasados.setText("");
+        faltantes.setText("");
+        field_from.setText("");
+        field_to.setText("");
+        field_subject.setText("");
+        text_message.setText("");
+        field_password.setText("");
+
+        field_from.setEnabled(false);
+        field_to.setEnabled(false);
+        field_subject.setEnabled(false);
+        text_message.setEnabled(false);
+        field_password.setEnabled(false);
+        button_send.setEnabled(false);
     }
     
 
@@ -99,7 +253,6 @@ public class Informe extends javax.swing.JFrame {
         label_ingreso = new javax.swing.JLabel();
         label_pasados = new javax.swing.JLabel();
         label_estancia = new javax.swing.JLabel();
-        buscar_alumno = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         ingreso = new javax.swing.JTextField();
         vigencia = new javax.swing.JTextField();
@@ -124,6 +277,8 @@ public class Informe extends javax.swing.JFrame {
         scrollPane_message = new javax.swing.JScrollPane();
         text_message = new javax.swing.JTextArea();
         button_send = new javax.swing.JButton();
+        matricula = new javax.swing.JComboBox<>();
+        cancelar = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -131,7 +286,7 @@ public class Informe extends javax.swing.JFrame {
         about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Residencias Santa Fe | Vigencia");
+        setTitle("Residencias Santa Fe | Informe");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
         setPreferredSize(new java.awt.Dimension(1900, 900));
@@ -215,7 +370,7 @@ public class Informe extends javax.swing.JFrame {
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
         label_buscar.setText("BUSCAR ALUMNO:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, -1, -1));
 
         label_nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_nombre.setForeground(new java.awt.Color(76, 76, 76));
@@ -251,14 +406,6 @@ public class Informe extends javax.swing.JFrame {
         label_estancia.setForeground(new java.awt.Color(76, 76, 76));
         label_estancia.setText("ESTANCIA");
         getContentPane().add(label_estancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 200, -1));
-
-        buscar_alumno.setBackground(new java.awt.Color(223, 223, 223));
-        buscar_alumno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        buscar_alumno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        buscar_alumno.setToolTipText("");
-        buscar_alumno.setBorder(null);
-        buscar_alumno.setDoubleBuffered(true);
-        getContentPane().add(buscar_alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -317,7 +464,7 @@ public class Informe extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 140, 30));
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, 180, 30));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -334,7 +481,7 @@ public class Informe extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 750, 140, 40));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 750, 140, 40));
 
         label_to.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_to.setForeground(new java.awt.Color(76, 76, 76));
@@ -448,6 +595,26 @@ public class Informe extends javax.swing.JFrame {
         });
         getContentPane().add(button_send, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 730, 190, 60));
 
+        matricula.setBackground(new java.awt.Color(204, 204, 204));
+        matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        matricula.setForeground(new java.awt.Color(76, 76, 76));
+        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        matricula.setBorder(null);
+        matricula.setFocusable(false);
+        matricula.setLightWeightPopupEnabled(false);
+        getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 240, 30));
+
+        cancelar.setBackground(new java.awt.Color(255, 255, 255));
+        cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
+        cancelar.setText("CANCELAR");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 750, 140, 40));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -490,12 +657,14 @@ public class Informe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        String id = buscar_alumno.getText().trim();
         String status_alumno = "";
         SimpleDateFormat format_date = new SimpleDateFormat("yyyy-MM-dd");
         Date admission_date, expiry_date, current_date;
         
-        if (id.equals("A01023226")){
+        
+        if (matricula.getSelectedItem() != "Seleccionar"){
+            
+            cleanThermometer();
             
             nombre.setEnabled(true);
             ingreso.setEnabled(true);
@@ -503,14 +672,15 @@ public class Informe extends javax.swing.JFrame {
             status.setEnabled(true);
             pasados.setEnabled(true);
             faltantes.setEnabled(true);
-        
-            nombre.setText("Daniela Flores");
             
-            /*ingreso.setText("2017-08-10");
-            vigencia.setText("2017-11-20");*/
+            String id_alumno = matricula.getSelectedItem().toString();
+            String nombre_alumno = getNombreAlumno(id_alumno);
+            String fecha_ingreso = getIngresoAlumno(id_alumno);
+            String fecha_salida = getSalidaAlumno(id_alumno);
             
-            ingreso.setText("2015-08-10");
-            vigencia.setText("2019-12-01");
+            nombre.setText(nombre_alumno);
+            ingreso.setText(fecha_ingreso);
+            vigencia.setText(fecha_salida);
             
             String date1 = ingreso.getText();
             String date2 = vigencia.getText();
@@ -519,34 +689,25 @@ public class Informe extends javax.swing.JFrame {
             try {
                 // Date of admission
                 admission_date = format_date.parse(date1);
-                //System.out.println(fecha_ingreso);
-                //System.out.println(formatter.format(date1));
                 
                 // Expiry date
                 expiry_date = format_date.parse(date2);
-                //System.out.println(fecha_vigencia);
-                //System.out.println(formatter.format(date2));
                 
                 // Current date
                 LocalDate localDate = LocalDate.now();
                 current_date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                //System.out.println(fecha_actual);
                 
                 // Total number of days of the student's stay
                 double days = betweenDates(admission_date, expiry_date);
-                //System.out.println(dias_totales);
                 
                 // Missing days of the student's stay
                 long dias_faltantes = betweenDates(current_date, expiry_date);
-                //System.out.println("Faltan : " + dias_faltantes);
                 
                 // Days that have passed since the beginning of the student's stay
                 long dias_pasados = betweenDates(admission_date, current_date);
-                //System.out.println("Pasaron: " + dias_pasados);
                 
                 // Sections of the thermometer
                 double thermometer_section = days / 5;
-                //System.out.println(area_termometro);
                 
                 
                 // Section 1
@@ -598,7 +759,8 @@ public class Informe extends javax.swing.JFrame {
                 button_send.setEnabled(true);
         
                 field_from.setText("residencias.csf2017@gmail.com");
-                field_to.setText("danflovier@gmail.com");
+                String correo_tutor = getCorreoTutor(matricula.getSelectedItem().toString());
+                field_to.setText(correo_tutor);
                 field_subject.setText("Residencias CSF | Informe semestral de vigencia del alumno");
                 
                 text_message.setText("Estimado tutor: \n\nSe informa por este medio que el status de la estancia del alumno " + nombre.getText() + " hasta el día " + format_date.format(current_date).toString()
@@ -615,9 +777,7 @@ public class Informe extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(this,"Alumno no encontrado. Intente de nuevo con una matrícula diferente","ERROR",JOptionPane.INFORMATION_MESSAGE);
         }
-        
-           
-
+      
     }//GEN-LAST:event_buscarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
@@ -687,28 +847,8 @@ public class Informe extends javax.swing.JFrame {
                     // Send the message
                     Transport.send(message, username, new String(field_password.getPassword()));
                     JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
-                    
-                    buscar_alumno.setText("");
-                    nombre.setText("");
-                    ingreso.setText("");
-                    vigencia.setText("");
-                    status.setText("");
-                    pasados.setText("");
-                    faltantes.setText("");
-                    field_from.setText("");
-                    field_to.setText("");
-                    field_subject.setText("");
-                    text_message.setText("");
-                    field_password.setText("");
-                    button_send.setText("");
-
-                    field_from.setEnabled(false);
-                    field_to.setEnabled(false);
-                    field_subject.setEnabled(false);
-                    text_message.setEnabled(false);
-                    field_password.setEnabled(false);
-                    button_send.setEnabled(false);
-
+                    cleanThermometer();
+                    cleanForm();
                 }
                 catch (MessagingException ex) {
                     ex.printStackTrace();
@@ -719,6 +859,11 @@ public class Informe extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Llena los campos correctamente.","ERROR",JOptionPane.INFORMATION_MESSAGE);
             }
     }//GEN-LAST:event_button_sendActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        cleanThermometer();
+        cleanForm();
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1272,8 +1417,8 @@ public class Informe extends javax.swing.JFrame {
     private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton back;
     private javax.swing.JButton buscar;
-    private javax.swing.JTextField buscar_alumno;
     private javax.swing.JButton button_send;
+    private javax.swing.JButton cancelar;
     private javax.swing.JTextField faltantes;
     private javax.swing.JTextField field_from;
     private javax.swing.JPasswordField field_password;
@@ -1314,6 +1459,7 @@ public class Informe extends javax.swing.JFrame {
     private javax.swing.JLabel label_vigencia;
     private javax.swing.JLabel label_vigente;
     private javax.swing.JMenuItem log_out;
+    private javax.swing.JComboBox<String> matricula;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField pasados;
     private javax.swing.JScrollPane scrollPane_message;

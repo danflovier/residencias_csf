@@ -54,13 +54,11 @@ public class MenuExpediente extends javax.swing.JFrame {
         label_psicologico = new javax.swing.JLabel();
         label_medico = new javax.swing.JLabel();
         label_indisciplina = new javax.swing.JLabel();
-        label_faltas = new javax.swing.JLabel();
         indisciplina = new javax.swing.JButton();
         historial_academico = new javax.swing.JButton();
         perfil_medico = new javax.swing.JButton();
         vigencia = new javax.swing.JButton();
         perfil_psicologico = new javax.swing.JButton();
-        faltas = new javax.swing.JButton();
         back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -96,13 +94,13 @@ public class MenuExpediente extends javax.swing.JFrame {
         label_academico.setForeground(new java.awt.Color(76, 76, 76));
         label_academico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_academico.setText("H. ACADÉMICO");
-        getContentPane().add(label_academico, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 110, 20));
+        getContentPane().add(label_academico, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 100, 20));
 
         label_psicologico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         label_psicologico.setForeground(new java.awt.Color(76, 76, 76));
         label_psicologico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_psicologico.setText("P. PSICOLÓGICO");
-        getContentPane().add(label_psicologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 120, 20));
+        getContentPane().add(label_psicologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 120, 20));
 
         label_medico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         label_medico.setForeground(new java.awt.Color(76, 76, 76));
@@ -115,12 +113,6 @@ public class MenuExpediente extends javax.swing.JFrame {
         label_indisciplina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_indisciplina.setText("INDISCIPLINA");
         getContentPane().add(label_indisciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 100, 20));
-
-        label_faltas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        label_faltas.setForeground(new java.awt.Color(76, 76, 76));
-        label_faltas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_faltas.setText("FALTAS");
-        getContentPane().add(label_faltas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 60, 20));
 
         indisciplina.setBackground(new java.awt.Color(255, 255, 255));
         indisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file-red.png"))); // NOI18N
@@ -144,7 +136,7 @@ public class MenuExpediente extends javax.swing.JFrame {
                 historial_academicoActionPerformed(evt);
             }
         });
-        getContentPane().add(historial_academico, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 80, 100));
+        getContentPane().add(historial_academico, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 80, 100));
 
         perfil_medico.setBackground(new java.awt.Color(255, 255, 255));
         perfil_medico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file-green.png"))); // NOI18N
@@ -180,19 +172,7 @@ public class MenuExpediente extends javax.swing.JFrame {
                 perfil_psicologicoActionPerformed(evt);
             }
         });
-        getContentPane().add(perfil_psicologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 80, 100));
-
-        faltas.setBackground(new java.awt.Color(255, 255, 255));
-        faltas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file-yellow.png"))); // NOI18N
-        faltas.setBorder(null);
-        faltas.setBorderPainted(false);
-        faltas.setContentAreaFilled(false);
-        faltas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                faltasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(faltas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 80, 100));
+        getContentPane().add(perfil_psicologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 80, 100));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -285,10 +265,6 @@ public class MenuExpediente extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_perfil_psicologicoActionPerformed
 
-    private void faltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faltasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_faltasActionPerformed
-
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuAlumnos().setVisible(true);
         this.setVisible(false);
@@ -341,14 +317,12 @@ public class MenuExpediente extends javax.swing.JFrame {
     private javax.swing.JMenu about;
     private javax.swing.JMenuItem about_rcsf;
     private javax.swing.JButton back;
-    private javax.swing.JButton faltas;
     private javax.swing.JMenu file;
     private javax.swing.JMenuItem file_exit;
     private javax.swing.JButton historial_academico;
     private javax.swing.JButton indisciplina;
     private javax.swing.JLabel label_academico;
     private javax.swing.JLabel label_expediente;
-    private javax.swing.JLabel label_faltas;
     private javax.swing.JLabel label_indisciplina;
     private javax.swing.JLabel label_logo;
     private javax.swing.JLabel label_medico;

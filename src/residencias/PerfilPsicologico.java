@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,7 +44,25 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         
 
         db = new MySQL(); 
+        initMatricula();
+        
     }
+    
+    public void initMatricula(){
+        con = db.MySQLConnection();
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        try {
+            CallableStatement st = con.prepareCall(query);
+            result = st.executeQuery();
+            while(result.next()){
+                matricula.addItem(result.getString("Matricula"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     String imgPath = null;
     
@@ -57,7 +76,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         }
         
         Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(lbl_Image.getWidth(),lbl_Image.getHeight(), Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(documento.getWidth(),documento.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }
@@ -74,24 +93,21 @@ public class PerfilPsicologico extends javax.swing.JFrame {
     private void initComponents() {
 
         label_login = new javax.swing.JLabel();
-        label_buscar = new javax.swing.JLabel();
         label_logo = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
-        lbl_Image = new javax.swing.JLabel();
-        buscar_perfil = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_perfil = new javax.swing.JTable();
-        registrar = new javax.swing.JButton();
-        buscar1 = new javax.swing.JButton();
-        buscar2 = new javax.swing.JButton();
-        cancelar = new javax.swing.JButton();
-        mostrar_todos = new javax.swing.JButton();
-        modificar = new javax.swing.JButton();
-        eliminar = new javax.swing.JButton();
+        documento = new javax.swing.JLabel();
         agregar = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        upload = new javax.swing.JButton();
         back = new javax.swing.JButton();
         matricula = new javax.swing.JComboBox<>();
-        label_buscar1 = new javax.swing.JLabel();
+        label_buscar = new javax.swing.JLabel();
+        label_nota1 = new javax.swing.JLabel();
+        label_nota2 = new javax.swing.JLabel();
+        label_nota3 = new javax.swing.JLabel();
+        label_nota4 = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -102,9 +118,9 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         setTitle("Residencias Santa Fe | Perfil Psicológico");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
-        setPreferredSize(new java.awt.Dimension(1500, 1000));
+        setPreferredSize(new java.awt.Dimension(884, 1000));
         setResizable(false);
-        setSize(new java.awt.Dimension(1500, 1000));
+        setSize(new java.awt.Dimension(884, 1000));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
@@ -112,148 +128,81 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         label_login.setText("PERFIL PSICOLÓGICO");
         getContentPane().add(label_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
-        label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_buscar.setForeground(new java.awt.Color(76, 76, 76));
-        label_buscar.setText("MATRÍCULA DEL ALUMNO:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
-
         label_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo5.png"))); // NOI18N
-        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 840, 180, 70));
+        getContentPane().add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 860, 180, 70));
 
         label_line.setBackground(new java.awt.Color(84, 172, 210));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
         label_line.setOpaque(true);
         getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 790, 10));
 
-        lbl_Image.setBackground(new java.awt.Color(201, 226, 253));
-        lbl_Image.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_Image.setForeground(new java.awt.Color(76, 76, 76));
-        lbl_Image.setOpaque(true);
-        getContentPane().add(lbl_Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 440, 600));
+        documento.setBackground(new java.awt.Color(201, 226, 253));
+        documento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        documento.setForeground(new java.awt.Color(76, 76, 76));
+        documento.setOpaque(true);
+        getContentPane().add(documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 440, 600));
 
-        buscar_perfil.setBackground(new java.awt.Color(223, 223, 223));
-        buscar_perfil.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        buscar_perfil.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        buscar_perfil.setToolTipText("");
-        buscar_perfil.setBorder(null);
-        buscar_perfil.setDoubleBuffered(true);
-        getContentPane().add(buscar_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 220, 200, 30));
-
-        tabla_perfil.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        tabla_perfil.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "PERFIL PSICOLOGICO"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tabla_perfil);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 580, 510));
-
-        registrar.setBackground(new java.awt.Color(255, 255, 255));
-        registrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/registrar.png"))); // NOI18N
-        registrar.setText("AGREGAR");
-        registrar.addActionListener(new java.awt.event.ActionListener() {
+        agregar.setBackground(new java.awt.Color(255, 255, 255));
+        agregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/registrar.png"))); // NOI18N
+        agregar.setText("AGREGAR");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarActionPerformed(evt);
+                agregarActionPerformed(evt);
             }
         });
-        getContentPane().add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 140, 40));
+        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 140, 40));
 
-        buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        buscar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar1.setText("BUSCAR");
-        buscar1.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setBackground(new java.awt.Color(255, 255, 255));
+        buscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
+        buscar.setText("BUSCAR");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar1ActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 160, 30));
-
-        buscar2.setBackground(new java.awt.Color(255, 255, 255));
-        buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar2.setText("BUSCAR");
-        buscar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 220, 140, 30));
-
-        cancelar.setBackground(new java.awt.Color(255, 255, 255));
-        cancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
-        cancelar.setText("ELIMINAR");
-        cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 140, 40));
-
-        mostrar_todos.setBackground(new java.awt.Color(255, 255, 255));
-        mostrar_todos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        mostrar_todos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista.png"))); // NOI18N
-        mostrar_todos.setText("MOSTRAR");
-        mostrar_todos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrar_todosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(mostrar_todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 800, 180, 60));
-
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
-        modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        modificar.setText("EDITAR");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 140, 40));
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 160, 30));
 
         eliminar.setBackground(new java.awt.Color(255, 255, 255));
-        eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
+        eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         eliminar.setText("ELIMINAR");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 800, 180, 60));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 140, 40));
 
-        agregar.setBackground(java.awt.Color.white);
-        agregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        agregar.setForeground(new java.awt.Color(76, 76, 76));
-        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/upload.png"))); // NOI18N
-        agregar.setText("SUBIR DOCUMENTO");
-        agregar.setBorder(null);
-        agregar.setBorderPainted(false);
-        agregar.setContentAreaFilled(false);
-        agregar.setMaximumSize(new java.awt.Dimension(129, 65));
-        agregar.setMinimumSize(new java.awt.Dimension(129, 65));
-        agregar.addActionListener(new java.awt.event.ActionListener() {
+        editar.setBackground(new java.awt.Color(255, 255, 255));
+        editar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
+        editar.setText("EDITAR");
+        editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
+                editarActionPerformed(evt);
             }
         });
-        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 880, 180, 40));
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 140, 40));
+
+        upload.setBackground(java.awt.Color.white);
+        upload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        upload.setForeground(new java.awt.Color(76, 76, 76));
+        upload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/upload.png"))); // NOI18N
+        upload.setText("SUBIR DOCUMENTO");
+        upload.setBorder(null);
+        upload.setBorderPainted(false);
+        upload.setContentAreaFilled(false);
+        upload.setMaximumSize(new java.awt.Dimension(129, 65));
+        upload.setMinimumSize(new java.awt.Dimension(129, 65));
+        upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(upload, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 880, 180, 40));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -275,16 +224,41 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         matricula.setBackground(new java.awt.Color(204, 204, 204));
         matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         matricula.setForeground(new java.awt.Color(76, 76, 76));
-        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8" }));
+        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         matricula.setBorder(null);
         matricula.setFocusable(false);
         matricula.setLightWeightPopupEnabled(false);
+        matricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matriculaActionPerformed(evt);
+            }
+        });
         getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 240, 30));
 
-        label_buscar1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_buscar1.setForeground(new java.awt.Color(76, 76, 76));
-        label_buscar1.setText("BUSCAR PERFIL:");
-        getContentPane().add(label_buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 180, -1, -1));
+        label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_buscar.setForeground(new java.awt.Color(76, 76, 76));
+        label_buscar.setText("MATRÍCULA DEL ALUMNO:");
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+
+        label_nota1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label_nota1.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota1.setText("NOTA:");
+        getContentPane().add(label_nota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, -1, -1));
+
+        label_nota2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_nota2.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota2.setText("La imagen debe tener el formato");
+        getContentPane().add(label_nota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, -1, -1));
+
+        label_nota3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_nota3.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota3.setText(".JPG, .GIF o .PNG y debe tener un ");
+        getContentPane().add(label_nota3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 540, -1, -1));
+
+        label_nota4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_nota4.setForeground(new java.awt.Color(76, 76, 76));
+        label_nota4.setText("tamaño máximo de 64KB");
+        getContentPane().add(label_nota4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, -1, -1));
 
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
@@ -327,112 +301,134 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         con = db.MySQLConnection();
-        if (imgPath != null){
-            
+        
+        if (matricula.getSelectedItem() != "Seleccionar"){
+            if (imgPath != null){
+                String query = "{call registrarPPsicologico(?,?)}";  
                 PreparedStatement ps;
-            try {
-                ps = con.prepareStatement("INSERT INTO tbl_images(The_image) VALUES(?)");
-                InputStream img = new FileInputStream(new File(imgPath));
-                ps.setBlob(1,img);
                 
-                if (ps.executeUpdate() == 1){
-                    JOptionPane.showMessageDialog(null, "Imagen insertada");
+                try {
+                    ps = con.prepareStatement(query);
+                    InputStream img = new FileInputStream(new File(imgPath));
+                    
+                    ps.setBlob(1,img);
+                    ps.setString(2, matricula.getSelectedItem().toString());
+                
+                    if (ps.executeUpdate() == 1){
+                        JOptionPane.showMessageDialog(null, "Imagen insertada");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
                 }
-              } catch (SQLException ex) {
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Imagen NO seleccionada"); 
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Matrícula NO seleccionada"); 
+        }
+        imgPath = null;
+    }//GEN-LAST:event_agregarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        con = db.MySQLConnection();
+        
+        if (matricula.getSelectedItem() != "Seleccionar"){
+            try {
+                ResultSet rs;
+                PreparedStatement ps;
+                String query = "{call buscarPPsicologico(?)}";
+                
+                ps = con.prepareStatement(query);
+                ps.setString(1, matricula.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                
+                if(rs.next()){
+                    documento.setIcon(ResizeImage(null, rs.getBytes("Perfil")));
+                    
+                    File image = new File("perfiles/" + "PP" + matricula.getSelectedItem() + ".png");
+                    FileOutputStream fos = new FileOutputStream(image);
+                    fos.write(rs.getBytes("Perfil"));
+                    fos.close();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Perfil NO encontrado");  
+                }
+            
+                rs.close();
+                ps.close();
+            } 
+            catch (SQLException ex) {
                 Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
         else{
-           JOptionPane.showMessageDialog(null, "Imagen NO seleccionada"); 
+            JOptionPane.showMessageDialog(null, "Matrícula NO seleccionada"); 
         }
-        
-        imgPath = null;
-    }//GEN-LAST:event_registrarActionPerformed
+    }//GEN-LAST:event_buscarActionPerformed
 
-    private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
-        con = db.MySQLConnection();
-        int id = Integer.parseInt(matricula.getSelectedItem().toString());
-        String SelectQuery = "SELECT * FROM tbl_images WHERE id = "+id;
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+       con = db.MySQLConnection();
         
-        Statement st;
-        ResultSet rs;
-        
-        try {
-            st = con.createStatement();
-            rs = st.executeQuery(SelectQuery);
-        
-            if(rs.next()){
-                lbl_Image.setIcon(ResizeImage(null, rs.getBytes("The_image")));
-                File image = new File("perfiles/" + "PP" + matricula.getSelectedItem() + ".png");
-                FileOutputStream fos = new FileOutputStream(image);
-                fos.write(rs.getBytes("The_image"));
-                fos.close();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Perfil NO encontrado");  
-            }
-        } 
-        catch (SQLException ex) {
-            Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_buscar1ActionPerformed
-
-    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        con = db.MySQLConnection();
-        int id = Integer.parseInt(matricula.getSelectedItem().toString());
-        String DeleteQuery = "DELETE FROM tbl_images WHERE id = ?";
-        
-        try {
-            PreparedStatement ps = con.prepareStatement(DeleteQuery);
-            ps.setInt(1, id);
-            if(ps.executeUpdate() == 1)
-            {
-                JOptionPane.showMessageDialog(null, "Perfil eliminado");
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "No existe el ID del perfil");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        lbl_Image.setIcon(null);
-    }//GEN-LAST:event_cancelarActionPerformed
-
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        con = db.MySQLConnection();
-        if(imgPath != null){
+        if (matricula.getSelectedItem() != "Seleccionar"){
             try {
-                InputStream  img = new FileInputStream(imgPath);
-                String UpdateQuery = "UPDATE tbl_images SET The_image = ? WHERE id = ?";
-                int id = Integer.parseInt(matricula.getSelectedItem().toString());
-                PreparedStatement ps = con.prepareStatement(UpdateQuery);
-                ps.setBlob(1, img);
-                ps.setInt(2, id);
+                String query = "{call eliminarPPsicologico(?)}";  
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, matricula.getSelectedItem().toString());
                 if(ps.executeUpdate() == 1){
-                    JOptionPane.showMessageDialog(null, "Perfil actualizado");
-                }else{
-                    JOptionPane.showMessageDialog(null, "No existe el ID del perfil.");
+                    JOptionPane.showMessageDialog(null, "Perfil eliminado");
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(PerfilPsicologico.class.getName()).log(Level.SEVERE, null, ex);
-            }            
-        }else{
-            JOptionPane.showMessageDialog(null, "Perfil no seleccionado");
+                else{
+                    JOptionPane.showMessageDialog(null, "No existe el ID del perfil");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Matrícula NO seleccionada"); 
         }
         
+        documento.setIcon(null);
+    }//GEN-LAST:event_eliminarActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        con = db.MySQLConnection();
+        
+        if (matricula.getSelectedItem() != "Seleccionar"){
+            if(imgPath != null){
+                try {
+                    InputStream  img = new FileInputStream(imgPath);
+                    String query = "{call editarPPsicologico(?,?)}";
+                    PreparedStatement ps = con.prepareStatement(query);
+                    ps.setBlob(1, img);
+                    ps.setString(2, matricula.getSelectedItem().toString());
+                    if(ps.executeUpdate() == 1){
+                        JOptionPane.showMessageDialog(null, "Perfil actualizado");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "No existe el ID del perfil.");
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
+                }            
+            }else{
+                JOptionPane.showMessageDialog(null, "Perfil no seleccionado");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Matrícula NO seleccionada"); 
+        }
         imgPath = null;
-                  
-    }//GEN-LAST:event_modificarActionPerformed
+    }//GEN-LAST:event_editarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
         new Login().setVisible(true);
@@ -443,7 +439,7 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
 
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File(System.getProperty("user.home")));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","jpg","gif","png");
@@ -453,30 +449,22 @@ public class PerfilPsicologico extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION){
             File selectedFile = file.getSelectedFile();
             String path = selectedFile.getAbsolutePath();
-            lbl_Image.setIcon(ResizeImage(path,null));
+            documento.setIcon(ResizeImage(path,null));
             imgPath = path;
         }
         else if (result == JFileChooser.CANCEL_OPTION){
             System.out.println("Imagen NO seleccionada");
         }
-    }//GEN-LAST:event_agregarActionPerformed
+    }//GEN-LAST:event_uploadActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new MenuExpediente().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-    private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
+    private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mostrar_todosActionPerformed
-
-    private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar2ActionPerformed
-
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarActionPerformed
+    }//GEN-LAST:event_matriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -534,24 +522,21 @@ public class PerfilPsicologico extends javax.swing.JFrame {
     private javax.swing.JMenuItem about_csf;
     private javax.swing.JButton agregar;
     private javax.swing.JButton back;
-    private javax.swing.JButton buscar1;
-    private javax.swing.JButton buscar2;
-    private javax.swing.JTextField buscar_perfil;
-    private javax.swing.JButton cancelar;
+    private javax.swing.JButton buscar;
+    private javax.swing.JLabel documento;
+    private javax.swing.JButton editar;
     private javax.swing.JButton eliminar;
     private javax.swing.JMenu file;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_buscar;
-    private javax.swing.JLabel label_buscar1;
     private javax.swing.JLabel label_line;
     private javax.swing.JLabel label_login;
     private javax.swing.JLabel label_logo;
-    private javax.swing.JLabel lbl_Image;
+    private javax.swing.JLabel label_nota1;
+    private javax.swing.JLabel label_nota2;
+    private javax.swing.JLabel label_nota3;
+    private javax.swing.JLabel label_nota4;
     private javax.swing.JMenuItem log_out;
     private javax.swing.JComboBox<String> matricula;
-    private javax.swing.JButton modificar;
-    private javax.swing.JButton mostrar_todos;
-    private javax.swing.JButton registrar;
-    private javax.swing.JTable tabla_perfil;
+    private javax.swing.JButton upload;
     // End of variables declaration//GEN-END:variables
 }

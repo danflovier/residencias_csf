@@ -69,7 +69,7 @@ public class Asistencias extends javax.swing.JFrame {
         about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Residencias Santa Fe | Alumnos");
+        setTitle("Residencias Santa Fe | Asistencias");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
         setPreferredSize(new java.awt.Dimension(746, 791));

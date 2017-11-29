@@ -210,7 +210,6 @@ public class Alumnos extends javax.swing.JFrame {
         buscar1 = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
-        imprimir = new javax.swing.JButton();
         cuarto = new javax.swing.JComboBox<>();
         label_correo1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
@@ -562,17 +561,6 @@ public class Alumnos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 740, 130, 40));
-
-        imprimir.setBackground(new java.awt.Color(255, 255, 255));
-        imprimir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png"))); // NOI18N
-        imprimir.setText("IMPRIMIR");
-        imprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 590, 180, 60));
 
         cuarto.setBackground(new java.awt.Color(204, 204, 204));
         cuarto.setBorder(null);
@@ -1068,10 +1056,6 @@ public class Alumnos extends javax.swing.JFrame {
         new ResidenciasCSF().setVisible(true);
     }//GEN-LAST:event_about_csfActionPerformed
 
-    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imprimirActionPerformed
-
 
     private void sexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoActionPerformed
         // TODO add your handling code here:
@@ -1218,7 +1202,6 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estado;
     private javax.swing.JMenu file;
-    private javax.swing.JButton imprimir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_anio;
     private javax.swing.JLabel label_anio1;
