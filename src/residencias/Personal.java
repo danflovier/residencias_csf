@@ -100,7 +100,6 @@ public class Personal extends javax.swing.JFrame {
         label_buscar = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
-        buscar_personal = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         dia = new javax.swing.JTextField();
         mes = new javax.swing.JTextField();
@@ -114,7 +113,6 @@ public class Personal extends javax.swing.JFrame {
         puesto = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_personal = new javax.swing.JTable();
-        buscar2 = new javax.swing.JButton();
         mostrar_todos = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
@@ -220,8 +218,8 @@ public class Personal extends javax.swing.JFrame {
 
         label_buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_buscar.setForeground(new java.awt.Color(76, 76, 76));
-        label_buscar.setText("BUSCAR PERSONAL:");
-        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, -1));
+        label_buscar.setText("VER PERSONAL");
+        getContentPane().add(label_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
 
         label_line.setBackground(new java.awt.Color(250, 197, 28));
         label_line.setForeground(new java.awt.Color(3, 169, 244));
@@ -235,14 +233,6 @@ public class Personal extends javax.swing.JFrame {
         id.setBorder(null);
         id.setDoubleBuffered(true);
         getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, 30));
-
-        buscar_personal.setBackground(new java.awt.Color(223, 223, 223));
-        buscar_personal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        buscar_personal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        buscar_personal.setToolTipText("");
-        buscar_personal.setBorder(null);
-        buscar_personal.setDoubleBuffered(true);
-        getContentPane().add(buscar_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 200, 30));
 
         nombre.setBackground(new java.awt.Color(223, 223, 223));
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -327,7 +317,7 @@ public class Personal extends javax.swing.JFrame {
         puesto.setBackground(new java.awt.Color(204, 204, 204));
         puesto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         puesto.setForeground(new java.awt.Color(76, 76, 76));
-        puesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------", "Administrador", "Prefecto" }));
+        puesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------", "Administrador" }));
         puesto.setBorder(null);
         puesto.setFocusable(false);
         puesto.setLightWeightPopupEnabled(false);
@@ -350,17 +340,6 @@ public class Personal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabla_personal);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 690, 520));
-
-        buscar2.setBackground(new java.awt.Color(255, 255, 255));
-        buscar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        buscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        buscar2.setText("BUSCAR");
-        buscar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 200, 140, 30));
 
         mostrar_todos.setBackground(new java.awt.Color(255, 255, 255));
         mostrar_todos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -502,10 +481,6 @@ public class Personal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscar2ActionPerformed
-
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
         // TODO add your handling code here:
         con = db.MySQLConnection();
@@ -517,8 +492,6 @@ public class Personal extends javax.swing.JFrame {
         modelo.addColumn("Fecha de nacimiento");
         modelo.addColumn("Sexo");
         modelo.addColumn("Direccion");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Telefono");
         modelo.addColumn("Correo institucional");
         modelo.addColumn("Puesto");
         tabla_personal.setModel(modelo);
@@ -533,10 +506,8 @@ public class Personal extends javax.swing.JFrame {
                 datosAlumno[2] = result.getDate("Fecha_nacimiento").toString();
                 datosAlumno[3] = result.getString("Sexo");
                 datosAlumno[4] = result.getString("Direccion");
-                datosAlumno[5] = result.getString("Estado");
-                datosAlumno[6] = result.getString("Telefono");
-                datosAlumno[7] = result.getString("Correo institucional");
-                datosAlumno[8] = result.getString("Puesto");
+                datosAlumno[5] = result.getString("Correo institucional");
+                datosAlumno[6] = result.getString("Puesto");
                 modelo.addRow(datosAlumno);
                 tabla_personal.setModel(modelo);                
             }
@@ -610,7 +581,8 @@ public class Personal extends javax.swing.JFrame {
                     st = con.prepareCall(query);
                     st.setString(1, nom);
                     st.setString(2, pass);
-                    st.setString(3, residenciaA);
+                    st.setString(3, idPersonal);
+                    st.executeQuery();
                 } catch (SQLException ex) {
                     Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -696,8 +668,6 @@ public class Personal extends javax.swing.JFrame {
     private javax.swing.JMenuItem about_csf;
     private javax.swing.JTextField anio;
     private javax.swing.JButton back;
-    private javax.swing.JButton buscar2;
-    private javax.swing.JTextField buscar_personal;
     private javax.swing.JButton cancelar;
     private javax.swing.JPasswordField contrasena;
     private javax.swing.JTextField correo_institucional;
