@@ -62,6 +62,7 @@ public class Alumnos extends javax.swing.JFrame {
         correo_institucional.setText(null);
         cuarto.setEnabled(false);
         cuarto.removeAllItems();
+        registrar.setEnabled(true);
     }
     public void disableTextField(){
         nombre.setEnabled(false);
