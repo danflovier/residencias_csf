@@ -64,7 +64,7 @@ public class Contraseña extends javax.swing.JFrame {
         about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Residencias Santa Fe | Correo");
+        setTitle("Residencias Santa Fe | Contraseña");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(716, 666));

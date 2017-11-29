@@ -286,7 +286,7 @@ public class Informe extends javax.swing.JFrame {
         about_csf = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Residencias Santa Fe | Vigencia");
+        setTitle("Residencias Santa Fe | Informe");
         setBackground(new java.awt.Color(33, 150, 243));
         setIconImage(new ImageIcon(getClass().getResource("/img/icon.png")).getImage());
         setPreferredSize(new java.awt.Dimension(1900, 900));
