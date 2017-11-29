@@ -162,7 +162,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
         sangre.setBackground(new java.awt.Color(204, 204, 204));
         sangre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sangre.setForeground(new java.awt.Color(76, 76, 76));
-        sangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9", "9+" }));
+        sangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         sangre.setBorder(null);
         sangre.setFocusable(false);
         sangre.setLightWeightPopupEnabled(false);

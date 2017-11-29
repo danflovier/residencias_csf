@@ -8,6 +8,13 @@ package residencias;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -16,6 +23,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +32,8 @@ import javax.swing.JOptionPane;
  * @author danflovier
  */
 public class Indisciplinas extends javax.swing.JFrame {
+    Connection con;
+    final private MySQL db;
     
     public Indisciplinas() {
         initComponents();
@@ -48,15 +59,122 @@ public class Indisciplinas extends javax.swing.JFrame {
         scrollPane_motivo.setBorder(null);
         scrollPane_message.setBorder(null);
         
+       db = new MySQL();
+       initMatricula();
+       editForm();
+       disableForm(); 
+    }
+    
+    public void initMatricula(){
+        con = db.MySQLConnection();
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        try {
+            CallableStatement st = con.prepareCall(query);
+            result = st.executeQuery();
+            while(result.next()){
+                matricula.addItem(result.getString("Matricula"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void editForm(){
+        field_name.setEditable(false);
+        field_year.setEditable(false);
+        field_month.setEditable(false);
+        field_day.setEditable(false);
+    }
+    
+    public void disableForm(){
         field_from.setEnabled(false);
         field_to.setEnabled(false);
         field_subject.setEnabled(false);
         text_message.setEnabled(false);
         field_password.setEnabled(false);
         button_send.setEnabled(false);
-        
     }
-
+    
+    public void clearForm(){
+        matricula.setSelectedIndex(0);
+        field_name.setText("");
+        field_day.setText("");
+        field_month.setText("");
+        field_year.setText("");
+        text_motivo.setText("");
+        field_from.setText("");
+        field_to.setText("");
+        field_subject.setText("");
+        text_message.setText("");
+        field_password.setText("");
+        button_send.setText("");
+        field_from.setEnabled(false);
+        field_to.setEnabled(false);
+        field_subject.setEnabled(false);
+        text_message.setEnabled(false);
+        field_password.setEnabled(false);
+        button_send.setEnabled(false);
+    }
+    
+    public String getCorreoTutor(String matricula){
+        String correo = "";
+        Connection connect = db.MySQLConnection();
+        String query = "{call getCorreoTutor(?)}";
+        ResultSet result;
+        
+        try {
+            CallableStatement call = connect.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            while(result.next()){
+                correo = result.getString("Correo institucional");
+            }
+        } 
+        catch (SQLException ex){
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return correo;
+    }
+    
+    public String getNombreAlumno(String matricula){
+        Connection con = db.MySQLConnection();
+        String query = "{call getAlumno(?)}";
+        ResultSet result;
+        String nombre_alumno = "";
+            
+        try { 
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, matricula);
+            result = call.executeQuery();
+            
+            while(result.next()){
+                nombre_alumno = result.getString("Nombre");
+            }
+                
+            }catch (SQLException ex){
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this,"La matrícula del alumno no existe. Intente de nuevo.","ERROR",JOptionPane.INFORMATION_MESSAGE);    
+            }
+        return nombre_alumno;
+    }
+     
+    public void setDiaActual(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           Date today = new Date();
+           String date_str = dateFormat.format(today);
+           String[] date;
+           date = date_str.split("-");
+           
+           String year = date[0]; 
+           String month = date[1];
+           String day = date[2];
+           
+           field_year.setText(year);
+           field_month.setText(month);
+           field_day.setText(day);
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +205,6 @@ public class Indisciplinas extends javax.swing.JFrame {
         label_line2 = new javax.swing.JLabel();
         label_line1 = new javax.swing.JLabel();
         label_line = new javax.swing.JLabel();
-        field_matricula = new javax.swing.JTextField();
         field_name = new javax.swing.JTextField();
         field_day = new javax.swing.JTextField();
         field_month = new javax.swing.JTextField();
@@ -104,6 +221,7 @@ public class Indisciplinas extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         button_send = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        matricula = new javax.swing.JComboBox<>();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -227,14 +345,6 @@ public class Indisciplinas extends javax.swing.JFrame {
         label_line.setForeground(new java.awt.Color(3, 169, 244));
         label_line.setOpaque(true);
         getContentPane().add(label_line, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 650, 200, 10));
-
-        field_matricula.setBackground(new java.awt.Color(223, 223, 223));
-        field_matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        field_matricula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        field_matricula.setToolTipText("");
-        field_matricula.setBorder(null);
-        field_matricula.setDoubleBuffered(true);
-        getContentPane().add(field_matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 200, 30));
 
         field_name.setBackground(new java.awt.Color(223, 223, 223));
         field_name.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -381,6 +491,20 @@ public class Indisciplinas extends javax.swing.JFrame {
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 130, 40));
 
+        matricula.setBackground(new java.awt.Color(204, 204, 204));
+        matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        matricula.setForeground(new java.awt.Color(76, 76, 76));
+        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        matricula.setBorder(null);
+        matricula.setFocusable(false);
+        matricula.setLightWeightPopupEnabled(false);
+        matricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matriculaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 240, 30));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -466,25 +590,7 @@ public class Indisciplinas extends javax.swing.JFrame {
                     Transport.send(message, username, new String(field_password.getPassword()));
                     JOptionPane.showMessageDialog(this,"Mensaje enviado con éxito.","ÉXITO",JOptionPane.INFORMATION_MESSAGE);
                     
-                    field_matricula.setText("");
-                    field_name.setText("");
-                    field_day.setText("");
-                    field_month.setText("");
-                    field_year.setText("");
-                    text_motivo.setText("");
-                    field_from.setText("");
-                    field_to.setText("");
-                    field_subject.setText("");
-                    text_message.setText("");
-                    field_password.setText("");
-                    button_send.setText("");
-                    
-                    field_from.setEnabled(false);
-                    field_to.setEnabled(false);
-                    field_subject.setEnabled(false);
-                    text_message.setEnabled(false);
-                    field_password.setEnabled(false);
-                    button_send.setEnabled(false);
+                    clearForm();
                     
                 } 
                 catch (MessagingException ex) {
@@ -509,7 +615,7 @@ public class Indisciplinas extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         
-        if (!field_matricula.getText().equals("")&& !field_name.getText().equals("") && !field_day.getText().equals("") && !field_month.getText().equals("") && !field_year.getText().equals("") && !text_motivo.getText().equals("")){
+        if (!matricula.getSelectedItem().equals("Seleccionar")&& !field_name.getText().equals("") && !field_day.getText().equals("") && !field_month.getText().equals("") && !field_year.getText().equals("") && !text_motivo.getText().equals("")){
             field_from.setEditable(false);
             field_to.setEditable(false);
             field_subject.setEditable(false);
@@ -518,7 +624,10 @@ public class Indisciplinas extends javax.swing.JFrame {
             button_send.setEnabled(true);
         
             field_from.setText("residencias.csf2017@gmail.com");
-            field_to.setText("danflovier@gmail.com");
+            
+            String correo_tutor = getCorreoTutor(matricula.getSelectedItem().toString());
+            field_to.setText(correo_tutor);
+            //field_to.setText("danflovier@gmail.com");
             field_subject.setText("Residencias CSF | Caso de Indisciplina del alumno");
         
             String day = field_day.getText();
@@ -536,19 +645,7 @@ public class Indisciplinas extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        field_matricula.setText("");
-        field_name.setText("");
-        field_day.setText("");
-        field_month.setText("");
-        field_year.setText("");
-        text_motivo.setText("");
-        
-        field_from.setEnabled(false);
-        field_to.setEnabled(false);
-        field_subject.setEnabled(false);
-        text_message.setEnabled(false);
-        field_password.setEnabled(false);
-        button_send.setEnabled(false);
+        clearForm();
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
@@ -564,6 +661,14 @@ public class Indisciplinas extends javax.swing.JFrame {
         new MenuExpediente().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
+       if (!matricula.getSelectedItem().equals("Seleccionar")){
+           String nombre_alumno = getNombreAlumno(matricula.getSelectedItem().toString());
+           field_name.setText(nombre_alumno);
+           setDiaActual();
+       }
+    }//GEN-LAST:event_matriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -640,7 +745,6 @@ public class Indisciplinas extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField field_day;
     private javax.swing.JTextField field_from;
-    private javax.swing.JTextField field_matricula;
     private javax.swing.JTextField field_month;
     private javax.swing.JTextField field_name;
     private javax.swing.JPasswordField field_password;
@@ -670,6 +774,7 @@ public class Indisciplinas extends javax.swing.JFrame {
     private javax.swing.JLabel label_subject;
     private javax.swing.JLabel label_to;
     private javax.swing.JMenuItem log_out;
+    private javax.swing.JComboBox<String> matricula;
     private javax.swing.JButton registrar;
     private javax.swing.JScrollPane scrollPane_message;
     private javax.swing.JScrollPane scrollPane_motivo;

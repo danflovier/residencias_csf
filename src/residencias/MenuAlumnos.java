@@ -57,13 +57,11 @@ public class MenuAlumnos extends javax.swing.JFrame {
         label_asistencia = new javax.swing.JLabel();
         label_visitas = new javax.swing.JLabel();
         label_tutores = new javax.swing.JLabel();
-        label_habitacion = new javax.swing.JLabel();
         alumnos = new javax.swing.JButton();
         asistencia = new javax.swing.JButton();
         visitas = new javax.swing.JButton();
         tutores = new javax.swing.JButton();
         expediente = new javax.swing.JButton();
-        habitacion = new javax.swing.JButton();
         back = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -105,7 +103,7 @@ public class MenuAlumnos extends javax.swing.JFrame {
         label_asistencia.setForeground(new java.awt.Color(76, 76, 76));
         label_asistencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_asistencia.setText("ASISTENCIA");
-        getContentPane().add(label_asistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 140, -1));
+        getContentPane().add(label_asistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 140, -1));
 
         label_visitas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_visitas.setForeground(new java.awt.Color(76, 76, 76));
@@ -118,12 +116,6 @@ public class MenuAlumnos extends javax.swing.JFrame {
         label_tutores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_tutores.setText("TUTORES");
         getContentPane().add(label_tutores, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 140, -1));
-
-        label_habitacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_habitacion.setForeground(new java.awt.Color(76, 76, 76));
-        label_habitacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_habitacion.setText("HABITACIÓN");
-        getContentPane().add(label_habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 140, -1));
 
         alumnos.setBackground(new java.awt.Color(255, 255, 255));
         alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1_alumno.png"))); // NOI18N
@@ -147,7 +139,7 @@ public class MenuAlumnos extends javax.swing.JFrame {
                 asistenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(asistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 140, 130));
+        getContentPane().add(asistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 140, 130));
 
         visitas.setBackground(new java.awt.Color(255, 255, 255));
         visitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3_visita.png"))); // NOI18N
@@ -184,18 +176,6 @@ public class MenuAlumnos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 140, 130));
-
-        habitacion.setBackground(new java.awt.Color(255, 255, 255));
-        habitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/6_cuarto.png"))); // NOI18N
-        habitacion.setBorder(null);
-        habitacion.setBorderPainted(false);
-        habitacion.setContentAreaFilled(false);
-        habitacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                habitacionActionPerformed(evt);
-            }
-        });
-        getContentPane().add(habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 140, 130));
 
         back.setBackground(java.awt.Color.white);
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -262,10 +242,6 @@ public class MenuAlumnos extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_file_exitActionPerformed
-
-    private void habitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionActionPerformed
-
-    }//GEN-LAST:event_habitacionActionPerformed
 
     private void alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alumnosActionPerformed
         new Alumnos().setVisible(true);
@@ -344,11 +320,9 @@ public class MenuAlumnos extends javax.swing.JFrame {
     private javax.swing.JButton expediente;
     private javax.swing.JMenu file;
     private javax.swing.JMenuItem file_exit;
-    private javax.swing.JButton habitacion;
     private javax.swing.JLabel label_alumnos;
     private javax.swing.JLabel label_asistencia;
     private javax.swing.JLabel label_expediente;
-    private javax.swing.JLabel label_habitacion;
     private javax.swing.JLabel label_logo;
     private javax.swing.JLabel label_talumnos;
     private javax.swing.JLabel label_tutores;
