@@ -6,19 +6,56 @@
 package residencias;
 
 import java.awt.Color;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author danflovier
  */
 public class HistorialAcademico extends javax.swing.JFrame {
+    Connection con;
+    final private MySQL db;
     
     public HistorialAcademico() {
         initComponents();
         
         // Set a background color to the JFrame
-        this.getContentPane().setBackground(new Color(255,255,255));   
+        this.getContentPane().setBackground(new Color(255,255,255));  
+        
+        db = new MySQL();
+        
+        initMatricula();
+    }
+    
+    public void initMatricula(){
+        con = db.MySQLConnection();
+        String query = "{call getAlumnos()}";
+        ResultSet result;
+        try {
+            CallableStatement st = con.prepareCall(query);
+            result = st.executeQuery();
+            while(result.next()){
+                matricula.addItem(result.getString("Matricula"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void clearForm(){
+        semestre_a.setSelectedIndex(0);
+        promedio_a.setText("");
+        promedio_acum.setText("");
+        matricula.setSelectedIndex(0);
     }
 
     /**
@@ -37,14 +74,11 @@ public class HistorialAcademico extends javax.swing.JFrame {
         label_line = new javax.swing.JLabel();
         label_semestre = new javax.swing.JLabel();
         label_promedio_actual = new javax.swing.JLabel();
-        label_id_expediente = new javax.swing.JLabel();
         label_promedio_acumulado = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
-        id_expediente = new javax.swing.JTextField();
-        padecimientos = new javax.swing.JTextField();
+        promedio_a = new javax.swing.JTextField();
         buscar_historial = new javax.swing.JTextField();
-        padecimientos1 = new javax.swing.JTextField();
-        sangre = new javax.swing.JComboBox<>();
+        promedio_acum = new javax.swing.JTextField();
+        semestre_a = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_historial = new javax.swing.JTable();
         registrar = new javax.swing.JButton();
@@ -55,6 +89,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
         eliminar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        matricula = new javax.swing.JComboBox<>();
         Menu = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         log_out = new javax.swing.JMenuItem();
@@ -72,7 +107,7 @@ public class HistorialAcademico extends javax.swing.JFrame {
 
         label_id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_id.setForeground(new java.awt.Color(76, 76, 76));
-        label_id.setText("ID");
+        label_id.setText("MATRÍCULA DEL ALUMNO:");
         getContentPane().add(label_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
         label_login.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
@@ -104,44 +139,23 @@ public class HistorialAcademico extends javax.swing.JFrame {
         label_promedio_actual.setText("PROMEDIO ACTUAL");
         getContentPane().add(label_promedio_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 220, -1));
 
-        label_id_expediente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        label_id_expediente.setForeground(new java.awt.Color(76, 76, 76));
-        label_id_expediente.setText("ID EXPEDIENTE");
-        getContentPane().add(label_id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
-
         label_promedio_acumulado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_promedio_acumulado.setForeground(new java.awt.Color(76, 76, 76));
         label_promedio_acumulado.setText("PROMEDIO ACUMULADO");
         getContentPane().add(label_promedio_acumulado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 230, -1));
 
-        id.setBackground(new java.awt.Color(223, 223, 223));
-        id.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        id.setToolTipText("");
-        id.setBorder(null);
-        id.setDoubleBuffered(true);
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 30));
-
-        id_expediente.setBackground(new java.awt.Color(223, 223, 223));
-        id_expediente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        id_expediente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        id_expediente.setToolTipText("");
-        id_expediente.setBorder(null);
-        id_expediente.setDoubleBuffered(true);
-        getContentPane().add(id_expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 30));
-
-        padecimientos.setBackground(new java.awt.Color(223, 223, 223));
-        padecimientos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        padecimientos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        padecimientos.setToolTipText("");
-        padecimientos.setBorder(null);
-        padecimientos.setDoubleBuffered(true);
-        padecimientos.addMouseListener(new java.awt.event.MouseAdapter() {
+        promedio_a.setBackground(new java.awt.Color(223, 223, 223));
+        promedio_a.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        promedio_a.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        promedio_a.setToolTipText("");
+        promedio_a.setBorder(null);
+        promedio_a.setDoubleBuffered(true);
+        promedio_a.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                padecimientosuserIsMouseExited(evt);
+                promedio_auserIsMouseExited(evt);
             }
         });
-        getContentPane().add(padecimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 220, 30));
+        getContentPane().add(promedio_a, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 220, 30));
 
         buscar_historial.setBackground(new java.awt.Color(223, 223, 223));
         buscar_historial.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -151,22 +165,22 @@ public class HistorialAcademico extends javax.swing.JFrame {
         buscar_historial.setDoubleBuffered(true);
         getContentPane().add(buscar_historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 200, 30));
 
-        padecimientos1.setBackground(new java.awt.Color(223, 223, 223));
-        padecimientos1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        padecimientos1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        padecimientos1.setToolTipText("");
-        padecimientos1.setBorder(null);
-        padecimientos1.setDoubleBuffered(true);
-        getContentPane().add(padecimientos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 220, 30));
+        promedio_acum.setBackground(new java.awt.Color(223, 223, 223));
+        promedio_acum.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        promedio_acum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        promedio_acum.setToolTipText("");
+        promedio_acum.setBorder(null);
+        promedio_acum.setDoubleBuffered(true);
+        getContentPane().add(promedio_acum, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 220, 30));
 
-        sangre.setBackground(new java.awt.Color(204, 204, 204));
-        sangre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        sangre.setForeground(new java.awt.Color(76, 76, 76));
-        sangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
-        sangre.setBorder(null);
-        sangre.setFocusable(false);
-        sangre.setLightWeightPopupEnabled(false);
-        getContentPane().add(sangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 220, 30));
+        semestre_a.setBackground(new java.awt.Color(204, 204, 204));
+        semestre_a.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        semestre_a.setForeground(new java.awt.Color(76, 76, 76));
+        semestre_a.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        semestre_a.setBorder(null);
+        semestre_a.setFocusable(false);
+        semestre_a.setLightWeightPopupEnabled(false);
+        getContentPane().add(semestre_a, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 220, 30));
 
         tabla_historial.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         tabla_historial.setModel(new javax.swing.table.DefaultTableModel(
@@ -275,6 +289,15 @@ public class HistorialAcademico extends javax.swing.JFrame {
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 130, 40));
 
+        matricula.setBackground(new java.awt.Color(204, 204, 204));
+        matricula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        matricula.setForeground(new java.awt.Color(76, 76, 76));
+        matricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        matricula.setBorder(null);
+        matricula.setFocusable(false);
+        matricula.setLightWeightPopupEnabled(false);
+        getContentPane().add(matricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 240, 30));
+
         Menu.setBackground(new java.awt.Color(255, 255, 255));
         Menu.setBorder(null);
         Menu.setBorderPainted(false);
@@ -316,36 +339,182 @@ public class HistorialAcademico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void padecimientosuserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_padecimientosuserIsMouseExited
+    private void promedio_auserIsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_promedio_auserIsMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_padecimientosuserIsMouseExited
+    }//GEN-LAST:event_promedio_auserIsMouseExited
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        // TODO add your handling code here:
+        String query;
+        con = db.MySQLConnection();
+        CallableStatement st;
+        
+        String str = semestre_a.getSelectedItem().toString();
+        int semestre_actual = Integer.parseInt(str);
+        float promedio_actual = Float.parseFloat(promedio_a.getText());
+        float promedio_acumulado = Float.parseFloat(promedio_acum.getText());
+        String matricula_alumno = matricula.getSelectedItem().toString();
+        
+                query = "{call registrarHAcademico(?,?,?,?)}";
+                try {
+                    st = con.prepareCall(query);
+                    st.setInt(1,semestre_actual);
+                    st.setFloat(2,promedio_actual);
+                    st.setFloat(3,promedio_acumulado);
+                    st.setString(4,matricula_alumno);
+                    st.executeQuery();
+                JOptionPane.showMessageDialog(null, "Historial académico registrado correctamente", "Registro del historial académico", JOptionPane.INFORMATION_MESSAGE);
+                clearForm();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_registrarActionPerformed
 
     private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
-        // TODO add your handling code here:
+
+        if (!matricula.getSelectedItem().equals("Seleccionar") && !semestre_a.getSelectedItem().equals("Seleccionar") && !promedio_a.getText().equals("") && !promedio_acum.getText().equals("")){
+            semestre_a.setSelectedIndex(0);
+            promedio_a.setText("");
+            promedio_acum.setText("");
+        }
+
+        if(matricula.getSelectedItem().equals("Seleccionar"))
+            JOptionPane.showMessageDialog(null, "Ingrese una matrícula a buscar");
+        else{
+            Connection connect = db.MySQLConnection();
+            String query = "{call getHAcademico(?)}";
+            String alumno = matricula.getSelectedItem().toString();
+            ResultSet result;
+            CallableStatement call;
+            
+            try {
+                call = connect.prepareCall(query);
+                call.setString(1, alumno);
+                result = call.executeQuery();
+                while (result.next()) {
+                    semestre_a.setSelectedItem(result.getString("Semestre actual"));
+                    promedio_a.setText(result.getString("Promedio actual"));
+                    promedio_acum.setText(result.getString("Promedio acumulado"));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+        }
     }//GEN-LAST:event_buscar1ActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        clearForm();
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
-        // TODO add your handling code here:
+        con = db.MySQLConnection();
+        
+        String query = "{call getHAcademico(?)}";
+        ResultSet result;
+        String alumno = buscar_historial.getText();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("SEMESTRE ACTUAL");
+        modelo.addColumn("PROMEDIO ACTUAL");
+        modelo.addColumn("PROMEDIO ACUMULADO");
+        modelo.addColumn("ID_EXPEDIENTE");
+        
+        tabla_historial.setModel(modelo);
+        
+        String [] datosHAcademico = new String[11];
+        
+        try {
+            CallableStatement call = con.prepareCall(query);
+            call.setString(1, alumno);
+            result = call.executeQuery();
+            while(result.next()){
+                datosHAcademico[0] = result.getString("ID_hacademico");
+                datosHAcademico[1] = String.valueOf(result.getInt("Semestre actual"));
+                datosHAcademico[2] = String.valueOf(result.getFloat("Promedio actual"));
+                datosHAcademico[3] = String.valueOf(result.getFloat("Promedio acumulado"));
+                datosHAcademico[4] = result.getString("EXPEDIENTE_ID_EXPEDIENTE");
+            }
+            modelo.addRow(datosHAcademico);
+            tabla_historial.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buscar2ActionPerformed
 
     private void mostrar_todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_todosActionPerformed
-        // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{call getHAcademicos()}";
+        ResultSet result;
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("SEMESTRE ACTUAL");
+        modelo.addColumn("PROMEDIO ACTUAL");
+        modelo.addColumn("PROMEDIO ACUMULADO");
+        modelo.addColumn("ID_EXPEDIENTE");
+        
+        tabla_historial.setModel(modelo);
+        
+        String [] datosHAcademico = new String[11];
+        try {
+            CallableStatement call = con.prepareCall(query);
+            result = call.executeQuery();
+            while(result.next()){
+                datosHAcademico[0] = result.getString("ID_hacademico");
+                datosHAcademico[1] = String.valueOf(result.getInt("Semestre actual"));
+                datosHAcademico[2] = String.valueOf(result.getFloat("Promedio actual"));
+                datosHAcademico[3] = String.valueOf(result.getFloat("Promedio acumulado"));
+                datosHAcademico[4] = result.getString("EXPEDIENTE_ID_EXPEDIENTE");
+                
+                modelo.addRow(datosHAcademico);
+                tabla_historial.setModel(modelo);                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mostrar_todosActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
+        con = db.MySQLConnection();
+        String query = "{call eliminarHAcademico(?) }";
+        try {
+            CallableStatement st = con.prepareCall(query);
+            String id_hacademico = (String) tabla_historial.getValueAt(tabla_historial.getSelectedRow(), 4);
+            st.setString(1, id_hacademico );
+            st.executeQuery();
+            mostrar_todos.doClick();
+        } catch (SQLException ex) {
+            Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
+        String query;
+        con = db.MySQLConnection();
+        CallableStatement st;
+        
+        String str = semestre_a.getSelectedItem().toString();
+        int semestre_actual = Integer.parseInt(str);
+        float promedio_actual = Float.parseFloat(promedio_a.getText());
+        float promedio_acumulado = Float.parseFloat(promedio_acum.getText());
+        String matricula_alumno = matricula.getSelectedItem().toString();
+        
+        query = "{call modificarHAcademico(?,?,?,?)}";
+            try {
+                st = con.prepareCall(query);
+                st.setInt(1,semestre_actual);
+                st.setFloat(2,promedio_actual);
+                st.setFloat(3,promedio_acumulado);
+                st.setString(4,matricula_alumno);
+                st.executeQuery();
+                JOptionPane.showMessageDialog(null, "Historial académico actualizado correctamente", "Modificación del historial académico", JOptionPane.INFORMATION_MESSAGE);
+                clearForm();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Alumnos.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void log_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_outActionPerformed
@@ -423,12 +592,9 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JButton eliminar;
     private javax.swing.JMenu file;
-    private javax.swing.JTextField id;
-    private javax.swing.JTextField id_expediente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_buscar;
     private javax.swing.JLabel label_id;
-    private javax.swing.JLabel label_id_expediente;
     private javax.swing.JLabel label_line;
     private javax.swing.JLabel label_login;
     private javax.swing.JLabel label_logo;
@@ -436,12 +602,13 @@ public class HistorialAcademico extends javax.swing.JFrame {
     private javax.swing.JLabel label_promedio_acumulado;
     private javax.swing.JLabel label_semestre;
     private javax.swing.JMenuItem log_out;
+    private javax.swing.JComboBox<String> matricula;
     private javax.swing.JButton modificar;
     private javax.swing.JButton mostrar_todos;
-    private javax.swing.JTextField padecimientos;
-    private javax.swing.JTextField padecimientos1;
+    private javax.swing.JTextField promedio_a;
+    private javax.swing.JTextField promedio_acum;
     private javax.swing.JButton registrar;
-    private javax.swing.JComboBox<String> sangre;
+    private javax.swing.JComboBox<String> semestre_a;
     private javax.swing.JTable tabla_historial;
     // End of variables declaration//GEN-END:variables
 }
