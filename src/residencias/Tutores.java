@@ -414,6 +414,12 @@ public class Tutores extends javax.swing.JFrame {
             }
             alumno.removeAllItems();
             initAlumnos();
+            nombre.setText("");
+            telefono.setText("");
+            correo_electronico.setText("");
+            direccion.setText("");
+            id.setText("");
+            alumno.setSelectedIndex(0);
         }
         else
         {
