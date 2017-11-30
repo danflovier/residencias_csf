@@ -15,6 +15,11 @@ Proyecto final para la materia de Análisis y Modelación de Sistemas de Softwar
 6. En la clase MySQL.java modifique el usuario, contraseña y puerto especificado dentro de su MySQL Workbench.
 7. Inicie la aplicación.
 8. Para poder ingresar al sistema, entre con un usuario y una contraseña de ejemplo especificados en los registros para un administrador.
+```
+EJEMPLO
+User: A01019595
+Password: juancamaney
+```
 
 ## Nota
 
