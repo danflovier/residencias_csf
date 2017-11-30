@@ -16,7 +16,8 @@ Proyecto final para la materia de Análisis y Modelación de Sistemas de Softwar
 7. Inicie la aplicación.
 8. Para poder ingresar al sistema, entre con un usuario y una contraseña de ejemplo especificados en los registros para un administrador.
 
-##Nota
+## Nota
+
 ```
 Contraseña del correo electrónico del sistema: Especificado en el manual de usuario.
 ```
